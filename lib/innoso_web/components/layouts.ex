@@ -73,6 +73,59 @@ defmodule InnosoWeb.Layouts do
   end
 
   @doc """
+  Renders the admin panel layout with sidebar navigation.
+  """
+  attr :flash, :map, required: true
+  attr :current_scope, :map, default: nil
+  slot :inner_block, required: true
+
+  def admin(assigns) do
+    ~H"""
+    <div class="flex h-screen bg-base-200 overflow-hidden">
+      <aside class="w-64 bg-base-100 border-r border-base-300 flex flex-col shrink-0">
+        <div class="p-4 border-b border-base-300">
+          <a href="/" class="flex items-center gap-2">
+            <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+              <span class="text-primary-content font-bold text-sm">I</span>
+            </div>
+            <span class="font-bold text-lg">Innoso</span>
+          </a>
+        </div>
+        <nav class="flex-1 p-4 space-y-1">
+          <.link navigate={~p"/admin"} class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-base-200 text-sm font-medium transition-colors">
+            <.icon name="hero-squares-2x2" class="size-5" /> Dashboard
+          </.link>
+          <.link navigate={~p"/admin/projects"} class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-base-200 text-sm font-medium transition-colors">
+            <.icon name="hero-briefcase" class="size-5" /> Projects
+          </.link>
+          <.link navigate={~p"/admin/team"} class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-base-200 text-sm font-medium transition-colors">
+            <.icon name="hero-users" class="size-5" /> Team
+          </.link>
+          <.link navigate={~p"/admin/bookings"} class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-base-200 text-sm font-medium transition-colors">
+            <.icon name="hero-calendar-days" class="size-5" /> Bookings
+          </.link>
+          <.link navigate={~p"/admin/admins"} class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-base-200 text-sm font-medium transition-colors">
+            <.icon name="hero-shield-check" class="size-5" /> Admins
+          </.link>
+        </nav>
+        <div class="p-4 border-t border-base-300 space-y-1">
+          <.link navigate={~p"/admin/settings"} class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-base-200 text-sm transition-colors">
+            <.icon name="hero-cog-6-tooth" class="size-5" /> Settings
+          </.link>
+          <.link href={~p"/admin/logout"} method="delete" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-base-200 text-sm text-error transition-colors">
+            <.icon name="hero-arrow-right-on-rectangle" class="size-5" /> Logout
+          </.link>
+        </div>
+      </aside>
+      <main class="flex-1 overflow-y-auto">
+        <.flash_group flash={@flash} />
+        {render_slot(@inner_block)}
+      </main>
+    </div>
+    """
+  end
+
+  @doc """
   Shows the flash group with standard titles and content.
 
   ## Examples

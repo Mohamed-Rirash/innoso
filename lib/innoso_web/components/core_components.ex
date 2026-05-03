@@ -445,6 +445,67 @@ defmodule InnosoWeb.CoreComponents do
     """
   end
 
+  @doc """
+  Renders a modal overlay using daisyUI dialog semantics.
+  """
+  attr :id, :string, required: true
+  attr :show, :boolean, default: false
+  attr :on_cancel, JS, default: %JS{}
+  slot :inner_block, required: true
+
+  def modal(assigns) do
+    ~H"""
+    <div
+      id={@id}
+      phx-mounted={@show && show_modal(@id)}
+      phx-remove={hide_modal(@id)}
+      class="relative z-50 hidden"
+    >
+      <div id={"#{@id}-bg"} class="fixed inset-0 bg-black/50 transition-opacity" aria-hidden="true" />
+      <div
+        class="fixed inset-0 overflow-y-auto"
+        aria-labelledby={"#{@id}-title"}
+        aria-describedby={"#{@id}-description"}
+        role="dialog"
+        aria-modal="true"
+        tabindex="0"
+      >
+        <div class="flex min-h-full items-center justify-center p-4">
+          <div
+            id={"#{@id}-container"}
+            phx-click-away={@on_cancel}
+            phx-window-keydown={@on_cancel}
+            phx-key="escape"
+            class="card bg-base-100 shadow-xl w-full max-w-lg"
+          >
+            <div class="card-body">
+              <button type="button" phx-click={@on_cancel} class="btn btn-ghost btn-circle btn-sm absolute top-4 right-4">
+                <.icon name="hero-x-mark" class="size-4" />
+              </button>
+              {render_slot(@inner_block)}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    """
+  end
+
+  def show_modal(js \\ %JS{}, id) when is_binary(id) do
+    js
+    |> JS.show(to: "##{id}")
+    |> JS.show(to: "##{id}-bg", transition: {"transition-all ease-out duration-300", "opacity-0", "opacity-100"})
+    |> JS.show(to: "##{id}-container", transition: {"transition-all ease-out duration-300", "opacity-0 translate-y-4", "opacity-100 translate-y-0"})
+    |> JS.focus_first(to: "##{id}-container")
+  end
+
+  def hide_modal(js \\ %JS{}, id) do
+    js
+    |> JS.hide(to: "##{id}-bg", transition: {"transition-all ease-in duration-200", "opacity-100", "opacity-0"})
+    |> JS.hide(to: "##{id}-container", transition: {"transition-all ease-in duration-200", "opacity-100 translate-y-0", "opacity-0 translate-y-4"})
+    |> JS.hide(to: "##{id}", transition: {"block", "block", "block"})
+  end
+
   ## JS Commands
 
   def show(js \\ %JS{}, selector) do

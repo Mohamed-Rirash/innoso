@@ -1,0 +1,98 @@
+<Layouts.admin flash={@flash} current_scope={@current_scope}>
+  <div class="p-8">
+    <div class="mb-8">
+      <h1 class="text-2xl font-bold">Dashboard</h1>
+      <p class="text-base-content/60 mt-1">Welcome back, <%= @current_scope.admin.email %></p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div class="card bg-base-100 shadow">
+        <div class="card-body">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-base-content/60 text-sm">Projects</p>
+              <p class="text-3xl font-bold mt-1"><%= @stats.projects %></p>
+            </div>
+            <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
+              <.icon name="hero-briefcase" class="size-6 text-primary" />
+            </div>
+          </div>
+          <.link navigate={~p"/admin/projects"} class="text-primary text-sm hover:underline mt-2">
+            Manage projects →
+          </.link>
+        </div>
+      </div>
+
+      <div class="card bg-base-100 shadow">
+        <div class="card-body">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-base-content/60 text-sm">Team Members</p>
+              <p class="text-3xl font-bold mt-1"><%= @stats.members %></p>
+            </div>
+            <div class="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center">
+              <.icon name="hero-users" class="size-6 text-secondary" />
+            </div>
+          </div>
+          <.link navigate={~p"/admin/team"} class="text-primary text-sm hover:underline mt-2">
+            Manage team →
+          </.link>
+        </div>
+      </div>
+
+      <div class="card bg-base-100 shadow">
+        <div class="card-body">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-base-content/60 text-sm">Pending Bookings</p>
+              <p class="text-3xl font-bold mt-1"><%= @stats.pending_bookings %></p>
+            </div>
+            <div class="w-12 h-12 bg-warning/10 rounded-xl flex items-center justify-center">
+              <.icon name="hero-calendar-days" class="size-6 text-warning" />
+            </div>
+          </div>
+          <.link navigate={~p"/admin/bookings"} class="text-primary text-sm hover:underline mt-2">
+            View bookings →
+          </.link>
+        </div>
+      </div>
+
+      <div class="card bg-base-100 shadow">
+        <div class="card-body">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-base-content/60 text-sm">Total Bookings</p>
+              <p class="text-3xl font-bold mt-1"><%= @stats.total_bookings %></p>
+            </div>
+            <div class="w-12 h-12 bg-success/10 rounded-xl flex items-center justify-center">
+              <.icon name="hero-chart-bar" class="size-6 text-success" />
+            </div>
+          </div>
+          <.link navigate={~p"/admin/bookings"} class="text-primary text-sm hover:underline mt-2">
+            View all →
+          </.link>
+        </div>
+      </div>
+    </div>
+
+    <div class="card bg-base-100 shadow">
+      <div class="card-body">
+        <h2 class="card-title text-base">Quick Actions</h2>
+        <div class="flex flex-wrap gap-3 mt-2">
+          <.link navigate={~p"/admin/projects/new"} class="btn btn-primary btn-sm">
+            <.icon name="hero-plus" class="size-4" /> Add Project
+          </.link>
+          <.link navigate={~p"/admin/team/new"} class="btn btn-secondary btn-sm">
+            <.icon name="hero-plus" class="size-4" /> Add Team Member
+          </.link>
+          <.link navigate={~p"/admin/admins/new"} class="btn btn-neutral btn-sm btn-soft">
+            <.icon name="hero-plus" class="size-4" /> Add Admin
+          </.link>
+          <.link href="/" target="_blank" class="btn btn-ghost btn-sm">
+            <.icon name="hero-arrow-top-right-on-square" class="size-4" /> View Site
+          </.link>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layouts.admin>

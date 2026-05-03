@@ -7,9 +7,28 @@
 # General application configuration
 import Config
 
+config :innoso, :scopes,
+  admin: [
+    default: true,
+    module: Innoso.Accounts.Scope,
+    assign_key: :current_scope,
+    access_path: [:admin, :id],
+    schema_key: :admin_id,
+    schema_type: :id,
+    schema_table: :admins,
+    test_data_fixture: Innoso.AccountsFixtures,
+    test_setup_helper: :register_and_log_in_admin
+  ]
+
 config :innoso,
   ecto_repos: [Innoso.Repo],
   generators: [timestamp_type: :utc_datetime, binary_id: true]
+
+config :innoso, :scheduling,
+  available_days: ~w(monday tuesday wednesday thursday friday),
+  start_hour: 9,
+  end_hour: 17,
+  slot_minutes: 60
 
 # Configure the endpoint
 config :innoso, InnosoWeb.Endpoint,

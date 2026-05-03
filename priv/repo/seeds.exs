@@ -1,11 +1,16 @@
-# Script for populating the database. You can run it as:
-#
-#     mix run priv/repo/seeds.exs
-#
-# Inside the script, you can read and write to any of your
-# repositories directly:
-#
-#     Innoso.Repo.insert!(%Innoso.SomeSchema{})
-#
-# We recommend using the bang functions (`insert!`, `update!`
-# and so on) as they will fail if something goes wrong.
+alias Innoso.Accounts
+
+email = System.get_env("SEED_ADMIN_EMAIL", "admin@innoso.com")
+password = System.get_env("SEED_ADMIN_PASSWORD", "Admin@innoso123!")
+
+if is_nil(Accounts.get_admin_by_email(email)) do
+  case Accounts.create_admin(%{email: email, password: password}) do
+    {:ok, admin} ->
+      IO.puts("Seed admin created: #{admin.email}")
+
+    {:error, changeset} ->
+      IO.puts("Failed to create seed admin: #{inspect(changeset.errors)}")
+  end
+else
+  IO.puts("Seed admin already exists: #{email}")
+end
