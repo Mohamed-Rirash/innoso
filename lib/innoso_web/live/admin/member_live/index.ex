@@ -38,12 +38,18 @@ defmodule InnosoWeb.Admin.MemberLive.Index do
                   </div>
                 </div>
               </div>
-              <h3 class="font-semibold"><%= member.name %></h3>
-              <p class="text-sm text-base-content/60"><%= member.role %></p>
+              <h3 class="font-semibold">{member.name}</h3>
+              <p class="text-sm text-base-content/60">{member.role}</p>
               <div class="card-actions mt-2">
-                <.link navigate={~p"/admin/team/#{member.id}/edit"} class="btn btn-ghost btn-xs">Edit</.link>
-                <button phx-click="delete" phx-value-id={member.id}
-                  data-confirm="Remove this team member?" class="btn btn-ghost btn-xs text-error">
+                <.link navigate={~p"/admin/team/#{member.id}/edit"} class="btn btn-ghost btn-xs">
+                  Edit
+                </.link>
+                <button
+                  phx-click="delete"
+                  phx-value-id={member.id}
+                  data-confirm="Remove this team member?"
+                  class="btn btn-ghost btn-xs text-error"
+                >
                   Remove
                 </button>
               </div>
@@ -52,7 +58,12 @@ defmodule InnosoWeb.Admin.MemberLive.Index do
         </div>
       </div>
 
-      <.modal :if={@live_action in [:new, :edit]} id="member-modal" show on_cancel={JS.navigate(~p"/admin/team")}>
+      <.modal
+        :if={@live_action in [:new, :edit]}
+        id="member-modal"
+        show
+        on_cancel={JS.navigate(~p"/admin/team")}
+      >
         <.live_component
           module={InnosoWeb.Admin.MemberLive.FormComponent}
           id={@member.id || :new}

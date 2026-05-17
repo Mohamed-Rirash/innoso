@@ -34,13 +34,17 @@ defmodule InnosoWeb.Admin.BookingLive.Index do
               <tbody>
                 <tr :for={booking <- @bookings} id={"booking-#{booking.id}"}>
                   <td>
-                    <div class="font-medium"><%= booking.name %></div>
-                    <div class="text-xs text-base-content/60"><%= booking.email %></div>
-                    <div class="text-xs text-base-content/60"><%= booking.phone %></div>
+                    <div class="font-medium">{booking.name}</div>
+                    <div class="text-xs text-base-content/60">{booking.email}</div>
+                    <div class="text-xs text-base-content/60">{booking.phone}</div>
                   </td>
                   <td>
-                    <div class="font-medium"><%= Calendar.strftime(booking.requested_date, "%B %d, %Y") %></div>
-                    <div class="text-sm text-base-content/60"><%= format_time(booking.requested_time) %></div>
+                    <div class="font-medium">
+                      {Calendar.strftime(booking.requested_date, "%B %d, %Y")}
+                    </div>
+                    <div class="text-sm text-base-content/60">
+                      {format_time(booking.requested_time)}
+                    </div>
                   </td>
                   <td>
                     <span class={[
@@ -49,7 +53,7 @@ defmodule InnosoWeb.Admin.BookingLive.Index do
                       booking.status == "confirmed" && "badge-success",
                       booking.status == "cancelled" && "badge-error"
                     ]}>
-                      <%= booking.status %>
+                      {booking.status}
                     </span>
                   </td>
                   <td class="text-right">
@@ -57,12 +61,21 @@ defmodule InnosoWeb.Admin.BookingLive.Index do
                       <.link navigate={~p"/admin/bookings/#{booking.id}"} class="btn btn-ghost btn-xs">
                         View
                       </.link>
-                      <button :if={booking.status == "pending"} phx-click="confirm" phx-value-id={booking.id}
-                        class="btn btn-success btn-xs">
+                      <button
+                        :if={booking.status == "pending"}
+                        phx-click="confirm"
+                        phx-value-id={booking.id}
+                        class="btn btn-success btn-xs"
+                      >
                         Confirm
                       </button>
-                      <button :if={booking.status != "cancelled"} phx-click="cancel" phx-value-id={booking.id}
-                        data-confirm="Cancel this booking?" class="btn btn-ghost btn-xs text-error">
+                      <button
+                        :if={booking.status != "cancelled"}
+                        phx-click="cancel"
+                        phx-value-id={booking.id}
+                        data-confirm="Cancel this booking?"
+                        class="btn btn-ghost btn-xs text-error"
+                      >
                         Cancel
                       </button>
                     </div>
@@ -91,19 +104,28 @@ defmodule InnosoWeb.Admin.BookingLive.Index do
   def handle_event("confirm", %{"id" => id}, socket) do
     booking = Bookings.get_booking!(id)
     {:ok, _} = Bookings.confirm_booking(booking)
-    {:noreply, socket |> put_flash(:info, "Booking confirmed") |> assign(:bookings, Bookings.list_bookings())}
+
+    {:noreply,
+     socket
+     |> put_flash(:info, "Booking confirmed")
+     |> assign(:bookings, Bookings.list_bookings())}
   end
 
   def handle_event("cancel", %{"id" => id}, socket) do
     booking = Bookings.get_booking!(id)
     {:ok, _} = Bookings.cancel_booking(booking)
-    {:noreply, socket |> put_flash(:info, "Booking cancelled") |> assign(:bookings, Bookings.list_bookings())}
+
+    {:noreply,
+     socket
+     |> put_flash(:info, "Booking cancelled")
+     |> assign(:bookings, Bookings.list_bookings())}
   end
 
   defp format_time(%Time{hour: h, minute: m}) do
     period = if h >= 12, do: "PM", else: "AM"
-    display_hour = if h > 12, do: h - 12, else: (if h == 0, do: 12, else: h)
+    display_hour = if h > 12, do: h - 12, else: if(h == 0, do: 12, else: h)
     "#{display_hour}:#{String.pad_leading(Integer.to_string(m), 2, "0")} #{period}"
   end
+
   defp format_time(_), do: ""
 end

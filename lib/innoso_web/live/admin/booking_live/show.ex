@@ -18,14 +18,14 @@ defmodule InnosoWeb.Admin.BookingLive.Show do
         <div class="card bg-base-100 shadow">
           <div class="card-body space-y-4">
             <div class="flex items-center justify-between">
-              <h2 class="text-lg font-semibold"><%= @booking.name %></h2>
+              <h2 class="text-lg font-semibold">{@booking.name}</h2>
               <span class={[
                 "badge",
                 @booking.status == "pending" && "badge-warning",
                 @booking.status == "confirmed" && "badge-success",
                 @booking.status == "cancelled" && "badge-error"
               ]}>
-                <%= @booking.status %>
+                {@booking.status}
               </span>
             </div>
 
@@ -34,34 +34,38 @@ defmodule InnosoWeb.Admin.BookingLive.Show do
             <div class="grid grid-cols-2 gap-4">
               <div>
                 <p class="text-xs text-base-content/60 uppercase tracking-wide">Email</p>
-                <p class="font-medium mt-1"><%= @booking.email %></p>
+                <p class="font-medium mt-1">{@booking.email}</p>
               </div>
               <div>
                 <p class="text-xs text-base-content/60 uppercase tracking-wide">Phone</p>
-                <p class="font-medium mt-1"><%= @booking.phone %></p>
+                <p class="font-medium mt-1">{@booking.phone}</p>
               </div>
               <div>
                 <p class="text-xs text-base-content/60 uppercase tracking-wide">Requested Date</p>
-                <p class="font-medium mt-1"><%= Calendar.strftime(@booking.requested_date, "%B %d, %Y") %></p>
+                <p class="font-medium mt-1">
+                  {Calendar.strftime(@booking.requested_date, "%B %d, %Y")}
+                </p>
               </div>
               <div>
                 <p class="text-xs text-base-content/60 uppercase tracking-wide">Requested Time</p>
-                <p class="font-medium mt-1"><%= format_time(@booking.requested_time) %></p>
+                <p class="font-medium mt-1">{format_time(@booking.requested_time)}</p>
               </div>
             </div>
 
             <div>
               <p class="text-xs text-base-content/60 uppercase tracking-wide mb-1">What they need</p>
-              <p class="text-sm bg-base-200 rounded-lg p-3"><%= @booking.description %></p>
+              <p class="text-sm bg-base-200 rounded-lg p-3">{@booking.description}</p>
             </div>
 
             <div :if={@booking.status != "cancelled"} class="flex gap-3 pt-2">
-              <button :if={@booking.status == "pending"} phx-click="confirm"
-                class="btn btn-success">
+              <button :if={@booking.status == "pending"} phx-click="confirm" class="btn btn-success">
                 <.icon name="hero-check" class="size-4" /> Confirm Booking
               </button>
-              <button phx-click="cancel" data-confirm="Cancel this booking?"
-                class="btn btn-error btn-soft">
+              <button
+                phx-click="cancel"
+                data-confirm="Cancel this booking?"
+                class="btn btn-error btn-soft"
+              >
                 Cancel Booking
               </button>
             </div>
@@ -94,8 +98,9 @@ defmodule InnosoWeb.Admin.BookingLive.Show do
 
   defp format_time(%Time{hour: h, minute: m}) do
     period = if h >= 12, do: "PM", else: "AM"
-    display_hour = if h > 12, do: h - 12, else: (if h == 0, do: 12, else: h)
+    display_hour = if h > 12, do: h - 12, else: if(h == 0, do: 12, else: h)
     "#{display_hour}:#{String.pad_leading(Integer.to_string(m), 2, "0")} #{period}"
   end
+
   defp format_time(_), do: ""
 end

@@ -276,7 +276,11 @@ defmodule Innoso.Accounts do
       {:ok, %{to: ..., body: ...}}
 
   """
-  def deliver_admin_update_email_instructions(%Admin{} = admin, current_email, update_email_url_fun)
+  def deliver_admin_update_email_instructions(
+        %Admin{} = admin,
+        current_email,
+        update_email_url_fun
+      )
       when is_function(update_email_url_fun, 1) do
     {encoded_token, admin_token} = AdminToken.build_email_token(admin, "change:#{current_email}")
 
@@ -309,7 +313,9 @@ defmodule Innoso.Accounts do
       with {:ok, admin} <- Repo.update(changeset) do
         tokens_to_expire = Repo.all_by(AdminToken, admin_id: admin.id)
 
-        Repo.delete_all(from(t in AdminToken, where: t.id in ^Enum.map(tokens_to_expire, & &1.id)))
+        Repo.delete_all(
+          from(t in AdminToken, where: t.id in ^Enum.map(tokens_to_expire, & &1.id))
+        )
 
         {:ok, {admin, tokens_to_expire}}
       end

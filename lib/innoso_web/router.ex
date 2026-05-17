@@ -11,6 +11,7 @@ defmodule InnosoWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug :fetch_current_scope_for_admin
+    plug InnosoWeb.Plugs.SetLocale
   end
 
   pipeline :api do
@@ -24,7 +25,12 @@ defmodule InnosoWeb.Router do
   scope "/", InnosoWeb do
     pipe_through :browser
 
-    live "/", HomeLive
+    live_session :public,
+      on_mount: [{InnosoWeb.LiveLocale, :default}] do
+      live "/", HomeLive
+      live "/projects/:id", ProjectLive.Show, :show
+    end
+
     get "/locale/:locale", LocaleController, :set
   end
 
@@ -53,19 +59,22 @@ defmodule InnosoWeb.Router do
     put "/settings", AdminSettingsController, :update
     get "/settings/confirm-email/:token", AdminSettingsController, :confirm_email
 
-    live "/projects", Admin.ProjectLive.Index, :index
-    live "/projects/new", Admin.ProjectLive.Index, :new
-    live "/projects/:id/edit", Admin.ProjectLive.Index, :edit
+    live_session :admin_live,
+      on_mount: [{InnosoWeb.AdminAuth, :ensure_authenticated}] do
+      live "/projects", Admin.ProjectLive.Index, :index
+      live "/projects/new", Admin.ProjectLive.Index, :new
+      live "/projects/:id/edit", Admin.ProjectLive.Index, :edit
 
-    live "/team", Admin.MemberLive.Index, :index
-    live "/team/new", Admin.MemberLive.Index, :new
-    live "/team/:id/edit", Admin.MemberLive.Index, :edit
+      live "/team", Admin.MemberLive.Index, :index
+      live "/team/new", Admin.MemberLive.Index, :new
+      live "/team/:id/edit", Admin.MemberLive.Index, :edit
 
-    live "/bookings", Admin.BookingLive.Index, :index
-    live "/bookings/:id", Admin.BookingLive.Show, :show
+      live "/bookings", Admin.BookingLive.Index, :index
+      live "/bookings/:id", Admin.BookingLive.Show, :show
 
-    live "/admins", Admin.AdminUserLive.Index, :index
-    live "/admins/new", Admin.AdminUserLive.Index, :new
+      live "/admins", Admin.AdminUserLive.Index, :index
+      live "/admins/new", Admin.AdminUserLive.Index, :new
+    end
   end
 
   if Application.compile_env(:innoso, :dev_routes) do

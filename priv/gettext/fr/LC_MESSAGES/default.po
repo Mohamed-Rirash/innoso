@@ -1,0 +1,366 @@
+## French translations
+msgid ""
+msgstr ""
+"Language: fr\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "About"
+msgstr "À propos"
+
+msgid "Services"
+msgstr "Services"
+
+msgid "Projects"
+msgstr "Projets"
+
+msgid "Team"
+msgstr "Équipe"
+
+msgid "Book a Call"
+msgstr "Réserver un appel"
+
+msgid "Book a Free Call"
+msgstr "Réserver un appel gratuit"
+
+msgid "Youth-Powered · Innovation-Driven"
+msgstr "Portés par la jeunesse · Axés sur l'innovation"
+
+msgid "We Build"
+msgstr "Nous créons"
+
+msgid "Tech That"
+msgstr "La tech qui"
+
+msgid "Matters"
+msgstr "Compte"
+
+msgid "Innoso is a collective of passionate young developers creating world-class software for businesses, governments, and individuals — built with craftsmanship, delivered with care."
+msgstr "Innoso est un collectif de jeunes développeurs passionnés créant des logiciels de classe mondiale pour les entreprises, les gouvernements et les particuliers — construits avec soin, livrés avec attention."
+
+msgid "See Our Work"
+msgstr "Voir nos réalisations"
+
+msgid "Always on time"
+msgstr "Toujours à temps"
+
+msgid "Available now"
+msgstr "Disponible maintenant"
+
+msgid "Projects Delivered"
+msgstr "Projets livrés"
+
+msgid "Happy Clients"
+msgstr "Clients satisfaits"
+
+msgid "Countries Served"
+msgstr "Pays desservis"
+
+msgid "Satisfaction"
+msgstr "Satisfaction"
+
+msgid "Who We Are"
+msgstr "Qui nous sommes"
+
+msgid "Built Different."
+msgstr "Construits différemment."
+
+msgid "By Design."
+msgstr "Par conception."
+
+msgid "A group of talented young developers united by one mission: making technology accessible, impactful, and beautiful."
+msgstr "Un groupe de jeunes développeurs talentueux unis par une seule mission : rendre la technologie accessible, impactante et belle."
+
+msgid "Our Mission"
+msgstr "Notre mission"
+
+msgid "To empower businesses, governments, and individuals by delivering high-quality, modern software that solves real problems — built with craftsmanship, delivered with care."
+msgstr "Autonomiser les entreprises, les gouvernements et les particuliers en livrant des logiciels modernes et de haute qualité qui résolvent de vrais problèmes — construits avec soin, livrés avec attention."
+
+msgid "Our Vision"
+msgstr "Notre vision"
+
+msgid "To become the most trusted tech partner in our region — where clients choose us not just for our code, but for our commitment to their success and our ability to grow with them."
+msgstr "Devenir le partenaire technologique le plus fiable de notre région — où les clients nous choisissent non seulement pour notre code, mais pour notre engagement envers leur succès et notre capacité à grandir avec eux."
+
+msgid "What We Build"
+msgstr "Ce que nous créons"
+
+msgid "Every Layer of Your"
+msgstr "Chaque couche de votre"
+
+msgid "Digital Stack"
+msgstr "Stack numérique"
+
+msgid "From idea to launch — we cover every layer of your digital needs with precision and care."
+msgstr "De l'idée au lancement — nous couvrons chaque couche de vos besoins numériques avec précision et soin."
+
+msgid "Custom Web Apps"
+msgstr "Applications web sur mesure"
+
+msgid "Tailor-made web solutions built for your unique challenges, designed to scale with your growth."
+msgstr "Des solutions web sur mesure conçues pour vos défis uniques, pensées pour évoluer avec votre croissance."
+
+msgid "Mobile Apps"
+msgstr "Applications mobiles"
+
+msgid "Native and cross-platform apps delivering seamless, polished experiences on iOS and Android."
+msgstr "Des applications natives et multiplateformes offrant des expériences fluides et soignées sur iOS et Android."
+
+msgid "Enterprise Systems"
+msgstr "Systèmes d'entreprise"
+
+msgid "Robust, secure platforms for enterprises and public-sector organizations demanding reliability."
+msgstr "Des plateformes robustes et sécurisées pour les entreprises et les organisations du secteur public exigeant fiabilité."
+
+msgid "E-commerce"
+msgstr "E-commerce"
+
+msgid "Complete online stores with payments, inventory management, and powerful analytics."
+msgstr "Des boutiques en ligne complètes avec paiements, gestion des stocks et analyses puissantes."
+
+msgid "Landing Pages"
+msgstr "Pages d'atterrissage"
+
+msgid "High-converting, beautifully designed pages that attract customers and represent your brand."
+msgstr "Des pages à fort taux de conversion, magnifiquement conçues pour attirer des clients et représenter votre marque."
+
+msgid "Dashboards"
+msgstr "Tableaux de bord"
+
+msgid "Intuitive control centers delivering real-time insight and full control over your operations."
+msgstr "Des centres de contrôle intuitifs offrant une vision en temps réel et un contrôle total sur vos opérations."
+
+msgid "Tech Consulting"
+msgstr "Conseil technologique"
+
+msgid "Strategic guidance to help your business overcome challenges and unlock growth through technology."
+msgstr "Des conseils stratégiques pour aider votre entreprise à surmonter les défis et libérer sa croissance grâce à la technologie."
+
+msgid "How We Work"
+msgstr "Comment nous travaillons"
+
+msgid "Simple."
+msgstr "Simple."
+
+msgid "Transparent."
+msgstr "Transparent."
+
+msgid "Fast."
+msgstr "Rapide."
+
+msgid "A proven three-step process to get you from idea to a live product — efficiently and reliably."
+msgstr "Un processus éprouvé en trois étapes pour vous amener de l'idée à un produit en ligne — efficacement et de manière fiable."
+
+msgid "Discover"
+msgstr "Découverte"
+
+msgid "We listen deeply to understand your vision, goals, and constraints before writing a single line of code."
+msgstr "Nous écoutons attentivement pour comprendre votre vision, vos objectifs et vos contraintes avant d'écrire une seule ligne de code."
+
+msgid "Design & Build"
+msgstr "Conception et développement"
+
+msgid "Our team designs and develops your solution with modern technology and continuous feedback loops."
+msgstr "Notre équipe conçoit et développe votre solution avec la technologie moderne et des boucles de retour continu."
+
+msgid "Launch & Support"
+msgstr "Lancement et support"
+
+msgid "We deploy, test, and hand over a polished product — then stay available for ongoing support."
+msgstr "Nous déployons, testons et livrons un produit soigné — puis restons disponibles pour un support continu."
+
+msgid "Portfolio"
+msgstr "Portfolio"
+
+msgid "Real Solutions,"
+msgstr "Solutions concrètes,"
+
+msgid "Real Impact"
+msgstr "Impact réel"
+
+msgid "Explore some of the products we've built for clients across industries and borders."
+msgstr "Explorez quelques-uns des produits que nous avons construits pour des clients dans diverses industries et pays."
+
+msgid "Projects coming soon"
+msgstr "Projets à venir"
+
+msgid "Check back shortly — we're updating our portfolio."
+msgstr "Revenez bientôt — nous mettons à jour notre portfolio."
+
+msgid "View Details"
+msgstr "Voir les détails"
+
+msgid "Live"
+msgstr "En ligne"
+
+msgid "The Team"
+msgstr "L'équipe"
+
+msgid "Meet the"
+msgstr "Rencontrez les"
+
+msgid "Builders"
+msgstr "Bâtisseurs"
+
+msgid "Talented developers who pour creativity and expertise into every project."
+msgstr "Des développeurs talentueux qui mettent leur créativité et leur expertise dans chaque projet."
+
+msgid "Team profiles coming soon"
+msgstr "Profils de l'équipe à venir"
+
+msgid "Free Consultation"
+msgstr "Consultation gratuite"
+
+msgid "Ready to Build Something"
+msgstr "Prêt à créer quelque chose"
+
+msgid "Amazing Together?"
+msgstr "d'Incroyable ensemble ?"
+
+msgid "Tell us about your project. No commitment required — just a conversation about what you need."
+msgstr "Parlez-nous de votre projet. Aucun engagement requis — juste une conversation sur vos besoins."
+
+msgid "Get Started"
+msgstr "Commencer"
+
+msgid "Book a"
+msgstr "Réserver un"
+
+msgid "Free Call"
+msgstr "Appel gratuit"
+
+msgid "Pick a time, share your idea, and we'll take it from there."
+msgstr "Choisissez un créneau, partagez votre idée et nous nous occupons du reste."
+
+msgid "Choose a time slot"
+msgstr "Choisissez un créneau"
+
+msgid "Pick a date and time that works for you."
+msgstr "Choisissez une date et une heure qui vous conviennent."
+
+msgid "Loading available slots..."
+msgstr "Chargement des créneaux disponibles..."
+
+msgid "Continue"
+msgstr "Continuer"
+
+msgid "Your details"
+msgstr "Vos informations"
+
+msgid "Full Name"
+msgstr "Nom complet"
+
+msgid "Email Address"
+msgstr "Adresse e-mail"
+
+msgid "Phone Number"
+msgstr "Numéro de téléphone"
+
+msgid "Tell us about your project"
+msgstr "Parlez-nous de votre projet"
+
+msgid "Booking..."
+msgstr "Réservation en cours..."
+
+msgid "Confirm Booking"
+msgstr "Confirmer la réservation"
+
+msgid "You're all set!"
+msgstr "Tout est prêt !"
+
+msgid "We've received your booking. Check your email for confirmation — we'll be in touch shortly."
+msgstr "Nous avons reçu votre réservation. Vérifiez votre e-mail pour la confirmation — nous vous contacterons bientôt."
+
+msgid "Book Another Meeting"
+msgstr "Réserver une autre réunion"
+
+msgid "Youth-powered software solutions for businesses, governments, and individuals worldwide."
+msgstr "Des solutions logicielles portées par la jeunesse pour les entreprises, les gouvernements et les particuliers du monde entier."
+
+msgid "Web Applications"
+msgstr "Applications web"
+
+msgid "Company"
+msgstr "Société"
+
+msgid "Contact"
+msgstr "Contact"
+
+msgid "About Us"
+msgstr "À propos de nous"
+
+msgid "Book a free meeting"
+msgstr "Réserver une réunion gratuite"
+
+msgid "All rights reserved."
+msgstr "Tous droits réservés."
+
+msgid "Built with"
+msgstr "Créé avec"
+
+msgid "by passionate developers"
+msgstr "par des développeurs passionnés"
+
+msgid "Back"
+msgstr "Retour"
+
+msgid "About This Project"
+msgstr "À propos de ce projet"
+
+msgid "Technologies Used"
+msgstr "Technologies utilisées"
+
+msgid "Demo Credentials"
+msgstr "Identifiants de démonstration"
+
+msgid "Username"
+msgstr "Nom d'utilisateur"
+
+msgid "Password"
+msgstr "Mot de passe"
+
+msgid "Project Details"
+msgstr "Détails du projet"
+
+msgid "Client Type"
+msgstr "Type de client"
+
+msgid "Stack"
+msgstr "Stack"
+
+msgid "View Live Project"
+msgstr "Voir le projet en ligne"
+
+msgid "Build Something Similar"
+msgstr "Créer quelque chose de similaire"
+
+msgid "Like what you see?"
+msgstr "Vous aimez ce que vous voyez ?"
+
+msgid "We can build something similar — or even better — for your business. Book a free call to get started."
+msgstr "Nous pouvons créer quelque chose de similaire — ou encore mieux — pour votre entreprise. Réservez un appel gratuit pour commencer."
+
+msgid "Other"
+msgstr "Autres"
+
+msgid "View All"
+msgstr "Tout voir"
+
+msgid "Let's Work Together"
+msgstr "Travaillons ensemble"
+
+msgid "Ready to Build"
+msgstr "Prêt à créer"
+
+msgid "Something Like This?"
+msgstr "Quelque chose de similaire ?"
+
+msgid "Tell us about your idea and we'll turn it into reality — with the same care and quality you see here."
+msgstr "Parlez-nous de votre idée et nous la transformerons en réalité — avec le même soin et la même qualité que vous voyez ici."
+
+msgid "Book a Free Consultation"
+msgstr "Réserver une consultation gratuite"
+
+msgid "Home"
+msgstr "Accueil"

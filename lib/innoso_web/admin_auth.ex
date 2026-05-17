@@ -7,6 +7,41 @@ defmodule InnosoWeb.AdminAuth do
   alias Innoso.Accounts
   alias Innoso.Accounts.Scope
 
+  @doc """
+  Handles mounting and authenticating the current scope in LiveViews.
+  """
+  def on_mount(:mount_current_scope, _params, session, socket) do
+    {:cont, mount_current_scope(socket, session)}
+  end
+
+  def on_mount(:ensure_authenticated, _params, session, socket) do
+    socket = mount_current_scope(socket, session)
+
+    if socket.assigns.current_scope && socket.assigns.current_scope.admin do
+      {:cont, socket}
+    else
+      socket =
+        socket
+        |> Phoenix.LiveView.put_flash(:error, "You must log in to access this page.")
+        |> Phoenix.LiveView.redirect(to: ~p"/admin/login")
+
+      {:halt, socket}
+    end
+  end
+
+  defp mount_current_scope(socket, session) do
+    Phoenix.Component.assign_new(socket, :current_scope, fn ->
+      if token = session["admin_token"] do
+        case Accounts.get_admin_by_session_token(token) do
+          {admin, _inserted_at} -> Scope.for_admin(admin)
+          nil -> Scope.for_admin(nil)
+        end
+      else
+        Scope.for_admin(nil)
+      end
+    end)
+  end
+
   # Make the remember me cookie valid for 14 days. This should match
   # the session validity setting in AdminToken.
   @max_cookie_age_in_days 14

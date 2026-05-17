@@ -1,0 +1,68 @@
+msgid ""
+msgstr ""
+"Language: ar\n"
+
+msgid "can't be blank"
+msgstr "لا يمكن أن يكون فارغاً"
+
+msgid "has already been taken"
+msgstr "مُستخدم بالفعل"
+
+msgid "is invalid"
+msgstr "غير صالح"
+
+msgid "must be accepted"
+msgstr "يجب القبول"
+
+msgid "has invalid format"
+msgstr "تنسيق غير صالح"
+
+msgid "has an invalid entry"
+msgstr "قيمة غير صالحة"
+
+msgid "is reserved"
+msgstr "محجوز"
+
+msgid "does not match confirmation"
+msgstr "لا يتطابق مع التأكيد"
+
+msgid "is still associated with this entry"
+msgstr "لا يزال مرتبطاً بهذا الإدخال"
+
+msgid "are still associated with this entry"
+msgstr "لا تزال مرتبطة بهذا الإدخال"
+
+msgid "should have %{count} item(s)"
+msgid_plural "should have %{count} item(s)"
+msgstr[0] "يجب أن يحتوي على %{count} عنصر"
+msgstr[1] "يجب أن يحتوي على %{count} عناصر"
+
+msgid "should be %{count} character(s)"
+msgid_plural "should be %{count} character(s)"
+msgstr[0] "يجب أن يكون %{count} حرف"
+msgstr[1] "يجب أن يكون %{count} حروف"
+
+msgid "should be at least %{count} character(s)"
+msgid_plural "should be at least %{count} character(s)"
+msgstr[0] "يجب أن يكون على الأقل %{count} حرف"
+msgstr[1] "يجب أن يكون على الأقل %{count} حروف"
+
+msgid "should be at most %{count} character(s)"
+msgid_plural "should be at most %{count} character(s)"
+msgstr[0] "يجب ألا يتجاوز %{count} حرف"
+msgstr[1] "يجب ألا يتجاوز %{count} حروف"
+
+msgid "must be less than %{number}"
+msgstr "يجب أن يكون أقل من %{number}"
+
+msgid "must be greater than %{number}"
+msgstr "يجب أن يكون أكبر من %{number}"
+
+msgid "must be less than or equal to %{number}"
+msgstr "يجب أن يكون أقل من أو يساوي %{number}"
+
+msgid "must be greater than or equal to %{number}"
+msgstr "يجب أن يكون أكبر من أو يساوي %{number}"
+
+msgid "must be equal to %{number}"
+msgstr "يجب أن يساوي %{number}"

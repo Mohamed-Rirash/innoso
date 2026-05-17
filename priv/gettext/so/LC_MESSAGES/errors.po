@@ -1,0 +1,68 @@
+msgid ""
+msgstr ""
+"Language: so\n"
+
+msgid "can't be blank"
+msgstr "Ma noqon karto maran"
+
+msgid "has already been taken"
+msgstr "Hore ayaa loo isticmaalay"
+
+msgid "is invalid"
+msgstr "Waa khalad"
+
+msgid "must be accepted"
+msgstr "Waa in la aqbalo"
+
+msgid "has invalid format"
+msgstr "Qaabku waa khalad"
+
+msgid "has an invalid entry"
+msgstr "Galistu waa khalad"
+
+msgid "is reserved"
+msgstr "Waa la kaydiyay"
+
+msgid "does not match confirmation"
+msgstr "Kumaaha xaqiijinta"
+
+msgid "is still associated with this entry"
+msgstr "Wali xidid ayuu la leeyahay galitaankan"
+
+msgid "are still associated with this entry"
+msgstr "Wali xidid ayay la leeyihiin galitaankan"
+
+msgid "should have %{count} item(s)"
+msgid_plural "should have %{count} item(s)"
+msgstr[0] "Waa inuu leeyahay %{count} shay"
+msgstr[1] "Waa inuu leeyahay %{count} shay"
+
+msgid "should be %{count} character(s)"
+msgid_plural "should be %{count} character(s)"
+msgstr[0] "Waa inuu ahaado %{count} xaraf"
+msgstr[1] "Waa inuu ahaado %{count} xaraf"
+
+msgid "should be at least %{count} character(s)"
+msgid_plural "should be at least %{count} character(s)"
+msgstr[0] "Ugu yaraan waa inuu ahaado %{count} xaraf"
+msgstr[1] "Ugu yaraan waa inuu ahaado %{count} xaraf"
+
+msgid "should be at most %{count} character(s)"
+msgid_plural "should be at most %{count} character(s)"
+msgstr[0] "Ugu badnaan waa inuu ahaado %{count} xaraf"
+msgstr[1] "Ugu badnaan waa inuu ahaado %{count} xaraf"
+
+msgid "must be less than %{number}"
+msgstr "Waa inuu ka yar yahay %{number}"
+
+msgid "must be greater than %{number}"
+msgstr "Waa inuu ka weyn yahay %{number}"
+
+msgid "must be less than or equal to %{number}"
+msgstr "Waa inuu ka yar yahay ama la mid yahay %{number}"
+
+msgid "must be greater than or equal to %{number}"
+msgstr "Waa inuu ka weyn yahay ama la mid yahay %{number}"
+
+msgid "must be equal to %{number}"
+msgstr "Waa inuu la mid yahay %{number}"

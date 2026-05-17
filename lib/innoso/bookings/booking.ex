@@ -17,10 +17,20 @@ defmodule Innoso.Bookings.Booking do
   @doc false
   def changeset(booking, attrs) do
     booking
-    |> cast(attrs, [:name, :email, :phone, :description, :requested_date, :requested_time, :status])
+    |> cast(attrs, [
+      :name,
+      :email,
+      :phone,
+      :description,
+      :requested_date,
+      :requested_time,
+      :status
+    ])
     |> validate_required([:name, :email, :phone, :description, :requested_date, :requested_time])
     |> validate_format(:email, ~r/^[^@,;\s]+@[^@,;\s]+$/, message: "must be a valid email")
     |> validate_length(:phone, min: 6, max: 20)
-    |> validate_inclusion(:status, ~w(pending confirmed cancelled), message: "must be pending, confirmed, or cancelled")
+    |> validate_inclusion(:status, ~w(pending confirmed cancelled),
+      message: "must be pending, confirmed, or cancelled"
+    )
   end
 end

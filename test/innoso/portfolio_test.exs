@@ -25,7 +25,8 @@ defmodule Innoso.PortfolioTest do
   end
 
   test "create_project/1 with invalid data returns error changeset" do
-    assert {:error, %Ecto.Changeset{}} = Portfolio.create_project(%{name: nil, client_type: nil, description: nil})
+    assert {:error, %Ecto.Changeset{}} =
+             Portfolio.create_project(%{name: nil, client_type: nil, description: nil})
   end
 
   test "update_project/2 with valid data updates the project" do

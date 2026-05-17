@@ -1,0 +1,366 @@
+## Arabic translations
+msgid ""
+msgstr ""
+"Language: ar\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "About"
+msgstr "حول"
+
+msgid "Services"
+msgstr "الخدمات"
+
+msgid "Projects"
+msgstr "المشاريع"
+
+msgid "Team"
+msgstr "الفريق"
+
+msgid "Book a Call"
+msgstr "احجز مكالمة"
+
+msgid "Book a Free Call"
+msgstr "احجز مكالمة مجانية"
+
+msgid "Youth-Powered · Innovation-Driven"
+msgstr "مدفوع بالشباب · مبتكر"
+
+msgid "We Build"
+msgstr "نبني"
+
+msgid "Tech That"
+msgstr "تقنية"
+
+msgid "Matters"
+msgstr "تُحدث فرقاً"
+
+msgid "Innoso is a collective of passionate young developers creating world-class software for businesses, governments, and individuals — built with craftsmanship, delivered with care."
+msgstr "إنوسو مجموعة من المطورين الشباب المتحمسين الذين يبنون برمجيات عالمية المستوى للشركات والحكومات والأفراد — مصنوعة بإتقان، ومُسلَّمة باهتمام."
+
+msgid "See Our Work"
+msgstr "اطلع على أعمالنا"
+
+msgid "Always on time"
+msgstr "دائماً في الوقت المحدد"
+
+msgid "Available now"
+msgstr "متاح الآن"
+
+msgid "Projects Delivered"
+msgstr "مشروع مُنجَز"
+
+msgid "Happy Clients"
+msgstr "عميل سعيد"
+
+msgid "Countries Served"
+msgstr "دولة خدمناها"
+
+msgid "Satisfaction"
+msgstr "رضا تام"
+
+msgid "Who We Are"
+msgstr "من نحن"
+
+msgid "Built Different."
+msgstr "مبنيون باختلاف."
+
+msgid "By Design."
+msgstr "بالتصميم."
+
+msgid "A group of talented young developers united by one mission: making technology accessible, impactful, and beautiful."
+msgstr "مجموعة من المطورين الشباب الموهوبين تجمعهم مهمة واحدة: جعل التكنولوجيا في متناول الجميع، مؤثرة، وجميلة."
+
+msgid "Our Mission"
+msgstr "مهمتنا"
+
+msgid "To empower businesses, governments, and individuals by delivering high-quality, modern software that solves real problems — built with craftsmanship, delivered with care."
+msgstr "تمكين الشركات والحكومات والأفراد من خلال تقديم برمجيات حديثة عالية الجودة تحل مشكلات حقيقية — مصنوعة بإتقان، ومُسلَّمة باهتمام."
+
+msgid "Our Vision"
+msgstr "رؤيتنا"
+
+msgid "To become the most trusted tech partner in our region — where clients choose us not just for our code, but for our commitment to their success and our ability to grow with them."
+msgstr "أن نصبح الشريك التقني الأكثر ثقة في منطقتنا — حيث يختارنا العملاء ليس فقط بسبب كودنا، بل بسبب التزامنا بنجاحهم وقدرتنا على النمو معهم."
+
+msgid "What We Build"
+msgstr "ما نبنيه"
+
+msgid "Every Layer of Your"
+msgstr "كل طبقة من"
+
+msgid "Digital Stack"
+msgstr "بنيتك الرقمية"
+
+msgid "From idea to launch — we cover every layer of your digital needs with precision and care."
+msgstr "من الفكرة إلى الإطلاق — نغطي كل طبقة من احتياجاتك الرقمية بدقة واهتمام."
+
+msgid "Custom Web Apps"
+msgstr "تطبيقات ويب مخصصة"
+
+msgid "Tailor-made web solutions built for your unique challenges, designed to scale with your growth."
+msgstr "حلول ويب مصممة خصيصاً لتحدياتك الفريدة، مبنية لتتوسع مع نموك."
+
+msgid "Mobile Apps"
+msgstr "تطبيقات الجوال"
+
+msgid "Native and cross-platform apps delivering seamless, polished experiences on iOS and Android."
+msgstr "تطبيقات أصلية ومتعددة المنصات تقدم تجارب سلسة ومصقولة على iOS وAndroid."
+
+msgid "Enterprise Systems"
+msgstr "أنظمة المؤسسات"
+
+msgid "Robust, secure platforms for enterprises and public-sector organizations demanding reliability."
+msgstr "منصات قوية وآمنة للشركات ومنظمات القطاع العام التي تتطلب الموثوقية."
+
+msgid "E-commerce"
+msgstr "التجارة الإلكترونية"
+
+msgid "Complete online stores with payments, inventory management, and powerful analytics."
+msgstr "متاجر إلكترونية متكاملة مع المدفوعات وإدارة المخزون وتحليلات قوية."
+
+msgid "Landing Pages"
+msgstr "صفحات الهبوط"
+
+msgid "High-converting, beautifully designed pages that attract customers and represent your brand."
+msgstr "صفحات عالية التحويل مصممة بشكل جميل تجذب العملاء وتمثل علامتك التجارية."
+
+msgid "Dashboards"
+msgstr "لوحات التحكم"
+
+msgid "Intuitive control centers delivering real-time insight and full control over your operations."
+msgstr "مراكز تحكم بديهية توفر رؤى فورية وتحكماً كاملاً في عملياتك."
+
+msgid "Tech Consulting"
+msgstr "استشارات تقنية"
+
+msgid "Strategic guidance to help your business overcome challenges and unlock growth through technology."
+msgstr "توجيه استراتيجي لمساعدة عملك على تجاوز التحديات وإطلاق النمو عبر التكنولوجيا."
+
+msgid "How We Work"
+msgstr "كيف نعمل"
+
+msgid "Simple."
+msgstr "بسيط."
+
+msgid "Transparent."
+msgstr "شفاف."
+
+msgid "Fast."
+msgstr "سريع."
+
+msgid "A proven three-step process to get you from idea to a live product — efficiently and reliably."
+msgstr "عملية مُثبَتة من ثلاث خطوات تنقلك من الفكرة إلى منتج حي — بكفاءة وموثوقية."
+
+msgid "Discover"
+msgstr "الاستكشاف"
+
+msgid "We listen deeply to understand your vision, goals, and constraints before writing a single line of code."
+msgstr "نستمع بعمق لفهم رؤيتك وأهدافك وقيودك قبل كتابة سطر واحد من الكود."
+
+msgid "Design & Build"
+msgstr "التصميم والبناء"
+
+msgid "Our team designs and develops your solution with modern technology and continuous feedback loops."
+msgstr "يصمم فريقنا ويطور حلك باستخدام التكنولوجيا الحديثة وحلقات التغذية الراجعة المستمرة."
+
+msgid "Launch & Support"
+msgstr "الإطلاق والدعم"
+
+msgid "We deploy, test, and hand over a polished product — then stay available for ongoing support."
+msgstr "ننشر ونختبر ونُسلّم منتجاً مصقولاً — ثم نبقى متاحين للدعم المستمر."
+
+msgid "Portfolio"
+msgstr "أعمالنا"
+
+msgid "Real Solutions,"
+msgstr "حلول حقيقية,"
+
+msgid "Real Impact"
+msgstr "تأثير حقيقي"
+
+msgid "Explore some of the products we've built for clients across industries and borders."
+msgstr "استعرض بعض المنتجات التي بنيناها لعملاء عبر صناعات وحدود متعددة."
+
+msgid "Projects coming soon"
+msgstr "المشاريع قادمة قريباً"
+
+msgid "Check back shortly — we're updating our portfolio."
+msgstr "تحقق مرة أخرى قريباً — نحن نحدث محفظة أعمالنا."
+
+msgid "View Details"
+msgstr "عرض التفاصيل"
+
+msgid "Live"
+msgstr "مباشر"
+
+msgid "The Team"
+msgstr "الفريق"
+
+msgid "Meet the"
+msgstr "تعرّف على"
+
+msgid "Builders"
+msgstr "البنّائين"
+
+msgid "Talented developers who pour creativity and expertise into every project."
+msgstr "مطورون موهوبون يضخون إبداعهم وخبرتهم في كل مشروع."
+
+msgid "Team profiles coming soon"
+msgstr "ملفات الفريق قادمة قريباً"
+
+msgid "Free Consultation"
+msgstr "استشارة مجانية"
+
+msgid "Ready to Build Something"
+msgstr "هل أنت مستعد لبناء شيء"
+
+msgid "Amazing Together?"
+msgstr "رائع معاً؟"
+
+msgid "Tell us about your project. No commitment required — just a conversation about what you need."
+msgstr "أخبرنا عن مشروعك. لا يُشترط أي التزام — فقط محادثة حول ما تحتاجه."
+
+msgid "Get Started"
+msgstr "ابدأ الآن"
+
+msgid "Book a"
+msgstr "احجز"
+
+msgid "Free Call"
+msgstr "مكالمة مجانية"
+
+msgid "Pick a time, share your idea, and we'll take it from there."
+msgstr "اختر وقتاً، شارك فكرتك، ونحن سنتولى الباقي."
+
+msgid "Choose a time slot"
+msgstr "اختر فترة زمنية"
+
+msgid "Pick a date and time that works for you."
+msgstr "اختر تاريخاً ووقتاً يناسبك."
+
+msgid "Loading available slots..."
+msgstr "جاري تحميل الفترات المتاحة..."
+
+msgid "Continue"
+msgstr "متابعة"
+
+msgid "Your details"
+msgstr "تفاصيلك"
+
+msgid "Full Name"
+msgstr "الاسم الكامل"
+
+msgid "Email Address"
+msgstr "البريد الإلكتروني"
+
+msgid "Phone Number"
+msgstr "رقم الهاتف"
+
+msgid "Tell us about your project"
+msgstr "أخبرنا عن مشروعك"
+
+msgid "Booking..."
+msgstr "جاري الحجز..."
+
+msgid "Confirm Booking"
+msgstr "تأكيد الحجز"
+
+msgid "You're all set!"
+msgstr "تم ترتيب كل شيء!"
+
+msgid "We've received your booking. Check your email for confirmation — we'll be in touch shortly."
+msgstr "لقد استلمنا حجزك. تحقق من بريدك الإلكتروني للتأكيد — سنتواصل معك قريباً."
+
+msgid "Book Another Meeting"
+msgstr "احجز اجتماعاً آخر"
+
+msgid "Youth-powered software solutions for businesses, governments, and individuals worldwide."
+msgstr "حلول برمجية مدفوعة بالشباب للشركات والحكومات والأفراد حول العالم."
+
+msgid "Web Applications"
+msgstr "تطبيقات الويب"
+
+msgid "Company"
+msgstr "الشركة"
+
+msgid "Contact"
+msgstr "تواصل معنا"
+
+msgid "About Us"
+msgstr "من نحن"
+
+msgid "Book a free meeting"
+msgstr "احجز اجتماعاً مجانياً"
+
+msgid "All rights reserved."
+msgstr "جميع الحقوق محفوظة."
+
+msgid "Built with"
+msgstr "صُنع بـ"
+
+msgid "by passionate developers"
+msgstr "بواسطة مطورين متحمسين"
+
+msgid "Back"
+msgstr "رجوع"
+
+msgid "About This Project"
+msgstr "حول هذا المشروع"
+
+msgid "Technologies Used"
+msgstr "التقنيات المستخدمة"
+
+msgid "Demo Credentials"
+msgstr "بيانات الدخول التجريبية"
+
+msgid "Username"
+msgstr "اسم المستخدم"
+
+msgid "Password"
+msgstr "كلمة المرور"
+
+msgid "Project Details"
+msgstr "تفاصيل المشروع"
+
+msgid "Client Type"
+msgstr "نوع العميل"
+
+msgid "Stack"
+msgstr "المكدس التقني"
+
+msgid "View Live Project"
+msgstr "عرض المشروع الحي"
+
+msgid "Build Something Similar"
+msgstr "ابنِ شيئاً مماثلاً"
+
+msgid "Like what you see?"
+msgstr "يعجبك ما تراه؟"
+
+msgid "We can build something similar — or even better — for your business. Book a free call to get started."
+msgstr "يمكننا بناء شيء مماثل — أو حتى أفضل — لعملك. احجز مكالمة مجانية للبدء."
+
+msgid "Other"
+msgstr "مشاريع"
+
+msgid "View All"
+msgstr "عرض الكل"
+
+msgid "Let's Work Together"
+msgstr "لنعمل معاً"
+
+msgid "Ready to Build"
+msgstr "مستعد للبناء"
+
+msgid "Something Like This?"
+msgstr "شيء مماثل لهذا؟"
+
+msgid "Tell us about your idea and we'll turn it into reality — with the same care and quality you see here."
+msgstr "أخبرنا عن فكرتك وسنحولها إلى واقع — بنفس الاهتمام والجودة التي تراها هنا."
+
+msgid "Book a Free Consultation"
+msgstr "احجز استشارة مجانية"
+
+msgid "Home"
+msgstr "الرئيسية"

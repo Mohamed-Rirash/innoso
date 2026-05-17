@@ -1,0 +1,366 @@
+## English (passthrough — msgstr left empty so gettext returns msgid)
+msgid ""
+msgstr ""
+"Language: en\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "About"
+msgstr ""
+
+msgid "Services"
+msgstr ""
+
+msgid "Projects"
+msgstr ""
+
+msgid "Team"
+msgstr ""
+
+msgid "Book a Call"
+msgstr ""
+
+msgid "Book a Free Call"
+msgstr ""
+
+msgid "Youth-Powered · Innovation-Driven"
+msgstr ""
+
+msgid "We Build"
+msgstr ""
+
+msgid "Tech That"
+msgstr ""
+
+msgid "Matters"
+msgstr ""
+
+msgid "Innoso is a collective of passionate young developers creating world-class software for businesses, governments, and individuals — built with craftsmanship, delivered with care."
+msgstr ""
+
+msgid "See Our Work"
+msgstr ""
+
+msgid "Always on time"
+msgstr ""
+
+msgid "Available now"
+msgstr ""
+
+msgid "Projects Delivered"
+msgstr ""
+
+msgid "Happy Clients"
+msgstr ""
+
+msgid "Countries Served"
+msgstr ""
+
+msgid "Satisfaction"
+msgstr ""
+
+msgid "Who We Are"
+msgstr ""
+
+msgid "Built Different."
+msgstr ""
+
+msgid "By Design."
+msgstr ""
+
+msgid "A group of talented young developers united by one mission: making technology accessible, impactful, and beautiful."
+msgstr ""
+
+msgid "Our Mission"
+msgstr ""
+
+msgid "To empower businesses, governments, and individuals by delivering high-quality, modern software that solves real problems — built with craftsmanship, delivered with care."
+msgstr ""
+
+msgid "Our Vision"
+msgstr ""
+
+msgid "To become the most trusted tech partner in our region — where clients choose us not just for our code, but for our commitment to their success and our ability to grow with them."
+msgstr ""
+
+msgid "What We Build"
+msgstr ""
+
+msgid "Every Layer of Your"
+msgstr ""
+
+msgid "Digital Stack"
+msgstr ""
+
+msgid "From idea to launch — we cover every layer of your digital needs with precision and care."
+msgstr ""
+
+msgid "Custom Web Apps"
+msgstr ""
+
+msgid "Tailor-made web solutions built for your unique challenges, designed to scale with your growth."
+msgstr ""
+
+msgid "Mobile Apps"
+msgstr ""
+
+msgid "Native and cross-platform apps delivering seamless, polished experiences on iOS and Android."
+msgstr ""
+
+msgid "Enterprise Systems"
+msgstr ""
+
+msgid "Robust, secure platforms for enterprises and public-sector organizations demanding reliability."
+msgstr ""
+
+msgid "E-commerce"
+msgstr ""
+
+msgid "Complete online stores with payments, inventory management, and powerful analytics."
+msgstr ""
+
+msgid "Landing Pages"
+msgstr ""
+
+msgid "High-converting, beautifully designed pages that attract customers and represent your brand."
+msgstr ""
+
+msgid "Dashboards"
+msgstr ""
+
+msgid "Intuitive control centers delivering real-time insight and full control over your operations."
+msgstr ""
+
+msgid "Tech Consulting"
+msgstr ""
+
+msgid "Strategic guidance to help your business overcome challenges and unlock growth through technology."
+msgstr ""
+
+msgid "How We Work"
+msgstr ""
+
+msgid "Simple."
+msgstr ""
+
+msgid "Transparent."
+msgstr ""
+
+msgid "Fast."
+msgstr ""
+
+msgid "A proven three-step process to get you from idea to a live product — efficiently and reliably."
+msgstr ""
+
+msgid "Discover"
+msgstr ""
+
+msgid "We listen deeply to understand your vision, goals, and constraints before writing a single line of code."
+msgstr ""
+
+msgid "Design & Build"
+msgstr ""
+
+msgid "Our team designs and develops your solution with modern technology and continuous feedback loops."
+msgstr ""
+
+msgid "Launch & Support"
+msgstr ""
+
+msgid "We deploy, test, and hand over a polished product — then stay available for ongoing support."
+msgstr ""
+
+msgid "Portfolio"
+msgstr ""
+
+msgid "Real Solutions,"
+msgstr ""
+
+msgid "Real Impact"
+msgstr ""
+
+msgid "Explore some of the products we've built for clients across industries and borders."
+msgstr ""
+
+msgid "Projects coming soon"
+msgstr ""
+
+msgid "Check back shortly — we're updating our portfolio."
+msgstr ""
+
+msgid "View Details"
+msgstr ""
+
+msgid "Live"
+msgstr ""
+
+msgid "The Team"
+msgstr ""
+
+msgid "Meet the"
+msgstr ""
+
+msgid "Builders"
+msgstr ""
+
+msgid "Talented developers who pour creativity and expertise into every project."
+msgstr ""
+
+msgid "Team profiles coming soon"
+msgstr ""
+
+msgid "Free Consultation"
+msgstr ""
+
+msgid "Ready to Build Something"
+msgstr ""
+
+msgid "Amazing Together?"
+msgstr ""
+
+msgid "Tell us about your project. No commitment required — just a conversation about what you need."
+msgstr ""
+
+msgid "Get Started"
+msgstr ""
+
+msgid "Book a"
+msgstr ""
+
+msgid "Free Call"
+msgstr ""
+
+msgid "Pick a time, share your idea, and we'll take it from there."
+msgstr ""
+
+msgid "Choose a time slot"
+msgstr ""
+
+msgid "Pick a date and time that works for you."
+msgstr ""
+
+msgid "Loading available slots..."
+msgstr ""
+
+msgid "Continue"
+msgstr ""
+
+msgid "Your details"
+msgstr ""
+
+msgid "Full Name"
+msgstr ""
+
+msgid "Email Address"
+msgstr ""
+
+msgid "Phone Number"
+msgstr ""
+
+msgid "Tell us about your project"
+msgstr ""
+
+msgid "Booking..."
+msgstr ""
+
+msgid "Confirm Booking"
+msgstr ""
+
+msgid "You're all set!"
+msgstr ""
+
+msgid "We've received your booking. Check your email for confirmation — we'll be in touch shortly."
+msgstr ""
+
+msgid "Book Another Meeting"
+msgstr ""
+
+msgid "Youth-powered software solutions for businesses, governments, and individuals worldwide."
+msgstr ""
+
+msgid "Web Applications"
+msgstr ""
+
+msgid "Company"
+msgstr ""
+
+msgid "Contact"
+msgstr ""
+
+msgid "About Us"
+msgstr ""
+
+msgid "Book a free meeting"
+msgstr ""
+
+msgid "All rights reserved."
+msgstr ""
+
+msgid "Built with"
+msgstr ""
+
+msgid "by passionate developers"
+msgstr ""
+
+msgid "Back"
+msgstr ""
+
+msgid "About This Project"
+msgstr ""
+
+msgid "Technologies Used"
+msgstr ""
+
+msgid "Demo Credentials"
+msgstr ""
+
+msgid "Username"
+msgstr ""
+
+msgid "Password"
+msgstr ""
+
+msgid "Project Details"
+msgstr ""
+
+msgid "Client Type"
+msgstr ""
+
+msgid "Stack"
+msgstr ""
+
+msgid "View Live Project"
+msgstr ""
+
+msgid "Build Something Similar"
+msgstr ""
+
+msgid "Like what you see?"
+msgstr ""
+
+msgid "We can build something similar — or even better — for your business. Book a free call to get started."
+msgstr ""
+
+msgid "Other"
+msgstr ""
+
+msgid "View All"
+msgstr ""
+
+msgid "Let's Work Together"
+msgstr ""
+
+msgid "Ready to Build"
+msgstr ""
+
+msgid "Something Like This?"
+msgstr ""
+
+msgid "Tell us about your idea and we'll turn it into reality — with the same care and quality you see here."
+msgstr ""
+
+msgid "Book a Free Consultation"
+msgstr ""
+
+msgid "Home"
+msgstr ""

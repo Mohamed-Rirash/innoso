@@ -6,22 +6,6 @@ defmodule InnosoWeb.HomeLive do
   alias Innoso.Bookings
   alias Innoso.Scheduling
 
-  @services [
-    %{icon: "hero-code-bracket", title: "Custom Web Applications", desc: "Tailor-made web solutions built to solve your unique business challenges and scale with your growth."},
-    %{icon: "hero-device-phone-mobile", title: "Mobile Apps", desc: "Native and cross-platform mobile applications that deliver seamless experiences on iOS and Android."},
-    %{icon: "hero-building-office-2", title: "Business & Government Systems", desc: "Robust, secure platforms for enterprises and public-sector organizations that demand reliability."},
-    %{icon: "hero-shopping-cart", title: "E-commerce Solutions", desc: "Complete online stores with payments, inventory, and analytics to grow your sales online."},
-    %{icon: "hero-globe-alt", title: "Landing Pages & Portfolios", desc: "High-converting, beautifully designed pages that represent your brand and attract customers."},
-    %{icon: "hero-chart-bar-square", title: "Dashboard & Admin Panels", desc: "Intuitive control centers that give you real-time insight and control over your operations."},
-    %{icon: "hero-light-bulb", title: "Tech Consulting", desc: "Strategic guidance to help your business overcome challenges and unlock growth through technology."}
-  ]
-
-  @steps [
-    %{number: "01", title: "Discover", desc: "We listen deeply to understand your vision, goals, and constraints before writing a single line of code."},
-    %{number: "02", title: "Build", desc: "Our team designs and develops your solution using modern technology with continuous feedback loops."},
-    %{number: "03", title: "Launch", desc: "We deploy, test, and hand over a polished product — then stay available for ongoing support."}
-  ]
-
   @impl true
   def mount(_params, _session, socket) do
     slots = if connected?(socket), do: Scheduling.available_slots_for_weeks(3), else: []
@@ -31,313 +15,781 @@ defmodule InnosoWeb.HomeLive do
      |> assign(:projects, Portfolio.list_projects())
      |> assign(:members, Team.list_members())
      |> assign(:slots, slots)
-     |> assign(:services, @services)
-     |> assign(:steps, @steps)
+     |> assign(:services, services())
+     |> assign(:steps, steps())
+     |> assign(:stats, stats())
      |> assign(:booking_step, :pick_slot)
      |> assign(:selected_slot, nil)
+     |> assign(:selected_date, first_available_date(slots))
      |> assign(:booking_form, to_form(%{}, as: :booking))
+     |> assign(:mobile_menu_open, false)
      |> assign(:page_title, "Innoso — Modern Tech Solutions")}
+  end
+
+  defp services() do
+    [
+      %{
+        icon: "hero-code-bracket",
+        title: gettext("Custom Web Apps"),
+        desc: gettext("Tailor-made web solutions built for your unique challenges, designed to scale with your growth."),
+        color: "text-violet-500 dark:text-violet-400",
+        bg: "bg-violet-500/10 dark:bg-violet-500/15",
+        glow: "bg-violet-500"
+      },
+      %{
+        icon: "hero-device-phone-mobile",
+        title: gettext("Mobile Apps"),
+        desc: gettext("Native and cross-platform apps delivering seamless, polished experiences on iOS and Android."),
+        color: "text-blue-500 dark:text-blue-400",
+        bg: "bg-blue-500/10 dark:bg-blue-500/15",
+        glow: "bg-blue-500"
+      },
+      %{
+        icon: "hero-building-office-2",
+        title: gettext("Enterprise Systems"),
+        desc: gettext("Robust, secure platforms for enterprises and public-sector organizations demanding reliability."),
+        color: "text-indigo-500 dark:text-indigo-400",
+        bg: "bg-indigo-500/10 dark:bg-indigo-500/15",
+        glow: "bg-indigo-500"
+      },
+      %{
+        icon: "hero-shopping-cart",
+        title: gettext("E-commerce"),
+        desc: gettext("Complete online stores with payments, inventory management, and powerful analytics."),
+        color: "text-emerald-500 dark:text-emerald-400",
+        bg: "bg-emerald-500/10 dark:bg-emerald-500/15",
+        glow: "bg-emerald-500"
+      },
+      %{
+        icon: "hero-globe-alt",
+        title: gettext("Landing Pages"),
+        desc: gettext("High-converting, beautifully designed pages that attract customers and represent your brand."),
+        color: "text-pink-500 dark:text-pink-400",
+        bg: "bg-pink-500/10 dark:bg-pink-500/15",
+        glow: "bg-pink-500"
+      },
+      %{
+        icon: "hero-chart-bar-square",
+        title: gettext("Dashboards"),
+        desc: gettext("Intuitive control centers delivering real-time insight and full control over your operations."),
+        color: "text-amber-500 dark:text-amber-400",
+        bg: "bg-amber-500/10 dark:bg-amber-500/15",
+        glow: "bg-amber-500"
+      },
+      %{
+        icon: "hero-light-bulb",
+        title: gettext("Tech Consulting"),
+        desc: gettext("Strategic guidance to help your business overcome challenges and unlock growth through technology."),
+        color: "text-teal-500 dark:text-teal-400",
+        bg: "bg-teal-500/10 dark:bg-teal-500/15",
+        glow: "bg-teal-500"
+      }
+    ]
+  end
+
+  defp steps() do
+    [
+      %{
+        number: "01",
+        title: gettext("Discover"),
+        desc: gettext("We listen deeply to understand your vision, goals, and constraints before writing a single line of code."),
+        icon: "hero-magnifying-glass",
+        glow: "bg-violet-500"
+      },
+      %{
+        number: "02",
+        title: gettext("Design & Build"),
+        desc: gettext("Our team designs and develops your solution with modern technology and continuous feedback loops."),
+        icon: "hero-wrench-screwdriver",
+        glow: "bg-primary"
+      },
+      %{
+        number: "03",
+        title: gettext("Launch & Support"),
+        desc: gettext("We deploy, test, and hand over a polished product — then stay available for ongoing support."),
+        icon: "hero-rocket-launch",
+        glow: "bg-secondary"
+      }
+    ]
+  end
+
+  defp stats() do
+    [
+      %{value: "50+", label: gettext("Projects Delivered")},
+      %{value: "30+", label: gettext("Happy Clients")},
+      %{value: "5+",  label: gettext("Countries Served")},
+      %{value: "100%", label: gettext("Satisfaction")}
+    ]
   end
 
   @impl true
   def render(assigns) do
     ~H"""
-    <div class="min-h-screen bg-base-100">
-      <!-- Navbar -->
-      <nav class="navbar sticky top-0 z-50 bg-base-100/90 backdrop-blur border-b border-base-300 px-4 sm:px-8">
-        <div class="flex-1">
-          <a href="/" class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <span class="text-primary-content font-bold">I</span>
-            </div>
-            <span class="font-bold text-xl">Innoso</span>
-          </a>
-        </div>
-        <div class="flex-none gap-4">
-          <ul class="hidden md:flex items-center gap-1 text-sm">
-            <li><a href="#about" class="btn btn-ghost btn-sm">About</a></li>
-            <li><a href="#services" class="btn btn-ghost btn-sm">Services</a></li>
-            <li><a href="#projects" class="btn btn-ghost btn-sm">Projects</a></li>
-            <li><a href="#team" class="btn btn-ghost btn-sm">Team</a></li>
-          </ul>
-          <div class="flex items-center gap-2">
-            <!-- Language switcher -->
-            <div class="dropdown dropdown-end">
-              <div tabindex="0" role="button" class="btn btn-ghost btn-sm gap-1">
-                <.icon name="hero-language" class="size-4" />
-                <span class="hidden sm:inline">EN</span>
-              </div>
-              <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-10 w-36 p-2 shadow border border-base-300">
-                <li><.link href={~p"/locale/en"}>English</.link></li>
-                <li><.link href={~p"/locale/ar"}>العربية</.link></li>
-                <li><.link href={~p"/locale/so"}>Soomaali</.link></li>
-                <li><.link href={~p"/locale/fr"}>Français</.link></li>
-              </ul>
-            </div>
-            <Layouts.theme_toggle />
-            <a href="#booking" class="btn btn-primary btn-sm">Book a Call</a>
-          </div>
-        </div>
-      </nav>
+    <div class="min-h-screen bg-base-100 antialiased overflow-x-hidden">
 
-      <!-- Hero -->
-      <section class="relative overflow-hidden px-4 sm:px-8 pt-20 pb-28">
-        <div class="absolute inset-0 bg-gradient-to-br from-primary/5 via-base-100 to-secondary/5 pointer-events-none" />
-        <div class="max-w-4xl mx-auto text-center relative">
-          <div class="inline-flex items-center gap-2 bg-primary/10 text-primary rounded-full px-4 py-1.5 text-sm font-medium mb-6">
-            <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
-            Youth-Powered Tech Innovation
-          </div>
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-6">
-            We Build Technology <br />
-            <span class="text-primary">That Moves Businesses</span>
-          </h1>
-          <p class="text-lg sm:text-xl text-base-content/70 max-w-2xl mx-auto mb-10">
-            Innoso is a collective of passionate young developers creating software solutions for businesses, governments, organizations, and individuals — from web apps to enterprise systems.
-          </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#booking" class="btn btn-primary btn-lg">
-              Book a Free Consultation
-              <.icon name="hero-arrow-right" class="size-5" />
+      <%!-- Fixed gradient orbs --%>
+      <div aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+        <div class="absolute -top-[450px] -left-[200px] w-[900px] h-[900px] rounded-full bg-violet-600/8 dark:bg-violet-500/20 blur-[160px]"></div>
+        <div class="absolute top-[20%] -right-[300px] w-[800px] h-[800px] rounded-full bg-indigo-500/6 dark:bg-blue-500/16 blur-[150px]"></div>
+        <div class="absolute bottom-[15%] -left-[100px] w-[700px] h-[700px] rounded-full bg-cyan-400/5 dark:bg-cyan-400/12 blur-[140px]"></div>
+        <div class="absolute top-[60%] right-[10%] w-[600px] h-[600px] rounded-full bg-pink-500/4 dark:bg-pink-500/10 blur-[120px]"></div>
+      </div>
+
+      <%!-- ═══════════════════ NAVBAR ═══════════════════ --%>
+      <header class="sticky top-0 z-50">
+        <nav class="bg-white/75 dark:bg-black/35 backdrop-blur-2xl border-b border-black/[0.07] dark:border-white/[0.08] px-4 sm:px-6 lg:px-8">
+          <div class="max-w-7xl mx-auto h-16 flex items-center gap-4">
+            <a href="/" class="flex items-center gap-2.5 shrink-0 group">
+              <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg shadow-primary/30 group-hover:scale-105 transition-transform duration-200">
+                <span class="text-white font-black text-sm select-none tracking-tight">IN</span>
+              </div>
+              <span class="font-black text-xl tracking-tight">Innoso</span>
             </a>
-            <a href="#projects" class="btn btn-ghost btn-lg">See Our Work</a>
+
+            <ul class="hidden md:flex items-center gap-0.5 flex-1 justify-center">
+              <li>
+                <a href="#about" class="relative px-4 py-2 text-sm font-semibold text-base-content/60 hover:text-base-content transition-colors group">
+                  {gettext("About")}
+                  <span class="absolute bottom-0.5 inset-x-4 h-0.5 bg-gradient-to-r from-primary to-secondary rounded-full scale-x-0 group-hover:scale-x-100 transition-transform origin-center duration-200"></span>
+                </a>
+              </li>
+              <li>
+                <a href="#services" class="relative px-4 py-2 text-sm font-semibold text-base-content/60 hover:text-base-content transition-colors group">
+                  {gettext("Services")}
+                  <span class="absolute bottom-0.5 inset-x-4 h-0.5 bg-gradient-to-r from-primary to-secondary rounded-full scale-x-0 group-hover:scale-x-100 transition-transform origin-center duration-200"></span>
+                </a>
+              </li>
+              <li>
+                <a href="#projects" class="relative px-4 py-2 text-sm font-semibold text-base-content/60 hover:text-base-content transition-colors group">
+                  {gettext("Projects")}
+                  <span class="absolute bottom-0.5 inset-x-4 h-0.5 bg-gradient-to-r from-primary to-secondary rounded-full scale-x-0 group-hover:scale-x-100 transition-transform origin-center duration-200"></span>
+                </a>
+              </li>
+              <li>
+                <a href="#team" class="relative px-4 py-2 text-sm font-semibold text-base-content/60 hover:text-base-content transition-colors group">
+                  {gettext("Team")}
+                  <span class="absolute bottom-0.5 inset-x-4 h-0.5 bg-gradient-to-r from-primary to-secondary rounded-full scale-x-0 group-hover:scale-x-100 transition-transform origin-center duration-200"></span>
+                </a>
+              </li>
+            </ul>
+
+            <div class="flex items-center gap-2 ml-auto md:ml-0">
+              <div class="dropdown dropdown-end">
+                <div tabindex="0" role="button" class="btn btn-ghost btn-sm gap-1 rounded-xl text-base-content/60 hover:text-base-content font-semibold">
+                  <.icon name="hero-language" class="size-4" />
+                  <span class="hidden sm:inline text-xs uppercase">{@locale}</span>
+                  <.icon name="hero-chevron-down" class="size-3 hidden sm:inline" />
+                </div>
+                <ul tabindex="0" class="dropdown-content menu z-20 w-44 p-2 mt-1 rounded-2xl bg-white/90 dark:bg-base-200/90 backdrop-blur-xl border border-black/[0.06] dark:border-white/[0.10] shadow-2xl">
+                  <li><.link href={~p"/locale/en"} class="rounded-xl text-sm font-medium">🇺🇸 English</.link></li>
+                  <li><.link href={~p"/locale/ar"} class="rounded-xl text-sm font-medium">🇸🇦 العربية</.link></li>
+                  <li><.link href={~p"/locale/so"} class="rounded-xl text-sm font-medium">🇸🇴 Soomaali</.link></li>
+                  <li><.link href={~p"/locale/fr"} class="rounded-xl text-sm font-medium">🇫🇷 Français</.link></li>
+                </ul>
+              </div>
+              <Layouts.theme_toggle />
+              <a href="#booking" class="hidden md:inline-flex btn btn-sm rounded-xl font-bold px-5 gap-1.5 bg-gradient-to-r from-primary to-secondary text-white border-0 shadow-lg shadow-primary/25 hover:opacity-90 hover:scale-[1.02] transition-all">
+                {gettext("Book a Call")}
+                <.icon name="hero-arrow-right" class="size-3.5" />
+              </a>
+              <button phx-click="toggle_menu" class="md:hidden btn btn-ghost btn-sm btn-square rounded-xl">
+                <.icon :if={!@mobile_menu_open} name="hero-bars-3" class="size-5" />
+                <.icon :if={@mobile_menu_open} name="hero-x-mark" class="size-5" />
+              </button>
+            </div>
+          </div>
+        </nav>
+
+        <div :if={@mobile_menu_open} class="md:hidden bg-white/90 dark:bg-base-100/90 backdrop-blur-2xl border-b border-black/[0.06] dark:border-white/[0.08] shadow-2xl">
+          <div class="max-w-7xl mx-auto px-4 py-4 space-y-1">
+            <a href="#about" phx-click="close_menu" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-base-content/65 hover:text-base-content hover:bg-black/[0.04] dark:hover:bg-white/[0.06] transition-colors">
+              <.icon name="hero-user-group" class="size-4 text-primary" /> {gettext("About")}
+            </a>
+            <a href="#services" phx-click="close_menu" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-base-content/65 hover:text-base-content hover:bg-black/[0.04] dark:hover:bg-white/[0.06] transition-colors">
+              <.icon name="hero-squares-2x2" class="size-4 text-primary" /> {gettext("Services")}
+            </a>
+            <a href="#projects" phx-click="close_menu" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-base-content/65 hover:text-base-content hover:bg-black/[0.04] dark:hover:bg-white/[0.06] transition-colors">
+              <.icon name="hero-briefcase" class="size-4 text-primary" /> {gettext("Projects")}
+            </a>
+            <a href="#team" phx-click="close_menu" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-base-content/65 hover:text-base-content hover:bg-black/[0.04] dark:hover:bg-white/[0.06] transition-colors">
+              <.icon name="hero-users" class="size-4 text-primary" /> {gettext("Team")}
+            </a>
+            <div class="pt-2 border-t border-black/[0.06] dark:border-white/[0.08]">
+              <a href="#booking" phx-click="close_menu" class="btn w-full rounded-xl font-bold bg-gradient-to-r from-primary to-secondary text-white border-0 shadow-lg shadow-primary/20 gap-2">
+                {gettext("Book a Free Call")} <.icon name="hero-arrow-right" class="size-4" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <%!-- ═══════════════════ HERO ═══════════════════ --%>
+      <section class="relative px-4 sm:px-6 lg:px-8 pt-16 pb-24 lg:pt-28 lg:pb-36 min-h-[92vh] flex items-center">
+        <div class="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div>
+            <div class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-bold uppercase tracking-widest mb-8 bg-white/60 dark:bg-white/[0.08] backdrop-blur-sm border border-black/[0.07] dark:border-white/[0.12] text-primary shadow-sm">
+              <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+              {gettext("Youth-Powered · Innovation-Driven")}
+            </div>
+
+            <h1 class="text-[3.5rem] sm:text-[4.5rem] lg:text-[5rem] xl:text-[5.5rem] font-black tracking-tight leading-[1.0] mb-7">
+              <span class="text-base-content">{gettext("We Build")}</span><br />
+              <span class="bg-gradient-to-r from-primary via-violet-500 to-secondary bg-clip-text text-transparent">
+                {gettext("Tech That")}
+              </span><br />
+              <span class="text-base-content">{gettext("Matters")}</span>
+            </h1>
+
+            <p class="text-lg sm:text-xl text-base-content/55 leading-relaxed mb-10 max-w-lg">
+              {gettext("Innoso is a collective of passionate young developers creating world-class software for businesses, governments, and individuals — built with craftsmanship, delivered with care.")}
+            </p>
+
+            <div class="flex flex-wrap gap-3 mb-14">
+              <a href="#booking" class="btn btn-lg rounded-2xl font-black gap-2 bg-gradient-to-r from-primary to-secondary text-white border-0 shadow-xl shadow-primary/30 hover:opacity-90 hover:scale-[1.02] transition-all">
+                {gettext("Book a Free Call")}
+                <.icon name="hero-arrow-right" class="size-5" />
+              </a>
+              <a href="#projects" class="btn btn-lg rounded-2xl font-bold bg-white/60 dark:bg-white/[0.08] backdrop-blur-sm border border-black/[0.07] dark:border-white/[0.12] hover:bg-white/80 dark:hover:bg-white/[0.12] text-base-content transition-all">
+                {gettext("See Our Work")}
+              </a>
+            </div>
+
+            <div class="flex flex-wrap gap-x-8 gap-y-5">
+              <div :for={stat <- @stats} class="text-center">
+                <div class="text-3xl font-black bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent leading-none">
+                  {stat.value}
+                </div>
+                <div class="text-xs font-semibold text-base-content/45 uppercase tracking-widest mt-1.5">
+                  {stat.label}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <%!-- Glass terminal (hero right) --%>
+          <div class="hidden lg:flex items-center justify-center">
+            <div class="relative w-full max-w-[420px]">
+              <div class="absolute inset-0 bg-gradient-to-br from-primary/40 to-secondary/30 rounded-3xl blur-3xl scale-110 pointer-events-none"></div>
+              <div class="relative bg-white/70 dark:bg-white/[0.05] backdrop-blur-2xl border border-black/[0.07] dark:border-white/[0.10] rounded-2xl overflow-hidden shadow-2xl">
+                <div class="flex items-center gap-2 px-5 py-3.5 bg-black/[0.03] dark:bg-white/[0.04] border-b border-black/[0.06] dark:border-white/[0.08]">
+                  <div class="w-3 h-3 rounded-full bg-red-400/80"></div>
+                  <div class="w-3 h-3 rounded-full bg-yellow-400/80"></div>
+                  <div class="w-3 h-3 rounded-full bg-green-400/80"></div>
+                  <span class="ml-3 text-xs text-base-content/30 font-mono">innoso.ex</span>
+                </div>
+                <div class="p-6 font-mono text-[13px] leading-[1.75] space-y-0.5">
+                  <div><span class="text-secondary font-semibold">defmodule</span><span class="text-primary font-bold"> Innoso </span><span class="text-secondary font-semibold">do</span></div>
+                  <div class="pl-5 text-base-content/45">@mission <span class="text-emerald-500 dark:text-emerald-400">"Build great software"</span></div>
+                  <div class="pl-5 text-base-content/45">@values <span class="text-amber-500 dark:text-amber-400">[:quality, :care, :speed]</span></div>
+                  <div class="pl-5 mt-2"><span class="text-secondary font-semibold">def </span><span class="text-blue-500 dark:text-blue-400">deliver</span><span class="text-base-content/50">(project) </span><span class="text-secondary font-semibold">do</span></div>
+                  <div class="pl-10 text-base-content/30 italic text-xs"># always on time, always polished</div>
+                  <div class="pl-10 text-primary font-bold">:success</div>
+                  <div class="pl-5 text-secondary font-semibold">end</div>
+                  <div class="text-secondary font-semibold">end</div>
+                </div>
+              </div>
+              <div class="absolute -top-5 -right-6 flex items-center gap-2 bg-emerald-500 text-white text-xs font-bold rounded-xl px-3 py-2 shadow-xl shadow-emerald-500/30">
+                <.icon name="hero-check-circle" class="size-4" />
+                {gettext("Always on time")}
+              </div>
+              <div class="absolute -bottom-5 -left-6 flex items-center gap-2 bg-white/80 dark:bg-white/[0.10] backdrop-blur-xl border border-black/[0.07] dark:border-white/[0.12] text-xs font-semibold rounded-xl px-3 py-2 shadow-xl">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                {gettext("Available now")}
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- About / Mission & Vision -->
-      <section id="about" class="px-4 sm:px-8 py-20 bg-base-200">
+      <%!-- ═══════════════════ ABOUT ═══════════════════ --%>
+      <section id="about" class="px-4 sm:px-6 lg:px-8 py-24">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-16">
+            <span class="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 dark:bg-primary/15 border border-primary/20 dark:border-primary/25 px-4 py-1.5 rounded-full mb-5">
+              {gettext("Who We Are")}
+            </span>
+            <h2 class="text-4xl sm:text-5xl font-black tracking-tight mb-5">
+              {gettext("Built Different.")}
+              <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                {gettext("By Design.")}
+              </span>
+            </h2>
+            <p class="text-base-content/50 max-w-lg mx-auto text-lg leading-relaxed">
+              {gettext("A group of talented young developers united by one mission: making technology accessible, impactful, and beautiful.")}
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-5">
+            <%!-- Mission card --%>
+            <div class="group relative rounded-2xl border border-black/[0.08] dark:border-white/[0.07] bg-white dark:bg-base-200 p-8 overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/30 dark:hover:border-primary/40">
+              <%!-- Neon bottom glow — primary --%>
+              <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-1/2 h-12 bg-primary/40 blur-2xl opacity-0 group-hover:opacity-80 transition-all duration-500 pointer-events-none"></div>
+
+              <div class="w-14 h-14 rounded-2xl bg-primary/10 dark:bg-primary/15 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <.icon name="hero-rocket-launch" class="size-7 text-primary" />
+              </div>
+              <h3 class="text-2xl font-black mb-3">{gettext("Our Mission")}</h3>
+              <p class="text-base-content/58 leading-relaxed">
+                {gettext("To empower businesses, governments, and individuals by delivering high-quality, modern software that solves real problems — built with craftsmanship, delivered with care.")}
+              </p>
+            </div>
+
+            <%!-- Vision card --%>
+            <div class="group relative rounded-2xl border border-black/[0.08] dark:border-white/[0.07] bg-white dark:bg-base-200 p-8 overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:border-secondary/30 dark:hover:border-secondary/40">
+              <%!-- Neon bottom glow — secondary --%>
+              <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-1/2 h-12 bg-secondary/40 blur-2xl opacity-0 group-hover:opacity-80 transition-all duration-500 pointer-events-none"></div>
+
+              <div class="w-14 h-14 rounded-2xl bg-secondary/10 dark:bg-secondary/15 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <.icon name="hero-eye" class="size-7 text-secondary" />
+              </div>
+              <h3 class="text-2xl font-black mb-3">{gettext("Our Vision")}</h3>
+              <p class="text-base-content/58 leading-relaxed">
+                {gettext("To become the most trusted tech partner in our region — where clients choose us not just for our code, but for our commitment to their success and our ability to grow with them.")}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <%!-- ═══════════════════ SERVICES ═══════════════════ --%>
+      <section id="services" class="px-4 sm:px-6 lg:px-8 py-24">
+        <div class="max-w-7xl mx-auto">
+          <div class="text-center mb-16">
+            <span class="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 dark:bg-primary/15 border border-primary/20 dark:border-primary/25 px-4 py-1.5 rounded-full mb-5">
+              {gettext("What We Build")}
+            </span>
+            <h2 class="text-4xl sm:text-5xl font-black tracking-tight mb-5">
+              {gettext("Every Layer of Your")}
+              <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                {gettext("Digital Stack")}
+              </span>
+            </h2>
+            <p class="text-base-content/50 max-w-lg mx-auto text-lg leading-relaxed">
+              {gettext("From idea to launch — we cover every layer of your digital needs with precision and care.")}
+            </p>
+          </div>
+
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            <div
+              :for={service <- @services}
+              class="group relative rounded-2xl border border-black/[0.08] dark:border-white/[0.07] bg-white dark:bg-base-200 p-6 overflow-hidden transition-all duration-300 hover:-translate-y-2 cursor-default"
+            >
+              <%!-- Per-service neon bottom glow --%>
+              <div class={["absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-300", service.glow]}></div>
+              <div class={["absolute -bottom-4 left-1/2 -translate-x-1/2 w-1/2 h-12 blur-2xl opacity-0 group-hover:opacity-70 transition-all duration-500 pointer-events-none", service.glow]}></div>
+
+              <div class={["relative w-12 h-12 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300", service.bg]}>
+                <.icon name={service.icon} class={["size-6", service.color]} />
+              </div>
+              <h3 class="relative font-black text-base mb-2 leading-snug">{service.title}</h3>
+              <p class="relative text-sm text-base-content/52 leading-relaxed">{service.desc}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <%!-- ═══════════════════ PROCESS ═══════════════════ --%>
+      <section class="px-4 sm:px-6 lg:px-8 py-24">
         <div class="max-w-5xl mx-auto">
-          <div class="text-center mb-12">
-            <h2 class="text-3xl sm:text-4xl font-bold mb-4">Who We Are</h2>
-            <p class="text-base-content/60 max-w-xl mx-auto">A group of talented young developers united by one mission: making technology accessible and impactful.</p>
+          <div class="text-center mb-16">
+            <span class="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 dark:bg-primary/15 border border-primary/20 dark:border-primary/25 px-4 py-1.5 rounded-full mb-5">
+              {gettext("How We Work")}
+            </span>
+            <h2 class="text-4xl sm:text-5xl font-black tracking-tight mb-5">
+              {gettext("Simple.")}
+              <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                {gettext("Transparent.")}
+              </span>
+              {gettext("Fast.")}
+            </h2>
+            <p class="text-base-content/50 max-w-lg mx-auto text-lg leading-relaxed">
+              {gettext("A proven three-step process to get you from idea to a live product — efficiently and reliably.")}
+            </p>
           </div>
-          <div class="grid md:grid-cols-2 gap-8">
-            <div class="card bg-base-100 shadow-lg">
-              <div class="card-body">
-                <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
-                  <.icon name="hero-rocket-launch" class="size-6 text-primary" />
-                </div>
-                <h3 class="text-xl font-bold mb-2">Our Mission</h3>
-                <p class="text-base-content/70">
-                  To empower businesses, governments, and individuals by delivering high-quality, modern software solutions that solve real problems — built with craftsmanship, delivered with care.
-                </p>
-              </div>
-            </div>
-            <div class="card bg-base-100 shadow-lg">
-              <div class="card-body">
-                <div class="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center mb-4">
-                  <.icon name="hero-eye" class="size-6 text-secondary" />
-                </div>
-                <h3 class="text-xl font-bold mb-2">Our Vision</h3>
-                <p class="text-base-content/70">
-                  To become the most trusted tech partner in our region — where clients choose us not just for our code, but for our commitment to their success and our ability to grow with them.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      <!-- Services -->
-      <section id="services" class="px-4 sm:px-8 py-20">
-        <div class="max-w-6xl mx-auto">
-          <div class="text-center mb-12">
-            <h2 class="text-3xl sm:text-4xl font-bold mb-4">What We Build</h2>
-            <p class="text-base-content/60 max-w-xl mx-auto">From idea to launch — we cover every layer of your digital needs.</p>
-          </div>
-          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div :for={service <- @services} class="card bg-base-100 border border-base-300 hover:border-primary hover:shadow-lg transition-all duration-200">
-              <div class="card-body">
-                <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center mb-3">
-                  <.icon name={service.icon} class="size-5 text-primary" />
-                </div>
-                <h3 class="font-bold text-lg"><%= service.title %></h3>
-                <p class="text-base-content/60 text-sm mt-1"><%= service.desc %></p>
+          <div class="grid md:grid-cols-3 gap-5">
+            <div
+              :for={step <- @steps}
+              class="group relative rounded-2xl border border-black/[0.08] dark:border-white/[0.07] bg-white dark:bg-base-200 p-8 overflow-hidden transition-all duration-300 hover:-translate-y-1.5 text-center"
+            >
+              <%!-- Per-step neon bottom glow --%>
+              <div class={["absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-300", step.glow]}></div>
+              <div class={["absolute -bottom-4 left-1/2 -translate-x-1/2 w-1/2 h-12 blur-2xl opacity-0 group-hover:opacity-70 transition-all duration-500 pointer-events-none", step.glow]}></div>
+
+              <div class="relative w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-primary/25 group-hover:scale-110 transition-transform duration-300">
+                <span class="text-white font-black text-xl">{step.number}</span>
               </div>
+              <h3 class="text-xl font-black mb-3">{step.title}</h3>
+              <p class="text-base-content/55 text-sm leading-relaxed">{step.desc}</p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- How We Work -->
-      <section class="px-4 sm:px-8 py-20 bg-base-200">
-        <div class="max-w-4xl mx-auto">
-          <div class="text-center mb-12">
-            <h2 class="text-3xl sm:text-4xl font-bold mb-4">How We Work</h2>
-            <p class="text-base-content/60 max-w-xl mx-auto">A simple, transparent process designed to get you from idea to reality — fast.</p>
+      <%!-- ═══════════════════ PROJECTS ═══════════════════ --%>
+      <section id="projects" class="px-4 sm:px-6 lg:px-8 py-24">
+        <div class="max-w-7xl mx-auto">
+          <div class="text-center mb-16">
+            <span class="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 dark:bg-primary/15 border border-primary/20 dark:border-primary/25 px-4 py-1.5 rounded-full mb-5">
+              {gettext("Portfolio")}
+            </span>
+            <h2 class="text-4xl sm:text-5xl font-black tracking-tight mb-5">
+              {gettext("Real Solutions,")}
+              <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                {gettext("Real Impact")}
+              </span>
+            </h2>
+            <p class="text-base-content/50 max-w-lg mx-auto text-lg leading-relaxed">
+              {gettext("Explore some of the products we've built for clients across industries and borders.")}
+            </p>
           </div>
-          <div class="grid md:grid-cols-3 gap-8">
-            <div :for={step <- @steps} class="text-center">
-              <div class="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-primary/20">
-                <span class="text-primary-content font-bold text-lg"><%= step.number %></span>
-              </div>
-              <h3 class="text-xl font-bold mb-2"><%= step.title %></h3>
-              <p class="text-base-content/60 text-sm"><%= step.desc %></p>
+
+          <div :if={@projects == []} class="text-center py-24">
+            <div class="w-20 h-20 rounded-2xl bg-white dark:bg-base-200 border border-black/[0.08] dark:border-white/[0.07] flex items-center justify-center mx-auto mb-5">
+              <.icon name="hero-briefcase" class="size-10 text-base-content/25" />
             </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Projects -->
-      <section id="projects" class="px-4 sm:px-8 py-20">
-        <div class="max-w-6xl mx-auto">
-          <div class="text-center mb-12">
-            <h2 class="text-3xl sm:text-4xl font-bold mb-4">Our Work</h2>
-            <p class="text-base-content/60 max-w-xl mx-auto">Real solutions delivered for real clients. Explore what we've built.</p>
+            <p class="text-base-content/40 font-semibold text-lg">{gettext("Projects coming soon")}</p>
+            <p class="text-base-content/28 text-sm mt-1">{gettext("Check back shortly — we're updating our portfolio.")}</p>
           </div>
 
-          <div :if={@projects == []} class="text-center py-16 text-base-content/40">
-            <.icon name="hero-briefcase" class="size-12 mx-auto mb-3" />
-            <p>Projects coming soon — check back shortly.</p>
-          </div>
-
-          <div :if={@projects != []} class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div :for={project <- @projects} class="card bg-base-100 shadow-md hover:shadow-xl transition-shadow">
-              <figure :if={project.cover_image} class="h-48 overflow-hidden">
-                <img src={project.cover_image} alt={project.name} class="w-full h-full object-cover" />
-              </figure>
-              <div :if={!project.cover_image} class="h-48 bg-base-200 flex items-center justify-center">
-                <.icon name="hero-briefcase" class="size-10 text-base-content/20" />
-              </div>
-              <div class="card-body">
-                <div class="flex items-start justify-between gap-2">
-                  <h3 class="card-title text-base"><%= project.name %></h3>
-                  <span class="badge badge-outline badge-sm shrink-0"><%= project.client_type %></span>
-                </div>
-                <p class="text-sm text-base-content/60 line-clamp-2"><%= project.description %></p>
-                <div :if={project.tags} class="flex flex-wrap gap-1 mt-1">
-                  <span :for={tag <- String.split(project.tags || "", ",")} class="badge badge-ghost badge-xs"><%= String.trim(tag) %></span>
-                </div>
-                <div class="card-actions mt-2">
-                  <a :if={project.live_url} href={project.live_url} target="_blank" class="btn btn-primary btn-sm">
-                    View Live <.icon name="hero-arrow-top-right-on-square" class="size-3" />
-                  </a>
-                  <div :if={project.demo_username} class="text-xs text-base-content/50 self-center">
-                    Demo: <%= project.demo_username %> / <%= project.demo_password %>
+          <div :if={@projects != []} class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <.link
+              :for={project <- @projects}
+              navigate={~p"/projects/#{project.id}"}
+              class="group flex flex-col rounded-2xl border border-black/[0.08] dark:border-white/[0.07] bg-white dark:bg-base-200 overflow-hidden transition-all duration-300 hover:-translate-y-2 relative"
+            >
+              <%!-- Cover image --%>
+              <div class="relative h-52 overflow-hidden shrink-0">
+                <img :if={project.cover_image} src={project.cover_image} alt={project.name} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <div :if={!project.cover_image} class="w-full h-full bg-gradient-to-br from-primary/12 via-primary/4 to-secondary/12 flex items-center justify-center">
+                  <div class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
+                    <.icon name="hero-briefcase" class="size-8 text-primary/35" />
                   </div>
                 </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent"></div>
+                <span class="absolute top-3 left-3 text-xs font-bold uppercase tracking-wide px-2.5 py-1 rounded-lg bg-black/50 backdrop-blur-sm border border-white/15 text-white/90">
+                  {project.client_type}
+                </span>
+                <div class="absolute top-3 right-3 w-8 h-8 rounded-xl bg-black/50 backdrop-blur-sm border border-white/15 flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-200">
+                  <.icon name="hero-arrow-up-right" class="size-4 text-white" />
+                </div>
+              </div>
+
+              <%!-- Body --%>
+              <div class="flex flex-col flex-1 p-5 relative">
+                <%!-- Neon bottom glow — primary --%>
+                <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-1/2 h-12 bg-primary/40 blur-2xl opacity-0 group-hover:opacity-80 transition-all duration-500 pointer-events-none"></div>
+
+                <h3 class="font-black text-lg leading-snug mb-2 group-hover:text-primary transition-colors duration-200">
+                  {project.name}
+                </h3>
+                <p class="text-sm text-base-content/55 line-clamp-2 leading-relaxed flex-1">
+                  {project.description}
+                </p>
+
+                <div :if={project.tags} class="flex flex-wrap gap-1.5 mt-4">
+                  <span
+                    :for={tag <- project.tags |> String.split(",") |> Enum.map(&String.trim/1) |> Enum.take(3)}
+                    class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-primary/8 dark:bg-primary/15 border border-primary/15 dark:border-primary/25 text-primary"
+                  >
+                    {tag}
+                  </span>
+                </div>
+
+                <div class="flex items-center justify-between mt-4 pt-4 border-t border-black/[0.06] dark:border-white/[0.08]">
+                  <span class="text-sm font-bold text-primary flex items-center gap-1.5">
+                    {gettext("View Details")}
+                    <.icon name="hero-arrow-right" class="size-3.5 group-hover:translate-x-0.5 transition-transform" />
+                  </span>
+                  <span :if={project.live_url} class="text-xs text-base-content/38 font-medium flex items-center gap-1">
+                    <.icon name="hero-globe-alt" class="size-3.5" /> {gettext("Live")}
+                  </span>
+                </div>
+              </div>
+            </.link>
+          </div>
+        </div>
+      </section>
+
+      <%!-- ═══════════════════ TEAM ═══════════════════ --%>
+      <section id="team" class="px-4 sm:px-6 lg:px-8 py-24">
+        <div class="max-w-7xl mx-auto">
+          <div class="text-center mb-16">
+            <span class="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 dark:bg-primary/15 border border-primary/20 dark:border-primary/25 px-4 py-1.5 rounded-full mb-5">
+              {gettext("The Team")}
+            </span>
+            <h2 class="text-4xl sm:text-5xl font-black tracking-tight mb-5">
+              {gettext("Meet the")}
+              <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                {gettext("Builders")}
+              </span>
+            </h2>
+            <p class="text-base-content/50 max-w-lg mx-auto text-lg leading-relaxed">
+              {gettext("Talented developers who pour creativity and expertise into every project.")}
+            </p>
+          </div>
+
+          <div :if={@members == []} class="text-center py-24">
+            <div class="w-20 h-20 rounded-2xl bg-white dark:bg-base-200 border border-black/[0.08] dark:border-white/[0.07] flex items-center justify-center mx-auto mb-5">
+              <.icon name="hero-users" class="size-10 text-base-content/25" />
+            </div>
+            <p class="text-base-content/40 font-semibold text-lg">{gettext("Team profiles coming soon")}</p>
+          </div>
+
+          <div :if={@members != []} class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+            <div
+              :for={member <- @members}
+              class="group relative text-center rounded-2xl border border-black/[0.08] dark:border-white/[0.07] bg-white dark:bg-base-200 p-7 overflow-hidden transition-all duration-300 hover:-translate-y-1.5"
+            >
+              <%!-- Neon bottom glow — primary --%>
+              <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-1/2 h-12 bg-primary/40 blur-2xl opacity-0 group-hover:opacity-80 transition-all duration-500 pointer-events-none"></div>
+
+              <div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-primary/20 to-secondary/20 overflow-hidden mx-auto mb-5 ring-2 ring-black/[0.04] dark:ring-white/[0.08] group-hover:ring-primary/30 transition-all duration-300">
+                <img :if={member.photo} src={member.photo} alt={member.name} class="w-full h-full object-cover" />
+                <div :if={!member.photo} class="w-full h-full flex items-center justify-center">
+                  <.icon name="hero-user" class="size-10 text-base-content/25" />
+                </div>
+              </div>
+              <h3 class="font-black text-base mb-1">{member.name}</h3>
+              <p class="text-sm font-semibold text-primary/80">{member.role}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <%!-- ═══════════════════ CTA BANNER ═══════════════════ --%>
+      <section class="px-4 sm:px-6 lg:px-8 py-16">
+        <div class="max-w-6xl mx-auto">
+          <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary via-violet-600 to-secondary p-px shadow-2xl shadow-primary/25">
+            <div class="relative rounded-[calc(1.5rem-1px)] bg-gradient-to-br from-primary/90 via-violet-600/90 to-secondary/90 backdrop-blur-xl px-8 py-16 sm:px-16 text-center overflow-hidden">
+              <div class="absolute -top-20 -right-20 w-72 h-72 rounded-full bg-white/[0.06] pointer-events-none"></div>
+              <div class="absolute -bottom-28 -left-28 w-80 h-80 rounded-full bg-white/[0.06] pointer-events-none"></div>
+              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-white/[0.03] pointer-events-none"></div>
+              <div class="relative">
+                <div class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/20 text-white/90 rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-widest mb-6">
+                  <span class="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span>
+                  {gettext("Free Consultation")}
+                </div>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-5 tracking-tight leading-tight">
+                  {gettext("Ready to Build Something")}<br />{gettext("Amazing Together?")}
+                </h2>
+                <p class="text-white/65 text-lg mb-10 max-w-xl mx-auto leading-relaxed">
+                  {gettext("Tell us about your project. No commitment required — just a conversation about what you need.")}
+                </p>
+                <a href="#booking" class="btn btn-lg rounded-2xl font-black bg-white hover:bg-white/95 text-primary border-0 shadow-2xl gap-2 px-8 hover:scale-[1.02] transition-all">
+                  {gettext("Book a Free Call")}
+                  <.icon name="hero-arrow-right" class="size-5" />
+                </a>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Team -->
-      <section id="team" class="px-4 sm:px-8 py-20 bg-base-200">
-        <div class="max-w-5xl mx-auto">
+      <%!-- ═══════════════════ BOOKING ═══════════════════ --%>
+      <section id="booking" class="px-4 sm:px-6 lg:px-8 pb-28">
+        <div class="max-w-2xl mx-auto">
           <div class="text-center mb-12">
-            <h2 class="text-3xl sm:text-4xl font-bold mb-4">Meet the Team</h2>
-            <p class="text-base-content/60 max-w-xl mx-auto">The talented developers behind every line of code.</p>
+            <span class="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 dark:bg-primary/15 border border-primary/20 dark:border-primary/25 px-4 py-1.5 rounded-full mb-5">
+              {gettext("Get Started")}
+            </span>
+            <h2 class="text-4xl sm:text-5xl font-black tracking-tight mb-4">
+              {gettext("Book a")}
+              <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                {gettext("Free Call")}
+              </span>
+            </h2>
+            <p class="text-base-content/50 text-lg leading-relaxed">
+              {gettext("Pick a time, share your idea, and we'll take it from there.")}
+            </p>
           </div>
 
-          <div :if={@members == []} class="text-center py-12 text-base-content/40">
-            <.icon name="hero-users" class="size-12 mx-auto mb-3" />
-            <p>Team profiles coming soon.</p>
-          </div>
+          <%!-- Booking card --%>
+          <div class="relative rounded-3xl border border-black/[0.08] dark:border-white/[0.07] bg-white dark:bg-base-200 overflow-hidden shadow-xl">
+            <%!-- Top gradient accent line --%>
+            <div class="h-0.5 bg-gradient-to-r from-primary via-violet-500 to-secondary"></div>
 
-          <div :if={@members != []} class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            <div :for={member <- @members} class="card bg-base-100 shadow text-center">
-              <div class="card-body items-center pt-6">
-                <div class="avatar mb-3">
-                  <div class="w-20 h-20 rounded-full bg-base-200">
-                    <img :if={member.photo} src={member.photo} alt={member.name} class="rounded-full" />
-                    <div :if={!member.photo} class="flex items-center justify-center h-full rounded-full">
-                      <.icon name="hero-user" class="size-8 text-base-content/30" />
+            <%!-- Booking bottom neon glow (always visible, subtle) --%>
+            <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-2/3 h-px bg-primary opacity-30"></div>
+            <div class="absolute -bottom-5 left-1/2 -translate-x-1/2 w-1/2 h-16 bg-primary/20 blur-3xl pointer-events-none"></div>
+
+            <div class="p-8 sm:p-10">
+              <%!-- Step progress --%>
+              <div class="flex items-center gap-2 mb-8">
+                <div class={[
+                  "w-8 h-8 rounded-full flex items-center justify-center text-xs font-black transition-all",
+                  @booking_step == :pick_slot && "bg-gradient-to-br from-primary to-secondary text-white shadow-lg shadow-primary/30",
+                  @booking_step != :pick_slot && "bg-emerald-500 text-white"
+                ]}>
+                  {if @booking_step == :pick_slot, do: "1", else: "✓"}
+                </div>
+                <div class={[
+                  "flex-1 h-0.5 rounded-full transition-all duration-500",
+                  @booking_step == :pick_slot && "bg-black/[0.08] dark:bg-white/[0.08]",
+                  @booking_step != :pick_slot && "bg-gradient-to-r from-emerald-500 to-primary"
+                ]}></div>
+                <div class={[
+                  "w-8 h-8 rounded-full flex items-center justify-center text-xs font-black transition-all",
+                  @booking_step == :contact && "bg-gradient-to-br from-primary to-secondary text-white shadow-lg shadow-primary/30",
+                  @booking_step == :success && "bg-emerald-500 text-white",
+                  @booking_step == :pick_slot && "bg-black/[0.07] dark:bg-white/[0.08] text-base-content/40"
+                ]}>
+                  {if @booking_step == :success, do: "✓", else: "2"}
+                </div>
+              </div>
+
+              <%!-- Step 1: Pick slot --%>
+              <div :if={@booking_step == :pick_slot}>
+                <h3 class="font-black text-xl mb-1">{gettext("Choose a time slot")}</h3>
+                <p class="text-sm text-base-content/45 mb-6">{gettext("Pick a date and time that works for you.")}</p>
+
+                <%!-- Loading state --%>
+                <div :if={@slots == []} class="text-center py-14">
+                  <div class="w-16 h-16 rounded-2xl bg-black/[0.04] dark:bg-white/[0.04] border border-black/[0.07] dark:border-white/[0.07] flex items-center justify-center mx-auto mb-4">
+                    <.icon name="hero-calendar" class="size-8 text-base-content/30" />
+                  </div>
+                  <p class="text-base-content/40 font-medium">{gettext("Loading available slots...")}</p>
+                </div>
+
+                <div :if={@slots != []}>
+                  <%!-- ── Date bar ── --%>
+                  <div class="flex gap-2.5 overflow-x-auto pb-2 -mx-1 px-1 snap-x snap-mandatory mb-6">
+                    <button
+                      :for={{date, count} <- dates_with_counts(@slots)}
+                      phx-click="select_date"
+                      phx-value-date={Date.to_string(date)}
+                      disabled={count == 0}
+                      class={[
+                        "snap-start flex-none flex flex-col items-center gap-0.5 w-[68px] py-3.5 rounded-2xl border transition-all duration-200",
+                        date == @selected_date &&
+                          "bg-gradient-to-b from-primary to-secondary text-white border-transparent shadow-lg shadow-primary/30 scale-[1.04]",
+                        date != @selected_date && count > 0 &&
+                          "border-black/[0.08] dark:border-white/[0.07] bg-white dark:bg-base-300 hover:border-primary/40 hover:scale-[1.02] cursor-pointer",
+                        date != @selected_date && count == 0 &&
+                          "border-black/[0.05] dark:border-white/[0.04] opacity-35 cursor-not-allowed bg-transparent"
+                      ]}
+                    >
+                      <span class={[
+                        "text-[9px] font-black uppercase tracking-widest",
+                        date == @selected_date && "text-white/70",
+                        date != @selected_date && "text-base-content/40"
+                      ]}>
+                        {Calendar.strftime(date, "%a")}
+                      </span>
+                      <span class={[
+                        "text-[22px] font-black leading-tight",
+                        date == @selected_date && "text-white",
+                        date != @selected_date && "text-base-content"
+                      ]}>
+                        {date.day}
+                      </span>
+                      <span class={[
+                        "text-[9px] font-bold flex items-center gap-0.5 mt-0.5",
+                        date == @selected_date && "text-white/60",
+                        date != @selected_date && count > 0 && "text-primary/60",
+                        date != @selected_date && count == 0 && "text-base-content/25"
+                      ]}>
+                        <span :if={count > 0} class={["w-1 h-1 rounded-full", date == @selected_date && "bg-white/80", date != @selected_date && "bg-primary"]}></span>
+                        {count}
+                      </span>
+                    </button>
+                  </div>
+
+                  <%!-- ── Time grid for selected date ── --%>
+                  <div :if={@selected_date != nil} class="space-y-3">
+                    <p class="text-xs font-black text-base-content/35 uppercase tracking-widest flex items-center gap-1.5">
+                      <.icon name="hero-clock" class="size-3.5" />
+                      {Calendar.strftime(@selected_date, "%A, %B %d")}
+                    </p>
+
+                    <div class="grid grid-cols-3 sm:grid-cols-4 gap-2">
+                      <button
+                        :for={slot <- slots_for_date(@slots, @selected_date)}
+                        disabled={slot.taken}
+                        phx-click="select_slot"
+                        phx-value-date={Date.to_string(slot.date)}
+                        phx-value-time={Time.to_string(slot.time)}
+                        class={[
+                          "rounded-xl border py-3 text-center text-sm font-bold transition-all duration-150",
+                          slot.taken &&
+                            "opacity-25 cursor-not-allowed line-through text-base-content/30 border-black/[0.05] dark:border-white/[0.05] bg-transparent",
+                          !slot.taken && @selected_slot &&
+                            Date.compare(@selected_slot.date, slot.date) == :eq &&
+                            Time.compare(@selected_slot.time, slot.time) == :eq &&
+                            "bg-gradient-to-br from-primary to-secondary text-white border-transparent shadow-lg shadow-primary/30 scale-[1.05]",
+                          !slot.taken &&
+                            !(@selected_slot &&
+                              Date.compare(@selected_slot.date, slot.date) == :eq &&
+                              Time.compare(@selected_slot.time, slot.time) == :eq) &&
+                            "border-black/[0.08] dark:border-white/[0.07] bg-white dark:bg-base-300 hover:border-primary/50 hover:text-primary hover:scale-[1.02] cursor-pointer"
+                        ]}
+                      >
+                        {format_time(slot.time)}
+                      </button>
                     </div>
                   </div>
                 </div>
-                <h3 class="font-bold"><%= member.name %></h3>
-                <p class="text-sm text-base-content/60"><%= member.role %></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      <!-- Booking -->
-      <section id="booking" class="px-4 sm:px-8 py-20">
-        <div class="max-w-2xl mx-auto">
-          <div class="text-center mb-10">
-            <h2 class="text-3xl sm:text-4xl font-bold mb-4">Book a Free Consultation</h2>
-            <p class="text-base-content/60">Tell us about your project and pick a time. We'll reach out to confirm your meeting.</p>
-          </div>
-
-          <div class="card bg-base-100 shadow-xl border border-base-300">
-            <div class="card-body">
-              <!-- Step: Pick Slot -->
-              <div :if={@booking_step == :pick_slot}>
-                <h3 class="font-semibold text-lg mb-4">Choose a time slot</h3>
-                <div :if={@slots == []} class="text-center py-8 text-base-content/40">
-                  <.icon name="hero-calendar" class="size-10 mx-auto mb-2" />
-                  <p>Loading available slots...</p>
-                </div>
-                <div :if={@slots != []} class="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                  <button
-                    :for={slot <- @slots}
-                    disabled={slot.taken}
-                    phx-click="select_slot"
-                    phx-value-date={Date.to_string(slot.date)}
-                    phx-value-time={Time.to_string(slot.time)}
-                    class={[
-                      "btn btn-sm font-normal flex-col h-auto py-2 gap-0",
-                      slot.taken && "btn-disabled opacity-40",
-                      !slot.taken && @selected_slot && Date.to_string(@selected_slot.date) == Date.to_string(slot.date) && Time.to_string(@selected_slot.time) == Time.to_string(slot.time) && "btn-primary",
-                      !slot.taken && !(@selected_slot && Date.to_string(@selected_slot.date) == Date.to_string(slot.date) && Time.to_string(@selected_slot.time) == Time.to_string(slot.time)) && "btn-outline"
-                    ]}
-                  >
-                    <span class="text-xs font-medium"><%= Calendar.strftime(slot.date, "%b %d") %></span>
-                    <span class="text-xs"><%= format_time(slot.time) %></span>
-                  </button>
-                </div>
-                <div class="mt-4">
-                  <button disabled={is_nil(@selected_slot)} phx-click="next_step"
-                    class="btn btn-primary w-full">
-                    Continue
-                    <.icon name="hero-arrow-right" class="size-4" />
-                  </button>
-                </div>
+                <button
+                  disabled={is_nil(@selected_slot)}
+                  phx-click="next_step"
+                  class="btn w-full rounded-2xl font-black text-base mt-6 h-12 gap-2 bg-gradient-to-r from-primary to-secondary text-white border-0 shadow-lg shadow-primary/25 hover:opacity-90 disabled:opacity-40 disabled:cursor-not-allowed"
+                >
+                  {gettext("Continue")} <.icon name="hero-arrow-right" class="size-5" />
+                </button>
               </div>
 
-              <!-- Step: Contact Info -->
+              <%!-- Step 2: Contact --%>
               <div :if={@booking_step == :contact}>
-                <div class="flex items-center gap-3 mb-4">
-                  <button phx-click="prev_step" class="btn btn-ghost btn-sm btn-circle">
+                <div class="flex items-center gap-3 mb-6">
+                  <button phx-click="prev_step" class="btn btn-ghost btn-sm btn-circle rounded-xl">
                     <.icon name="hero-arrow-left" class="size-4" />
                   </button>
                   <div>
-                    <h3 class="font-semibold text-lg">Your details</h3>
-                    <p class="text-xs text-base-content/60">
-                      Selected: <%= if @selected_slot, do: Calendar.strftime(@selected_slot.date, "%B %d") <> " at " <> format_time(@selected_slot.time) %>
+                    <h3 class="font-black text-xl">{gettext("Your details")}</h3>
+                    <p class="text-xs text-base-content/40 mt-0.5 flex items-center gap-1.5">
+                      <.icon name="hero-calendar-days" class="size-3.5" />
+                      {if @selected_slot,
+                        do:
+                          Calendar.strftime(@selected_slot.date, "%B %d") <>
+                            " at " <> format_time(@selected_slot.time)}
                     </p>
                   </div>
                 </div>
-
                 <.form for={@booking_form} phx-submit="submit_booking" phx-change="validate_booking">
-                  <div class="space-y-3">
-                    <.input field={@booking_form[:name]} type="text" label="Full Name" required />
-                    <.input field={@booking_form[:email]} type="email" label="Email Address" required />
-                    <.input field={@booking_form[:phone]} type="tel" label="Phone Number" required />
-                    <.input field={@booking_form[:description]} type="textarea" label="What do you need help with?" required />
-                    <.button class="btn btn-primary w-full" phx-disable-with="Booking...">
-                      Book Meeting
-                      <.icon name="hero-calendar-days" class="size-4" />
+                  <div class="space-y-4">
+                    <.input field={@booking_form[:name]} type="text" label={gettext("Full Name")} required />
+                    <.input field={@booking_form[:email]} type="email" label={gettext("Email Address")} required />
+                    <.input field={@booking_form[:phone]} type="tel" label={gettext("Phone Number")} required />
+                    <.input field={@booking_form[:description]} type="textarea" label={gettext("Tell us about your project")} required />
+                    <.button
+                      class="btn w-full rounded-2xl font-black text-base h-12 gap-2 mt-2 bg-gradient-to-r from-primary to-secondary text-white border-0 shadow-lg shadow-primary/25 hover:opacity-90"
+                      phx-disable-with={gettext("Booking...")}
+                    >
+                      {gettext("Confirm Booking")} <.icon name="hero-calendar-days" class="size-5" />
                     </.button>
                   </div>
                 </.form>
               </div>
 
-              <!-- Step: Success -->
-              <div :if={@booking_step == :success} class="text-center py-8">
-                <div class="w-16 h-16 bg-success/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <.icon name="hero-check-circle" class="size-10 text-success" />
+              <%!-- Step 3: Success --%>
+              <div :if={@booking_step == :success} class="text-center py-10">
+                <div class="relative w-20 h-20 mx-auto mb-6">
+                  <div class="absolute inset-0 bg-emerald-500/20 rounded-2xl blur-xl"></div>
+                  <div class="relative w-20 h-20 bg-emerald-500/10 border border-emerald-500/20 rounded-2xl flex items-center justify-center">
+                    <.icon name="hero-check-circle" class="size-12 text-emerald-500" />
+                  </div>
                 </div>
-                <h3 class="text-xl font-bold mb-2">Meeting Requested!</h3>
-                <p class="text-base-content/60 mb-6">
-                  We've received your booking request. Check your email for a confirmation — we'll be in touch shortly.
+                <h3 class="text-2xl font-black mb-3">{gettext("You're all set!")}</h3>
+                <p class="text-base-content/50 mb-8 leading-relaxed max-w-sm mx-auto">
+                  {gettext("We've received your booking. Check your email for confirmation — we'll be in touch shortly.")}
                 </p>
-                <button phx-click="reset_booking" class="btn btn-outline btn-sm">
-                  Book Another Meeting
+                <button phx-click="reset_booking" class="btn btn-outline rounded-2xl font-semibold gap-2 hover:border-primary hover:text-primary">
+                  <.icon name="hero-plus" class="size-4" /> {gettext("Book Another Meeting")}
                 </button>
               </div>
             </div>
@@ -345,38 +797,62 @@ defmodule InnosoWeb.HomeLive do
         </div>
       </section>
 
-      <!-- Footer -->
-      <footer class="bg-base-300 px-4 sm:px-8 py-12">
-        <div class="max-w-5xl mx-auto">
-          <div class="grid sm:grid-cols-3 gap-8 mb-8">
-            <div>
-              <div class="flex items-center gap-2 mb-3">
-                <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                  <span class="text-primary-content font-bold">I</span>
+      <%!-- ═══════════════════ FOOTER ═══════════════════ --%>
+      <footer class="px-4 sm:px-6 lg:px-8 pt-16 pb-10 border-t border-black/[0.06] dark:border-white/[0.07]">
+        <div class="max-w-7xl mx-auto">
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-14">
+            <div class="sm:col-span-2 lg:col-span-1">
+              <a href="/" class="flex items-center gap-2.5 mb-5 w-fit group">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-md shadow-primary/25 group-hover:scale-105 transition-transform">
+                  <span class="text-white font-black text-sm select-none">IN</span>
                 </div>
-                <span class="font-bold text-lg">Innoso</span>
-              </div>
-              <p class="text-sm text-base-content/60">Youth-powered software solutions for businesses, governments, and individuals.</p>
+                <span class="font-black text-xl tracking-tight">Innoso</span>
+              </a>
+              <p class="text-sm text-base-content/50 leading-relaxed max-w-xs">
+                {gettext("Youth-powered software solutions for businesses, governments, and individuals worldwide.")}
+              </p>
             </div>
             <div>
-              <h4 class="font-semibold mb-3">Services</h4>
-              <ul class="space-y-1 text-sm text-base-content/60">
-                <li>Web Applications</li>
-                <li>Mobile Apps</li>
-                <li>E-commerce</li>
-                <li>Tech Consulting</li>
+              <h4 class="font-black text-xs uppercase tracking-widest text-base-content/50 mb-5">{gettext("Services")}</h4>
+              <ul class="space-y-2.5 text-sm text-base-content/50">
+                <li class="hover:text-base-content transition-colors cursor-default">{gettext("Web Applications")}</li>
+                <li class="hover:text-base-content transition-colors cursor-default">{gettext("Mobile Apps")}</li>
+                <li class="hover:text-base-content transition-colors cursor-default">{gettext("E-commerce")}</li>
+                <li class="hover:text-base-content transition-colors cursor-default">{gettext("Enterprise Systems")}</li>
+                <li class="hover:text-base-content transition-colors cursor-default">{gettext("Tech Consulting")}</li>
               </ul>
             </div>
             <div>
-              <h4 class="font-semibold mb-3">Contact</h4>
-              <ul class="space-y-1 text-sm text-base-content/60">
-                <li>codesavvylabs@gmail.com</li>
-                <li><a href="#booking" class="link link-primary">Book a meeting</a></li>
+              <h4 class="font-black text-xs uppercase tracking-widest text-base-content/50 mb-5">{gettext("Company")}</h4>
+              <ul class="space-y-2.5 text-sm text-base-content/50">
+                <li><a href="#about" class="hover:text-base-content transition-colors">{gettext("About Us")}</a></li>
+                <li><a href="#projects" class="hover:text-base-content transition-colors">{gettext("Portfolio")}</a></li>
+                <li><a href="#team" class="hover:text-base-content transition-colors">{gettext("Team")}</a></li>
+                <li><a href="#booking" class="hover:text-base-content transition-colors">{gettext("Contact")}</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-black text-xs uppercase tracking-widest text-base-content/50 mb-5">{gettext("Contact")}</h4>
+              <ul class="space-y-3 text-sm text-base-content/50">
+                <li class="flex items-start gap-2.5">
+                  <.icon name="hero-envelope" class="size-4 shrink-0 mt-0.5 text-primary" />
+                  <span class="break-all">codesavvylabs@gmail.com</span>
+                </li>
+                <li>
+                  <a href="#booking" class="flex items-center gap-2.5 text-primary hover:text-primary/80 font-semibold transition-colors">
+                    <.icon name="hero-calendar-days" class="size-4 shrink-0" />
+                    {gettext("Book a free meeting")}
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
-          <div class="border-t border-base-content/10 pt-6 text-center text-sm text-base-content/40">
-            © <%= DateTime.utc_now().year %> Innoso. All rights reserved.
+
+          <div class="border-t border-black/[0.06] dark:border-white/[0.07] pt-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-base-content/35">
+            <span>© {DateTime.utc_now().year} Innoso. {gettext("All rights reserved.")}</span>
+            <span class="flex items-center gap-1.5">
+              {gettext("Built with")} <span class="text-red-500">♥</span> {gettext("by passionate developers")}
+            </span>
           </div>
         </div>
       </footer>
@@ -385,6 +861,29 @@ defmodule InnosoWeb.HomeLive do
   end
 
   @impl true
+  def handle_event("toggle_menu", _params, socket) do
+    {:noreply, assign(socket, :mobile_menu_open, !socket.assigns.mobile_menu_open)}
+  end
+
+  def handle_event("close_menu", _params, socket) do
+    {:noreply, assign(socket, :mobile_menu_open, false)}
+  end
+
+  def handle_event("select_date", %{"date" => date_str}, socket) do
+    date = Date.from_iso8601!(date_str)
+    # clear selected slot if it belongs to a different date
+    selected_slot =
+      case socket.assigns.selected_slot do
+        %{date: d} = slot when d == date -> slot
+        _ -> nil
+      end
+
+    {:noreply,
+     socket
+     |> assign(:selected_date, date)
+     |> assign(:selected_slot, selected_slot)}
+  end
+
   def handle_event("select_slot", %{"date" => date_str, "time" => time_str}, socket) do
     date = Date.from_iso8601!(date_str)
     time = Time.from_iso8601!(time_str)
@@ -400,17 +899,18 @@ defmodule InnosoWeb.HomeLive do
   end
 
   def handle_event("validate_booking", %{"booking" => params}, socket) do
-    form = to_form(params, as: :booking)
-    {:noreply, assign(socket, :booking_form, form)}
+    {:noreply, assign(socket, :booking_form, to_form(params, as: :booking))}
   end
 
   def handle_event("submit_booking", %{"booking" => params}, socket) do
     slot = socket.assigns.selected_slot
-    attrs = Map.merge(params, %{
-      "requested_date" => Date.to_string(slot.date),
-      "requested_time" => Time.to_string(slot.time),
-      "status" => "pending"
-    })
+
+    attrs =
+      Map.merge(params, %{
+        "requested_date" => Date.to_string(slot.date),
+        "requested_time" => Time.to_string(slot.time),
+        "status" => "pending"
+      })
 
     case Bookings.create_booking(attrs) do
       {:ok, booking} ->
@@ -424,18 +924,45 @@ defmodule InnosoWeb.HomeLive do
 
   def handle_event("reset_booking", _params, socket) do
     slots = Scheduling.available_slots_for_weeks(3)
+
     {:noreply,
      socket
      |> assign(:booking_step, :pick_slot)
      |> assign(:selected_slot, nil)
+     |> assign(:selected_date, first_available_date(slots))
      |> assign(:booking_form, to_form(%{}, as: :booking))
      |> assign(:slots, slots)}
   end
 
+  defp first_available_date(slots) do
+    slots
+    |> Enum.reject(& &1.taken)
+    |> Enum.map(& &1.date)
+    |> Enum.uniq()
+    |> Enum.sort(Date)
+    |> List.first()
+  end
+
+  defp dates_with_counts(slots) do
+    slots
+    |> Enum.group_by(& &1.date)
+    |> Enum.map(fn {date, date_slots} ->
+      {date, Enum.count(date_slots, &(!&1.taken))}
+    end)
+    |> Enum.sort_by(&elem(&1, 0), Date)
+  end
+
+  defp slots_for_date(slots, date) do
+    slots
+    |> Enum.filter(&(Date.compare(&1.date, date) == :eq))
+    |> Enum.sort_by(& &1.time, Time)
+  end
+
   defp format_time(%Time{hour: h, minute: m}) do
     period = if h >= 12, do: "PM", else: "AM"
-    display_hour = if h > 12, do: h - 12, else: (if h == 0, do: 12, else: h)
+    display_hour = if h > 12, do: h - 12, else: if(h == 0, do: 12, else: h)
     "#{display_hour}:#{String.pad_leading(Integer.to_string(m), 2, "0")} #{period}"
   end
+
   defp format_time(_), do: ""
 end

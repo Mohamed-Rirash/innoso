@@ -18,7 +18,16 @@ defmodule Innoso.Portfolio.Project do
   @doc false
   def changeset(project, attrs) do
     project
-    |> cast(attrs, [:name, :description, :cover_image, :live_url, :demo_username, :demo_password, :client_type, :tags])
+    |> cast(attrs, [
+      :name,
+      :description,
+      :cover_image,
+      :live_url,
+      :demo_username,
+      :demo_password,
+      :client_type,
+      :tags
+    ])
     |> validate_required([:name, :description, :client_type])
     |> validate_length(:name, max: 255)
   end

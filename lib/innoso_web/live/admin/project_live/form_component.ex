@@ -7,16 +7,42 @@ defmodule InnosoWeb.Admin.ProjectLive.FormComponent do
   def render(assigns) do
     ~H"""
     <div>
-      <.header><%= @title %></.header>
+      <.header>{@title}</.header>
 
-      <.form for={@form} id="project-form" phx-target={@myself} phx-change="validate" phx-submit="save" class="space-y-4 mt-4">
+      <.form
+        for={@form}
+        id="project-form"
+        phx-target={@myself}
+        phx-change="validate"
+        phx-submit="save"
+        class="space-y-4 mt-4"
+      >
         <.input field={@form[:name]} type="text" label="Project Name" required />
         <.input field={@form[:description]} type="textarea" label="Description" required />
-        <.input field={@form[:cover_image]} type="text" label="Cover Image URL" placeholder="https://..." />
+        <.input
+          field={@form[:cover_image]}
+          type="text"
+          label="Cover Image URL"
+          placeholder="https://..."
+        />
         <.input field={@form[:live_url]} type="text" label="Live URL" placeholder="https://..." />
-        <.input field={@form[:client_type]} type="select" label="Client Type"
-          options={[{"Business", "business"}, {"Government", "government"}, {"Organization", "organization"}, {"Personal", "personal"}]} />
-        <.input field={@form[:tags]} type="text" label="Tags" placeholder="e.g. e-commerce, dashboard" />
+        <.input
+          field={@form[:client_type]}
+          type="select"
+          label="Client Type"
+          options={[
+            {"Business", "business"},
+            {"Government", "government"},
+            {"Organization", "organization"},
+            {"Personal", "personal"}
+          ]}
+        />
+        <.input
+          field={@form[:tags]}
+          type="text"
+          label="Tags"
+          placeholder="e.g. e-commerce, dashboard"
+        />
         <.input field={@form[:demo_username]} type="text" label="Demo Username (optional)" />
         <.input field={@form[:demo_password]} type="text" label="Demo Password (optional)" />
         <.button class="btn btn-primary w-full" phx-disable-with="Saving...">Save Project</.button>
@@ -47,6 +73,7 @@ defmodule InnosoWeb.Admin.ProjectLive.FormComponent do
     case Portfolio.update_project(socket.assigns.project, project_params) do
       {:ok, project} ->
         notify_parent({:saved, project})
+
         {:noreply,
          socket
          |> put_flash(:info, "Project updated successfully")
@@ -61,6 +88,7 @@ defmodule InnosoWeb.Admin.ProjectLive.FormComponent do
     case Portfolio.create_project(project_params) do
       {:ok, project} ->
         notify_parent({:saved, project})
+
         {:noreply,
          socket
          |> put_flash(:info, "Project created successfully")

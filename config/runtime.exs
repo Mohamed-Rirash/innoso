@@ -23,6 +23,13 @@ end
 config :innoso, InnosoWeb.Endpoint,
   http: [port: String.to_integer(System.get_env("PORT", "4000"))]
 
+# Resend email adapter (production only — configure RESEND_API_KEY env var)
+if config_env() == :prod && System.get_env("RESEND_API_KEY") do
+  config :innoso, Innoso.Mailer,
+    adapter: Swoosh.Adapters.Resend,
+    api_key: System.get_env("RESEND_API_KEY")
+end
+
 if config_env() == :prod do
   database_path =
     System.get_env("DATABASE_PATH") ||

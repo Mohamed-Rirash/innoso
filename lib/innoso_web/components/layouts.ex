@@ -92,27 +92,49 @@ defmodule InnosoWeb.Layouts do
           </a>
         </div>
         <nav class="flex-1 p-4 space-y-1">
-          <.link navigate={~p"/admin"} class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-base-200 text-sm font-medium transition-colors">
+          <.link
+            navigate={~p"/admin"}
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-base-200 text-sm font-medium transition-colors"
+          >
             <.icon name="hero-squares-2x2" class="size-5" /> Dashboard
           </.link>
-          <.link navigate={~p"/admin/projects"} class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-base-200 text-sm font-medium transition-colors">
+          <.link
+            navigate={~p"/admin/projects"}
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-base-200 text-sm font-medium transition-colors"
+          >
             <.icon name="hero-briefcase" class="size-5" /> Projects
           </.link>
-          <.link navigate={~p"/admin/team"} class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-base-200 text-sm font-medium transition-colors">
+          <.link
+            navigate={~p"/admin/team"}
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-base-200 text-sm font-medium transition-colors"
+          >
             <.icon name="hero-users" class="size-5" /> Team
           </.link>
-          <.link navigate={~p"/admin/bookings"} class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-base-200 text-sm font-medium transition-colors">
+          <.link
+            navigate={~p"/admin/bookings"}
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-base-200 text-sm font-medium transition-colors"
+          >
             <.icon name="hero-calendar-days" class="size-5" /> Bookings
           </.link>
-          <.link navigate={~p"/admin/admins"} class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-base-200 text-sm font-medium transition-colors">
+          <.link
+            navigate={~p"/admin/admins"}
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-base-200 text-sm font-medium transition-colors"
+          >
             <.icon name="hero-shield-check" class="size-5" /> Admins
           </.link>
         </nav>
         <div class="p-4 border-t border-base-300 space-y-1">
-          <.link navigate={~p"/admin/settings"} class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-base-200 text-sm transition-colors">
+          <.link
+            navigate={~p"/admin/settings"}
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-base-200 text-sm transition-colors"
+          >
             <.icon name="hero-cog-6-tooth" class="size-5" /> Settings
           </.link>
-          <.link href={~p"/admin/logout"} method="delete" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-base-200 text-sm text-error transition-colors">
+          <.link
+            href={~p"/admin/logout"}
+            method="delete"
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-base-200 text-sm text-error transition-colors"
+          >
             <.icon name="hero-arrow-right-on-rectangle" class="size-5" /> Logout
           </.link>
         </div>

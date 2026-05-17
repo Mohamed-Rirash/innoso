@@ -139,7 +139,11 @@ defmodule Innoso.AccountsTest do
 
       token =
         extract_admin_token(fn url ->
-          Accounts.deliver_admin_update_email_instructions(%{admin | email: email}, admin.email, url)
+          Accounts.deliver_admin_update_email_instructions(
+            %{admin | email: email},
+            admin.email,
+            url
+          )
         end)
 
       %{admin: admin, token: token, email: email}

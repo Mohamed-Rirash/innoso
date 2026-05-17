@@ -35,21 +35,32 @@ defmodule InnosoWeb.Admin.AdminUserLive.Index do
                       <div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
                         <.icon name="hero-user" class="size-4 text-primary" />
                       </div>
-                      <span class="font-medium"><%= admin.email %></span>
-                      <span :if={admin.id == @current_scope.admin.id} class="badge badge-primary badge-xs">you</span>
+                      <span class="font-medium">{admin.email}</span>
+                      <span
+                        :if={admin.id == @current_scope.admin.id}
+                        class="badge badge-primary badge-xs"
+                      >
+                        you
+                      </span>
                     </div>
                   </td>
                   <td class="text-sm text-base-content/60">
-                    <%= Calendar.strftime(admin.inserted_at, "%B %d, %Y") %>
+                    {Calendar.strftime(admin.inserted_at, "%B %d, %Y")}
                   </td>
                   <td class="text-right">
-                    <button :if={admin.id != @current_scope.admin.id}
-                      phx-click="delete" phx-value-id={admin.id}
+                    <button
+                      :if={admin.id != @current_scope.admin.id}
+                      phx-click="delete"
+                      phx-value-id={admin.id}
                       data-confirm={"Remove #{admin.email} from admin access?"}
-                      class="btn btn-ghost btn-xs text-error">
+                      class="btn btn-ghost btn-xs text-error"
+                    >
                       Remove
                     </button>
-                    <span :if={admin.id == @current_scope.admin.id} class="text-xs text-base-content/40">
+                    <span
+                      :if={admin.id == @current_scope.admin.id}
+                      class="text-xs text-base-content/40"
+                    >
                       (current user)
                     </span>
                   </td>
@@ -60,7 +71,12 @@ defmodule InnosoWeb.Admin.AdminUserLive.Index do
         </div>
       </div>
 
-      <.modal :if={@live_action == :new} id="admin-modal" show on_cancel={JS.navigate(~p"/admin/admins")}>
+      <.modal
+        :if={@live_action == :new}
+        id="admin-modal"
+        show
+        on_cancel={JS.navigate(~p"/admin/admins")}
+      >
         <.live_component
           module={InnosoWeb.Admin.AdminUserLive.FormComponent}
           id={:new}
@@ -91,6 +107,8 @@ defmodule InnosoWeb.Admin.AdminUserLive.Index do
   def handle_event("delete", %{"id" => id}, socket) do
     admin = Accounts.get_admin!(String.to_integer(id))
     {:ok, _} = Accounts.delete_admin(admin)
-    {:noreply, socket |> put_flash(:info, "Admin removed") |> assign(:admins, Accounts.list_admins())}
+
+    {:noreply,
+     socket |> put_flash(:info, "Admin removed") |> assign(:admins, Accounts.list_admins())}
   end
 end

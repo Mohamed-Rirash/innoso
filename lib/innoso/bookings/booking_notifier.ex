@@ -35,8 +35,9 @@ defmodule Innoso.Bookings.BookingNotifier do
 
   defp format_time(%Time{hour: h, minute: m}) do
     period = if h >= 12, do: "PM", else: "AM"
-    display_hour = if h > 12, do: h - 12, else: (if h == 0, do: 12, else: h)
+    display_hour = if h > 12, do: h - 12, else: if(h == 0, do: 12, else: h)
     "#{display_hour}:#{String.pad_leading(Integer.to_string(m), 2, "0")} #{period}"
   end
+
   defp format_time(_), do: ""
 end

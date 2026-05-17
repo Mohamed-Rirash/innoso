@@ -2,7 +2,7 @@
   <div class="p-8">
     <div class="mb-8">
       <h1 class="text-2xl font-bold">Dashboard</h1>
-      <p class="text-base-content/60 mt-1">Welcome back, <%= @current_scope.admin.email %></p>
+      <p class="text-base-content/60 mt-1">Welcome back, {@current_scope.admin.email}</p>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -11,7 +11,7 @@
           <div class="flex items-center justify-between">
             <div>
               <p class="text-base-content/60 text-sm">Projects</p>
-              <p class="text-3xl font-bold mt-1"><%= @stats.projects %></p>
+              <p class="text-3xl font-bold mt-1">{@stats.projects}</p>
             </div>
             <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
               <.icon name="hero-briefcase" class="size-6 text-primary" />
@@ -28,7 +28,7 @@
           <div class="flex items-center justify-between">
             <div>
               <p class="text-base-content/60 text-sm">Team Members</p>
-              <p class="text-3xl font-bold mt-1"><%= @stats.members %></p>
+              <p class="text-3xl font-bold mt-1">{@stats.members}</p>
             </div>
             <div class="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center">
               <.icon name="hero-users" class="size-6 text-secondary" />
@@ -45,7 +45,7 @@
           <div class="flex items-center justify-between">
             <div>
               <p class="text-base-content/60 text-sm">Pending Bookings</p>
-              <p class="text-3xl font-bold mt-1"><%= @stats.pending_bookings %></p>
+              <p class="text-3xl font-bold mt-1">{@stats.pending_bookings}</p>
             </div>
             <div class="w-12 h-12 bg-warning/10 rounded-xl flex items-center justify-center">
               <.icon name="hero-calendar-days" class="size-6 text-warning" />
@@ -62,7 +62,7 @@
           <div class="flex items-center justify-between">
             <div>
               <p class="text-base-content/60 text-sm">Total Bookings</p>
-              <p class="text-3xl font-bold mt-1"><%= @stats.total_bookings %></p>
+              <p class="text-3xl font-bold mt-1">{@stats.total_bookings}</p>
             </div>
             <div class="w-12 h-12 bg-success/10 rounded-xl flex items-center justify-center">
               <.icon name="hero-chart-bar" class="size-6 text-success" />

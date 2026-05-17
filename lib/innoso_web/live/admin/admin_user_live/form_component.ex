@@ -8,10 +8,22 @@ defmodule InnosoWeb.Admin.AdminUserLive.FormComponent do
     ~H"""
     <div>
       <.header>Add Admin User</.header>
-      <.form for={@form} id="admin-user-form" phx-target={@myself} phx-change="validate" phx-submit="save" class="space-y-4 mt-4">
+      <.form
+        for={@form}
+        id="admin-user-form"
+        phx-target={@myself}
+        phx-change="validate"
+        phx-submit="save"
+        class="space-y-4 mt-4"
+      >
         <.input field={@form[:email]} type="email" label="Email" required />
         <.input field={@form[:password]} type="password" label="Password" required />
-        <.input field={@form[:password_confirmation]} type="password" label="Confirm Password" required />
+        <.input
+          field={@form[:password_confirmation]}
+          type="password"
+          label="Confirm Password"
+          required
+        />
         <.button class="btn btn-primary w-full" phx-disable-with="Creating...">Create Admin</.button>
       </.form>
     </div>
@@ -35,6 +47,7 @@ defmodule InnosoWeb.Admin.AdminUserLive.FormComponent do
     case Accounts.create_admin(params) do
       {:ok, admin} ->
         notify_parent({:saved, admin})
+
         {:noreply,
          socket
          |> put_flash(:info, "Admin #{admin.email} created")

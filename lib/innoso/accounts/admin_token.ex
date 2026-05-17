@@ -44,7 +44,9 @@ defmodule Innoso.Accounts.AdminToken do
   def build_session_token(admin) do
     token = :crypto.strong_rand_bytes(@rand_size)
     dt = admin.authenticated_at || DateTime.utc_now(:second)
-    {token, %AdminToken{token: token, context: "session", admin_id: admin.id, authenticated_at: dt}}
+
+    {token,
+     %AdminToken{token: token, context: "session", admin_id: admin.id, authenticated_at: dt}}
   end
 
   @doc """

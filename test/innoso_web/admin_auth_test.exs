@@ -126,7 +126,9 @@ defmodule InnosoWeb.AdminAuthTest do
       admin_token = Accounts.generate_admin_session_token(admin)
 
       conn =
-        conn |> put_session(:admin_token, admin_token) |> AdminAuth.fetch_current_scope_for_admin([])
+        conn
+        |> put_session(:admin_token, admin_token)
+        |> AdminAuth.fetch_current_scope_for_admin([])
 
       assert conn.assigns.current_scope.admin.id == admin.id
       assert conn.assigns.current_scope.admin.authenticated_at == admin.authenticated_at
@@ -186,7 +188,10 @@ defmodule InnosoWeb.AdminAuthTest do
   end
 
   describe "require_sudo_mode/2" do
-    test "allows admins that have authenticated in the last 10 minutes", %{conn: conn, admin: admin} do
+    test "allows admins that have authenticated in the last 10 minutes", %{
+      conn: conn,
+      admin: admin
+    } do
       conn =
         conn
         |> fetch_flash()

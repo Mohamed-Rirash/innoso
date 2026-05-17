@@ -51,27 +51,41 @@ defmodule InnosoWeb.Admin.ProjectLive.Index do
                         </div>
                       </div>
                       <div>
-                        <div class="font-medium"><%= project.name %></div>
-                        <div class="text-xs text-base-content/60 max-w-xs truncate"><%= project.description %></div>
+                        <div class="font-medium">{project.name}</div>
+                        <div class="text-xs text-base-content/60 max-w-xs truncate">
+                          {project.description}
+                        </div>
                       </div>
                     </div>
                   </td>
                   <td>
-                    <span class="badge badge-outline badge-sm"><%= project.client_type %></span>
+                    <span class="badge badge-outline badge-sm">{project.client_type}</span>
                   </td>
-                  <td class="text-sm text-base-content/60"><%= project.tags %></td>
+                  <td class="text-sm text-base-content/60">{project.tags}</td>
                   <td>
-                    <a :if={project.live_url} href={project.live_url} target="_blank" class="link link-primary text-sm">
+                    <a
+                      :if={project.live_url}
+                      href={project.live_url}
+                      target="_blank"
+                      class="link link-primary text-sm"
+                    >
                       View →
                     </a>
                   </td>
                   <td class="text-right">
                     <div class="flex gap-2 justify-end">
-                      <.link navigate={~p"/admin/projects/#{project.id}/edit"} class="btn btn-ghost btn-xs">
+                      <.link
+                        navigate={~p"/admin/projects/#{project.id}/edit"}
+                        class="btn btn-ghost btn-xs"
+                      >
                         Edit
                       </.link>
-                      <button phx-click="delete" phx-value-id={project.id}
-                        data-confirm="Delete this project?" class="btn btn-ghost btn-xs text-error">
+                      <button
+                        phx-click="delete"
+                        phx-value-id={project.id}
+                        data-confirm="Delete this project?"
+                        class="btn btn-ghost btn-xs text-error"
+                      >
                         Delete
                       </button>
                     </div>
@@ -83,7 +97,12 @@ defmodule InnosoWeb.Admin.ProjectLive.Index do
         </div>
       </div>
 
-      <.modal :if={@live_action in [:new, :edit]} id="project-modal" show on_cancel={JS.navigate(~p"/admin/projects")}>
+      <.modal
+        :if={@live_action in [:new, :edit]}
+        id="project-modal"
+        show
+        on_cancel={JS.navigate(~p"/admin/projects")}
+      >
         <.live_component
           module={InnosoWeb.Admin.ProjectLive.FormComponent}
           id={@project.id || :new}

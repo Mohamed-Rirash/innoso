@@ -1,0 +1,366 @@
+## Somali translations
+msgid ""
+msgstr ""
+"Language: so\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "About"
+msgstr "Ku saabsan"
+
+msgid "Services"
+msgstr "Adeegyada"
+
+msgid "Projects"
+msgstr "Mashaariicda"
+
+msgid "Team"
+msgstr "Kooxda"
+
+msgid "Book a Call"
+msgstr "Buuxi Ballan"
+
+msgid "Book a Free Call"
+msgstr "Buuxi Ballan Bilaash ah"
+
+msgid "Youth-Powered · Innovation-Driven"
+msgstr "Dhallinyarada · Hal-abuurka"
+
+msgid "We Build"
+msgstr "Waxaan Dhisna"
+
+msgid "Tech That"
+msgstr "Teknoolajiga"
+
+msgid "Matters"
+msgstr "Muhiimsan"
+
+msgid "Innoso is a collective of passionate young developers creating world-class software for businesses, governments, and individuals — built with craftsmanship, delivered with care."
+msgstr "Innoso waa koox hoggaaminaysa oo hodan ah oo dhallinyarada ah ee abuuraya barnaamijyo heer-caalami ah ganacsiyada, dowladaha, iyo shakhsiyaadka — dhisaysa si tayo leh, si xanaanada leh loogu soo gaarsiiyaa."
+
+msgid "See Our Work"
+msgstr "Arag Shaqadayada"
+
+msgid "Always on time"
+msgstr "Had iyo jeer wakhtiga"
+
+msgid "Available now"
+msgstr "Hadda waa la heli karaa"
+
+msgid "Projects Delivered"
+msgstr "Mashaariic La Dhammaystiray"
+
+msgid "Happy Clients"
+msgstr "Macaamiil Faraxsan"
+
+msgid "Countries Served"
+msgstr "Wadamo La Adeegay"
+
+msgid "Satisfaction"
+msgstr "Raalli-gelinta"
+
+msgid "Who We Are"
+msgstr "Yaan Nahay"
+
+msgid "Built Different."
+msgstr "Si kala duwan loo dhisay."
+
+msgid "By Design."
+msgstr "Si loo Naqshadeeyey."
+
+msgid "A group of talented young developers united by one mission: making technology accessible, impactful, and beautiful."
+msgstr "Koox xirfadlayaasha dhallinyarada ah oo mideysan hal hawlood: si loo sameeyo teknoolajiga mid la gaari karo, saameyn leh, oo qurux badan."
+
+msgid "Our Mission"
+msgstr "Hawsheenna"
+
+msgid "To empower businesses, governments, and individuals by delivering high-quality, modern software that solves real problems — built with craftsmanship, delivered with care."
+msgstr "Si loo xoogaysiiyo ganacsiyada, dowladaha, iyo shakhsiyaadka iyaga oo siinaya barnaamijyo casri ah oo tayo sare leh ee xalliya dhibaatooyinka dhabta ah — dhisaysa si tayo leh, si xanaanada leh loogu soo gaarsiiyaa."
+
+msgid "Our Vision"
+msgstr "Aragtidayada"
+
+msgid "To become the most trusted tech partner in our region — where clients choose us not just for our code, but for our commitment to their success and our ability to grow with them."
+msgstr "In aanu noqono xulafada teknoolajiga ee ugu la-aaminsan degaankayaga — halkaas oo macaamiilku naga doortaan, ma aha oo keliya koodhkayaga, balse waajibkooda guushooda iyo kartideenna in aannu la korino."
+
+msgid "What We Build"
+msgstr "Waxa aan Dhisno"
+
+msgid "Every Layer of Your"
+msgstr "Dhammaan Lakabada"
+
+msgid "Digital Stack"
+msgstr "Dijital-kaaga"
+
+msgid "From idea to launch — we cover every layer of your digital needs with precision and care."
+msgstr "Fikradda ilaa la-dhaafinta — waxaan daboolnaa dhammaan lakabada baahiyahaaga dijital-ka si saxsan iyo xanaanada leh."
+
+msgid "Custom Web Apps"
+msgstr "Apps Internetka Gaar ah"
+
+msgid "Tailor-made web solutions built for your unique challenges, designed to scale with your growth."
+msgstr "Xalal Internet ah oo gaar loogu sameeyey caqabadahaaga gaarka ah, loo naqshadeeyay inay la koraan kobocaaga."
+
+msgid "Mobile Apps"
+msgstr "Apps Moobilka"
+
+msgid "Native and cross-platform apps delivering seamless, polished experiences on iOS and Android."
+msgstr "Apps asalka ah iyo kuwa tartiib badan oo keena waayo-aragnimo siin-daran oo sifaysan iOS iyo Android."
+
+msgid "Enterprise Systems"
+msgstr "Nidaamyada Ganacsiga"
+
+msgid "Robust, secure platforms for enterprises and public-sector organizations demanding reliability."
+msgstr "Madal xooggan oo ammaan ah oo loogu talagalay ganacsiyada iyo ururrada qaybta dadweynaha ee baahisan xasilloonida."
+
+msgid "E-commerce"
+msgstr "Ganacsiga Elektarooniga"
+
+msgid "Complete online stores with payments, inventory management, and powerful analytics."
+msgstr "Dukaammada khadka ah ee dhamaystiran oo leh lacag-bixinno, maamulka kaydka, iyo falanqayn xooggan."
+
+msgid "Landing Pages"
+msgstr "Bogagga Soo-dejinta"
+
+msgid "High-converting, beautifully designed pages that attract customers and represent your brand."
+msgstr "Bogago si fiican loo naqshadeeyay oo soo-jiidanaya macaamiilka oo u muujinaya calaamadaada ganacsiga."
+
+msgid "Dashboards"
+msgstr "Sabuuradaha"
+
+msgid "Intuitive control centers delivering real-time insight and full control over your operations."
+msgstr "Xarumaha xukumaadka ee dahsoon oo bixiya faahfaahin xilli-ku-meel ah iyo xukun buuxa hawlgalkaaga."
+
+msgid "Tech Consulting"
+msgstr "La-talinta Teknoolajiga"
+
+msgid "Strategic guidance to help your business overcome challenges and unlock growth through technology."
+msgstr "Hagi xeelad ah si loo gaargaaro ganacsigaaga inuu ka gudbo caqabadaha ugana furo kobaca teknoolajiga."
+
+msgid "How We Work"
+msgstr "Sidaan u Shaqeyno"
+
+msgid "Simple."
+msgstr "Fudud."
+
+msgid "Transparent."
+msgstr "Hufan."
+
+msgid "Fast."
+msgstr "Dhakhso."
+
+msgid "A proven three-step process to get you from idea to a live product — efficiently and reliably."
+msgstr "Hannaan laba-iyo-labaatan-jeerkii ah oo saddex-tallaabood ah si laguu geliyo fikradda ilaa alaabta tooska ah — si wax-ku-ool ah iyo la-aaminsan."
+
+msgid "Discover"
+msgstr "Baadhin"
+
+msgid "We listen deeply to understand your vision, goals, and constraints before writing a single line of code."
+msgstr "Waxaan si qoto dheer u dhagaysan inaan fahanno aragtidaada, ambacyadaada, iyo xaddidaadaha ka hor inta aanaan qorin hal xariiq oo koodh ah."
+
+msgid "Design & Build"
+msgstr "Naqshadeyn & Dhismid"
+
+msgid "Our team designs and develops your solution with modern technology and continuous feedback loops."
+msgstr "Kooxdayadu waxay naqshadeysaa oo horumarisaa xalkaaga teknoolajiga casriga ah iyo wareegga jawaab-celinta joogtada ah."
+
+msgid "Launch & Support"
+msgstr "Furitaan & Taageero"
+
+msgid "We deploy, test, and hand over a polished product — then stay available for ongoing support."
+msgstr "Waxaan geyno, tijaabiyo, oo u dhiibno alaab la safeeyay — ka dibna waxaan joognaa taageerada joogtada ah."
+
+msgid "Portfolio"
+msgstr "Portfoliyaha"
+
+msgid "Real Solutions,"
+msgstr "Xalal Dhab ah,"
+
+msgid "Real Impact"
+msgstr "Saamayn Dhab ah"
+
+msgid "Explore some of the products we've built for clients across industries and borders."
+msgstr "Sahamin qaar ka mid ah alaabta aannu u dhisay macaamiilka warshadaha iyo xuduudaha kala duwan."
+
+msgid "Projects coming soon"
+msgstr "Mashaariicda way soo socotaan"
+
+msgid "Check back shortly — we're updating our portfolio."
+msgstr "Soo noqo dhawaan — waxaan cusbooneysiinayaa Portfoliyahayaga."
+
+msgid "View Details"
+msgstr "Arag Faahfaahinta"
+
+msgid "Live"
+msgstr "Toos"
+
+msgid "The Team"
+msgstr "Kooxda"
+
+msgid "Meet the"
+msgstr "La Kulam"
+
+msgid "Builders"
+msgstr "Dhisayaasha"
+
+msgid "Talented developers who pour creativity and expertise into every project."
+msgstr "Barnaamijlayaasha xirfadlayaasha ah ee ku shubaya hal-abuurka iyo khibradda mashruuc kasta."
+
+msgid "Team profiles coming soon"
+msgstr "Xogta kooxda waa soo socota"
+
+msgid "Free Consultation"
+msgstr "La-talin Bilaash ah"
+
+msgid "Ready to Build Something"
+msgstr "Diyaar u tahay Dhismo Wax"
+
+msgid "Amazing Together?"
+msgstr "Yaab leh Wada jir?"
+
+msgid "Tell us about your project. No commitment required — just a conversation about what you need."
+msgstr "Noo sheeg mashruucaaga. Ma loo baahna wax ballan ah — oo keliya wada-hadal ku saabsan waxa aad u baahan tahay."
+
+msgid "Get Started"
+msgstr "Bilow"
+
+msgid "Book a"
+msgstr "Buuxi"
+
+msgid "Free Call"
+msgstr "Ballan Bilaash ah"
+
+msgid "Pick a time, share your idea, and we'll take it from there."
+msgstr "Dooro waqti, wadaag fikradaada, anaguna waxaan qaadanaa halkaas."
+
+msgid "Choose a time slot"
+msgstr "Dooro waqtiga"
+
+msgid "Pick a date and time that works for you."
+msgstr "Dooro taariikhda iyo wakhtiga kuu haboon."
+
+msgid "Loading available slots..."
+msgstr "Waxaa soo baxa wakhtiyada la heli karo..."
+
+msgid "Continue"
+msgstr "Soco"
+
+msgid "Your details"
+msgstr "Macluumaadkaaga"
+
+msgid "Full Name"
+msgstr "Magaca oo Dhamaystiran"
+
+msgid "Email Address"
+msgstr "Cinwaanka Iimaylka"
+
+msgid "Phone Number"
+msgstr "Lambarka Taleefoonka"
+
+msgid "Tell us about your project"
+msgstr "Noo sheeg mashruucaaga"
+
+msgid "Booking..."
+msgstr "Waxaa la gujinayaa..."
+
+msgid "Confirm Booking"
+msgstr "Xaqiiji Ballanta"
+
+msgid "You're all set!"
+msgstr "Wax walba way dhamaadeen!"
+
+msgid "We've received your booking. Check your email for confirmation — we'll be in touch shortly."
+msgstr "Waxaan helnay ballantaada. Hubi iimaylkaaga xaqiijinta — waxaan kula xiriiri doonaa dhawaan."
+
+msgid "Book Another Meeting"
+msgstr "Buuxi Shirmo kale"
+
+msgid "Youth-powered software solutions for businesses, governments, and individuals worldwide."
+msgstr "Xalal barnaamijyo ah oo dhallinyarada waxay fuliyaan ganacsiyada, dowladaha, iyo shakhsiyaadka adduunka oo dhan."
+
+msgid "Web Applications"
+msgstr "Barnaamijyada Internetka"
+
+msgid "Company"
+msgstr "Shirkadda"
+
+msgid "Contact"
+msgstr "Xiriir"
+
+msgid "About Us"
+msgstr "Nagu Saabsan"
+
+msgid "Book a free meeting"
+msgstr "Buuxi shirmo bilaash ah"
+
+msgid "All rights reserved."
+msgstr "Dhammaan xuquuqdu way dhowran tahay."
+
+msgid "Built with"
+msgstr "Lagu dhisay"
+
+msgid "by passionate developers"
+msgstr "barnaamijlayaasha jecel"
+
+msgid "Back"
+msgstr "Dib u noqo"
+
+msgid "About This Project"
+msgstr "Ku saabsan Mashruucan"
+
+msgid "Technologies Used"
+msgstr "Teknoolajiyada La isticmaalay"
+
+msgid "Demo Credentials"
+msgstr "Xogta Demo-ga"
+
+msgid "Username"
+msgstr "Magaca Isticmaalaha"
+
+msgid "Password"
+msgstr "Furaha Sirta"
+
+msgid "Project Details"
+msgstr "Faahfaahinta Mashruuca"
+
+msgid "Client Type"
+msgstr "Nooca Macmiilka"
+
+msgid "Stack"
+msgstr "Qalab-xirfadeedka"
+
+msgid "View Live Project"
+msgstr "Arag Mashruuca Tooska ah"
+
+msgid "Build Something Similar"
+msgstr "Dhis wax la mid ah"
+
+msgid "Like what you see?"
+msgstr "Ma jeceshahay waxa aad aragtay?"
+
+msgid "We can build something similar — or even better — for your business. Book a free call to get started."
+msgstr "Waxaan dhisi karnaa wax la mid ah — ama ka wanaagsan — ganacsigaaga. Buuxi ballan bilaash ah si aad u bilaawdo."
+
+msgid "Other"
+msgstr "Kuwa kale"
+
+msgid "View All"
+msgstr "Arag Dhammaan"
+
+msgid "Let's Work Together"
+msgstr "Aan Wada Shaqeyno"
+
+msgid "Ready to Build"
+msgstr "Diyaar u tahay Dhismida"
+
+msgid "Something Like This?"
+msgstr "Wax la mid ah tan?"
+
+msgid "Tell us about your idea and we'll turn it into reality — with the same care and quality you see here."
+msgstr "Noo sheeg fikradaada anaguna waxaan u rogaynaa xaqiiq — isla xanaanada iyo tayada aad halkan ku aragtay."
+
+msgid "Book a Free Consultation"
+msgstr "Buuxi La-talin Bilaash ah"
+
+msgid "Home"
+msgstr "Guriga"

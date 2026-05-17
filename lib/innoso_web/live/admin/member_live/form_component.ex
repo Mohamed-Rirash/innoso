@@ -7,8 +7,15 @@ defmodule InnosoWeb.Admin.MemberLive.FormComponent do
   def render(assigns) do
     ~H"""
     <div>
-      <.header><%= @title %></.header>
-      <.form for={@form} id="member-form" phx-target={@myself} phx-change="validate" phx-submit="save" class="space-y-4 mt-4">
+      <.header>{@title}</.header>
+      <.form
+        for={@form}
+        id="member-form"
+        phx-target={@myself}
+        phx-change="validate"
+        phx-submit="save"
+        class="space-y-4 mt-4"
+      >
         <.input field={@form[:name]} type="text" label="Full Name" required />
         <.input field={@form[:role]} type="text" label="Role / Title" required />
         <.input field={@form[:photo]} type="text" label="Photo URL" placeholder="https://..." />
@@ -41,7 +48,9 @@ defmodule InnosoWeb.Admin.MemberLive.FormComponent do
     case Team.update_member(socket.assigns.member, params) do
       {:ok, member} ->
         notify_parent({:saved, member})
-        {:noreply, socket |> put_flash(:info, "Member updated") |> push_navigate(to: ~p"/admin/team")}
+
+        {:noreply,
+         socket |> put_flash(:info, "Member updated") |> push_navigate(to: ~p"/admin/team")}
 
       {:error, changeset} ->
         {:noreply, assign(socket, form: to_form(changeset))}
@@ -52,7 +61,9 @@ defmodule InnosoWeb.Admin.MemberLive.FormComponent do
     case Team.create_member(params) do
       {:ok, member} ->
         notify_parent({:saved, member})
-        {:noreply, socket |> put_flash(:info, "Member added") |> push_navigate(to: ~p"/admin/team")}
+
+        {:noreply,
+         socket |> put_flash(:info, "Member added") |> push_navigate(to: ~p"/admin/team")}
 
       {:error, changeset} ->
         {:noreply, assign(socket, form: to_form(changeset))}

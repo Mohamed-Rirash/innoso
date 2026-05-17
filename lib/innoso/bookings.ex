@@ -40,8 +40,9 @@ defmodule Innoso.Bookings do
   end
 
   def slot_taken?(date, time) do
-    Repo.exists?(from b in Booking,
-      where: b.requested_date == ^date and b.requested_time == ^time and b.status == "confirmed"
+    Repo.exists?(
+      from b in Booking,
+        where: b.requested_date == ^date and b.requested_time == ^time and b.status == "confirmed"
     )
   end
 end
