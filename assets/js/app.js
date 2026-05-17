@@ -25,11 +25,43 @@ import {LiveSocket} from "phoenix_live_view"
 import {hooks as colocatedHooks} from "phoenix-colocated/innoso"
 import topbar from "../vendor/topbar"
 
+const CopyText = {
+  mounted() {
+    this.el.addEventListener("click", async () => {
+      const text = this.el.dataset.copy
+      if (!text) return
+
+      try {
+        await navigator.clipboard.writeText(text)
+      } catch {
+        const ta = document.createElement("textarea")
+        ta.value = text
+        ta.style.cssText = "position:fixed;opacity:0"
+        document.body.appendChild(ta)
+        ta.select()
+        document.execCommand("copy")
+        document.body.removeChild(ta)
+      }
+
+      const normal = this.el.querySelector(".copy-normal")
+      const success = this.el.querySelector(".copy-success")
+      if (normal && success) {
+        normal.classList.add("hidden")
+        success.classList.remove("hidden")
+        setTimeout(() => {
+          normal.classList.remove("hidden")
+          success.classList.add("hidden")
+        }, 1500)
+      }
+    })
+  }
+}
+
 const csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 const liveSocket = new LiveSocket("/live", Socket, {
   longPollFallbackMs: 2500,
   params: {_csrf_token: csrfToken},
-  hooks: {...colocatedHooks},
+  hooks: {...colocatedHooks, CopyText},
 })
 
 // Show progress bar on live navigation and form submits

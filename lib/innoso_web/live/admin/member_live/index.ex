@@ -7,7 +7,7 @@ defmodule InnosoWeb.Admin.MemberLive.Index do
   @impl true
   def render(assigns) do
     ~H"""
-    <Layouts.admin flash={@flash} current_scope={@current_scope}>
+    <Layouts.admin flash={@flash} current_scope={@current_scope} current_path={@current_path}>
       <div class="p-8">
         <div class="flex items-center justify-between mb-6">
           <div>
@@ -82,8 +82,11 @@ defmodule InnosoWeb.Admin.MemberLive.Index do
   end
 
   @impl true
-  def handle_params(params, _url, socket) do
-    {:noreply, apply_action(socket, socket.assigns.live_action, params)}
+  def handle_params(params, url, socket) do
+    {:noreply,
+     socket
+     |> assign(:current_path, URI.parse(url).path)
+     |> apply_action(socket.assigns.live_action, params)}
   end
 
   defp apply_action(socket, :edit, %{"id" => id}) do

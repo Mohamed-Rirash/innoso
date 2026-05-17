@@ -6,7 +6,7 @@ defmodule InnosoWeb.Admin.BookingLive.Show do
   @impl true
   def render(assigns) do
     ~H"""
-    <Layouts.admin flash={@flash} current_scope={@current_scope}>
+    <Layouts.admin flash={@flash} current_scope={@current_scope} current_path={@current_path}>
       <div class="p-8 max-w-2xl">
         <div class="flex items-center gap-4 mb-6">
           <.link navigate={~p"/admin/bookings"} class="btn btn-ghost btn-sm">
@@ -83,7 +83,9 @@ defmodule InnosoWeb.Admin.BookingLive.Show do
   end
 
   @impl true
-  def handle_params(_params, _url, socket), do: {:noreply, socket}
+  def handle_params(_params, url, socket) do
+    {:noreply, assign(socket, :current_path, URI.parse(url).path)}
+  end
 
   @impl true
   def handle_event("confirm", _params, socket) do

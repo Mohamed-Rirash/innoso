@@ -18,6 +18,20 @@ defmodule InnosoWeb.Admin.MemberLive.FormComponent do
       >
         <.input field={@form[:name]} type="text" label="Full Name" required />
         <.input field={@form[:role]} type="text" label="Role / Title" required />
+        <.input
+          field={@form[:bio]}
+          type="textarea"
+          label="Bio"
+          placeholder="Short bio — what they do, what they love building..."
+          rows="3"
+        />
+        <.input
+          field={@form[:skills]}
+          type="text"
+          label="Skills"
+          placeholder="React, Node.js, PostgreSQL, Docker"
+        />
+        <p class="text-xs text-base-content/45 -mt-2">Comma-separated list of technologies or skills.</p>
         <.input field={@form[:photo]} type="text" label="Photo URL" placeholder="https://..." />
         <.input field={@form[:sort_order]} type="number" label="Sort Order" />
         <.button class="btn btn-primary w-full" phx-disable-with="Saving...">Save Member</.button>

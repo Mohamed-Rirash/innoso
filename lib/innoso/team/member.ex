@@ -5,6 +5,8 @@ defmodule Innoso.Team.Member do
   schema "members" do
     field :name, :string
     field :role, :string
+    field :bio, :string
+    field :skills, :string
     field :photo, :string
     field :sort_order, :integer, default: 0
 
@@ -14,7 +16,7 @@ defmodule Innoso.Team.Member do
   @doc false
   def changeset(member, attrs) do
     member
-    |> cast(attrs, [:name, :role, :photo, :sort_order])
+    |> cast(attrs, [:name, :role, :bio, :skills, :photo, :sort_order])
     |> validate_required([:name, :role])
     |> validate_length(:name, max: 255)
     |> validate_length(:role, max: 255)

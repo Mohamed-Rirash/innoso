@@ -1,52 +1,52 @@
-<Layouts.admin flash={@flash} current_scope={@current_scope}>
-  <div class="text-center">
-    <.header>
-      Account Settings
-      <:subtitle>Manage your account email address and password settings</:subtitle>
-    </.header>
-  </div>
-
+<Layouts.admin flash={@flash} current_scope={@current_scope} current_path={@conn.request_path}>
   <div class="p-8 max-w-lg">
-    <h1 class="text-2xl font-bold mb-6">Account Settings</h1>
-    <.form :let={f} for={@email_changeset} action={~p"/admin/settings"} id="update_email">
-      <input type="hidden" name="action" value="update_email" />
+    <div class="mb-8">
+      <h1 class="text-2xl font-bold">Account Settings</h1>
+      <p class="text-base-content/60 text-sm mt-1">Manage your email address and password</p>
+    </div>
 
-      <.input
-        field={f[:email]}
-        type="email"
-        label="Email"
-        autocomplete="username"
-        spellcheck="false"
-        required
-      />
+    <div class="card bg-base-100 shadow mb-6">
+      <div class="card-body">
+        <h2 class="card-title text-base mb-4">Email Address</h2>
+        <.form :let={f} for={@email_changeset} action={~p"/admin/settings"} id="update_email" class="space-y-4">
+          <input type="hidden" name="action" value="update_email" />
+          <.input
+            field={f[:email]}
+            type="email"
+            label="Email"
+            autocomplete="username"
+            spellcheck="false"
+            required
+          />
+          <.button variant="primary" phx-disable-with="Changing...">Change Email</.button>
+        </.form>
+      </div>
+    </div>
 
-      <.button variant="primary" phx-disable-with="Changing...">Change Email</.button>
-    </.form>
-
-    <div class="divider" />
-
-    <.form :let={f} for={@password_changeset} action={~p"/admin/settings"} id="update_password">
-      <input type="hidden" name="action" value="update_password" />
-
-      <.input
-        field={f[:password]}
-        type="password"
-        label="New password"
-        autocomplete="new-password"
-        spellcheck="false"
-        required
-      />
-      <.input
-        field={f[:password_confirmation]}
-        type="password"
-        label="Confirm new password"
-        autocomplete="new-password"
-        spellcheck="false"
-        required
-      />
-      <.button variant="primary" phx-disable-with="Changing...">
-        Save Password
-      </.button>
-    </.form>
+    <div class="card bg-base-100 shadow">
+      <div class="card-body">
+        <h2 class="card-title text-base mb-4">Password</h2>
+        <.form :let={f} for={@password_changeset} action={~p"/admin/settings"} id="update_password" class="space-y-4">
+          <input type="hidden" name="action" value="update_password" />
+          <.input
+            field={f[:password]}
+            type="password"
+            label="New password"
+            autocomplete="new-password"
+            spellcheck="false"
+            required
+          />
+          <.input
+            field={f[:password_confirmation]}
+            type="password"
+            label="Confirm new password"
+            autocomplete="new-password"
+            spellcheck="false"
+            required
+          />
+          <.button variant="primary" phx-disable-with="Changing...">Save Password</.button>
+        </.form>
+      </div>
+    </div>
   </div>
 </Layouts.admin>

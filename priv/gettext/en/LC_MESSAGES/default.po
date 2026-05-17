@@ -364,3 +364,240 @@ msgstr ""
 
 msgid "Home"
 msgstr ""
+
+msgid "Software Development"
+msgstr ""
+
+msgid "We build unique software tailored to your exact needs — from consulting to delivery, with craftsmanship at every step."
+msgstr ""
+
+msgid "Software Consulting"
+msgstr ""
+
+msgid "Custom Software Development"
+msgstr ""
+
+msgid "Enterprise Software Development"
+msgstr ""
+
+msgid "Software Maintenance and Support"
+msgstr ""
+
+msgid "Mobile App Development"
+msgstr ""
+
+msgid "A high-performance mobile app can engage users and grow your business. We build for iOS and Android."
+msgstr ""
+
+msgid "Android App Development"
+msgstr ""
+
+msgid "iOS App Development"
+msgstr ""
+
+msgid "Cross-platform App Development"
+msgstr ""
+
+msgid "Web Application Development"
+msgstr ""
+
+msgid "Your website is your digital presence. We build custom web apps that are fast, user-friendly, and beautifully crafted."
+msgstr ""
+
+msgid "Custom Web Application Development"
+msgstr ""
+
+msgid "Web Portal Development"
+msgstr ""
+
+msgid "PWA Development"
+msgstr ""
+
+msgid "Ecommerce Web App Development"
+msgstr ""
+
+msgid "Software Product Development"
+msgstr ""
+
+msgid "From quick MVPs and PoCs to full-blown SaaS products that scale — we partner with you to bring your idea to market."
+msgstr ""
+
+msgid "MVP Development"
+msgstr ""
+
+msgid "PoC Development"
+msgstr ""
+
+msgid "SaaS Development"
+msgstr ""
+
+msgid "Software Development Outsourcing"
+msgstr ""
+
+msgid "Looking to scale your development? We offer flexible outsourcing — from dedicated teams to staff augmentation."
+msgstr ""
+
+msgid "Onshore Software Development"
+msgstr ""
+
+msgid "Hire Software Developers"
+msgstr ""
+
+msgid "Dedicated Development Team"
+msgstr ""
+
+msgid "IT Staff Augmentation"
+msgstr ""
+
+msgid "AI Development"
+msgstr ""
+
+msgid "We build AI-powered solutions that help your business unlock the potential of the latest technologies."
+msgstr ""
+
+msgid "Machine Learning"
+msgstr ""
+
+msgid "Natural Language Processing"
+msgstr ""
+
+msgid "Computer Vision"
+msgstr ""
+
+msgid "Generative AI"
+msgstr ""
+
+msgid "Digital Transformation"
+msgstr ""
+
+msgid "We help you find innovative, practical ways to modernize your operations and create better experiences for your customers."
+msgstr ""
+
+msgid "Legacy Software Modernization"
+msgstr ""
+
+msgid "Cloud Migration Services"
+msgstr ""
+
+msgid "Data Analytics Services"
+msgstr ""
+
+msgid "Infrastructure Services"
+msgstr ""
+
+msgid "We keep your IT infrastructure running at peak performance with DevOps and managed services ensuring maximum uptime and security."
+msgstr ""
+
+msgid "DevOps Services"
+msgstr ""
+
+msgid "Managed IT Services"
+msgstr ""
+
+msgid "Software QA Testing"
+msgstr ""
+
+msgid "Launch with confidence. We thoroughly test your applications to guarantee they're reliable, efficient, and free of bugs."
+msgstr ""
+
+msgid "QA Outsourcing"
+msgstr ""
+
+msgid "Automation Testing"
+msgstr ""
+
+msgid "Performance Testing"
+msgstr ""
+
+msgid "Functional Testing"
+msgstr ""
+
+msgid "Usability Testing"
+msgstr ""
+
+msgid "How We Turn"
+msgstr ""
+
+msgid "Ideas Into Products"
+msgstr ""
+
+msgid "A structured, transparent three-phase process that keeps you in the loop — from the first discovery call to launch day and beyond."
+msgstr ""
+
+msgid "Discovery"
+msgstr ""
+
+msgid "Discovery & Strategy"
+msgstr ""
+
+msgid "We start by understanding your business, goals, and users through structured conversations — ensuring we plan and build exactly what you need before a single line of code is written."
+msgstr ""
+
+msgid "Requirements & scope definition"
+msgstr ""
+
+msgid "Technical architecture plan"
+msgstr ""
+
+msgid "Project timeline & milestones"
+msgstr ""
+
+msgid "Transparent cost estimate"
+msgstr ""
+
+msgid "Build"
+msgstr ""
+
+msgid "Our team designs and builds in focused sprints with continuous feedback loops — so you see real progress every week and can steer direction at any point."
+msgstr ""
+
+msgid "UI/UX design & prototyping"
+msgstr ""
+
+msgid "Agile development sprints"
+msgstr ""
+
+msgid "Weekly demos & updates"
+msgstr ""
+
+msgid "Automated QA & testing"
+msgstr ""
+
+msgid "Launch"
+msgstr ""
+
+msgid "Launch & Growth"
+msgstr ""
+
+msgid "We deploy your product to production, ensure everything runs flawlessly, and stay by your side as you scale — handling updates, performance, and new feature delivery."
+msgstr ""
+
+msgid "Production deployment"
+msgstr ""
+
+msgid "Performance monitoring"
+msgstr ""
+
+msgid "Ongoing support & maintenance"
+msgstr ""
+
+msgid "Continuous feature delivery"
+msgstr ""
+
+msgid "What You Get"
+msgstr ""
+
+msgid "Yes, we cover the tech stack"
+msgstr ""
+
+msgid "and AI coding tools you rely on"
+msgstr ""
+
+msgid "Our team has expertise in 100+ technologies and programming languages,"
+msgstr ""
+
+msgid "including the AI coding tools rewriting how software gets built."
+msgstr ""
+
+msgid "Our full repertoire"
+msgstr ""

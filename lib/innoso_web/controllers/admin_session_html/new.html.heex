@@ -1,36 +1,32 @@
-<Layouts.app flash={@flash} current_scope={@current_scope}>
-  <div class="min-h-screen flex items-center justify-center bg-base-200 p-4">
-    <div class="card w-full max-w-sm bg-base-100 shadow-xl">
-      <div class="card-body space-y-4">
-        <div class="text-center">
-          <h1 class="text-2xl font-bold">Innoso Admin</h1>
-          <p class="text-base-content/60 text-sm mt-1">Sign in to manage your site</p>
-        </div>
-
-        <.form :let={f} for={@form} as={:admin} id="login_form_password" action={~p"/admin/login"}>
-          <div class="space-y-3">
-            <.input
-              field={f[:email]}
-              type="email"
-              label="Email"
-              autocomplete="username"
-              spellcheck="false"
-              required
-              phx-mounted={JS.focus()}
-            />
-            <.input
-              field={f[:password]}
-              type="password"
-              label="Password"
-              autocomplete="current-password"
-              spellcheck="false"
-            />
-            <.button class="btn btn-primary w-full" name={@form[:remember_me].name} value="true">
-              Sign in <span aria-hidden="true">→</span>
-            </.button>
-          </div>
-        </.form>
-      </div>
+<Layouts.auth flash={@flash} current_scope={@current_scope}>
+  <div class="rounded-2xl border border-black/[0.08] dark:border-white/[0.07] bg-white dark:bg-base-200 p-8 shadow-xl shadow-black/5">
+    <div class="text-center mb-6">
+      <h1 class="text-xl font-black tracking-tight">Admin Sign In</h1>
+      <p class="text-base-content/50 text-sm mt-1">Sign in to manage your site</p>
     </div>
+
+    <.form :let={f} for={@form} as={:admin} id="login_form_password" action={~p"/admin/login"}>
+      <div class="space-y-4">
+        <.input
+          field={f[:email]}
+          type="email"
+          label="Email"
+          autocomplete="username"
+          spellcheck="false"
+          required
+          phx-mounted={JS.focus()}
+        />
+        <.input
+          field={f[:password]}
+          type="password"
+          label="Password"
+          autocomplete="current-password"
+          spellcheck="false"
+        />
+        <.button class="btn btn-primary w-full rounded-xl font-bold" name={@form[:remember_me].name} value="true">
+          Sign in <.icon name="hero-arrow-right" class="size-4" />
+        </.button>
+      </div>
+    </.form>
   </div>
-</Layouts.app>
+</Layouts.auth>

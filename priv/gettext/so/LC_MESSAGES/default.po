@@ -364,3 +364,240 @@ msgstr "Buuxi La-talin Bilaash ah"
 
 msgid "Home"
 msgstr "Guriga"
+
+msgid "Software Development"
+msgstr "Horumarinta Barnaamijka"
+
+msgid "We build unique software tailored to your exact needs — from consulting to delivery, with craftsmanship at every step."
+msgstr "Waxaan dhisaa barnaamijyo gaara oo loogu talagalay baahiyahaaga — la-talinta ilaa gaarsiinta, tayo sareysa tallaabo kasta."
+
+msgid "Software Consulting"
+msgstr "La-talinta Barnaamijka"
+
+msgid "Custom Software Development"
+msgstr "Horumarinta Barnaamijka Gaarka ah"
+
+msgid "Enterprise Software Development"
+msgstr "Horumarinta Barnaamijka Shirkadaha"
+
+msgid "Software Maintenance and Support"
+msgstr "Dayactirka iyo Taageerada Barnaamijka"
+
+msgid "Mobile App Development"
+msgstr "Horumarinta Abka Moobilka"
+
+msgid "A high-performance mobile app can engage users and grow your business. We build for iOS and Android."
+msgstr "App moobil waxtar badan ayaa ka shaaqi geli kara isticmaalayaasha oo horumarinaysa ganacsigaaga. Waxaan dhisaa iOS iyo Android."
+
+msgid "Android App Development"
+msgstr "Horumarinta Abka Android"
+
+msgid "iOS App Development"
+msgstr "Horumarinta Abka iOS"
+
+msgid "Cross-platform App Development"
+msgstr "Horumarinta Abka Barnaamijyada Kala Duwan"
+
+msgid "Web Application Development"
+msgstr "Horumarinta Abka Internetka"
+
+msgid "Your website is your digital presence. We build custom web apps that are fast, user-friendly, and beautifully crafted."
+msgstr "Bogagaagu waa xudduurtaada dijital. Waxaan dhisaa abab internet oo degdeg ah, sahlan, oo qurux badan."
+
+msgid "Custom Web Application Development"
+msgstr "Horumarinta Abka Internet Gaarka ah"
+
+msgid "Web Portal Development"
+msgstr "Horumarinta Portal-ka Internetka"
+
+msgid "PWA Development"
+msgstr "Horumarinta PWA"
+
+msgid "Ecommerce Web App Development"
+msgstr "Horumarinta Abka Ganacsiga Elektarooniga"
+
+msgid "Software Product Development"
+msgstr "Horumarinta Alaabta Barnaamijka"
+
+msgid "From quick MVPs and PoCs to full-blown SaaS products that scale — we partner with you to bring your idea to market."
+msgstr "MVPs degdega ah ilaa alaabta SaaS oo buuxda — waxaan kula shaqeynaa si aad fikradaada ugu keento suuqa."
+
+msgid "MVP Development"
+msgstr "Horumarinta MVP"
+
+msgid "PoC Development"
+msgstr "Horumarinta PoC"
+
+msgid "SaaS Development"
+msgstr "Horumarinta SaaS"
+
+msgid "Software Development Outsourcing"
+msgstr "Ku-xigeenka Horumarinta Barnaamijka"
+
+msgid "Looking to scale your development? We offer flexible outsourcing — from dedicated teams to staff augmentation."
+msgstr "Ma raadineysaa in aad ballaariso horumarinta? Waxaan bixinaa ku-xigeenka fudud — kooxaha xulka ah ilaa kordhinta shaqaalaha."
+
+msgid "Onshore Software Development"
+msgstr "Horumarinta Barnaamijka Gudaha"
+
+msgid "Hire Software Developers"
+msgstr "Kiraysta Horumariyeyaasha Barnaamijka"
+
+msgid "Dedicated Development Team"
+msgstr "Koox Horumarineed Xul ah"
+
+msgid "IT Staff Augmentation"
+msgstr "Kordhinta Shaqaalaha IT"
+
+msgid "AI Development"
+msgstr "Horumarinta Garsoornimada Macmal"
+
+msgid "We build AI-powered solutions that help your business unlock the potential of the latest technologies."
+msgstr "Waxaan dhisaa xalal ku shaqeynaya garsoornimada macmal ee ganacsigaaga u furi doonta awoodda teknoolajiyada cusub."
+
+msgid "Machine Learning"
+msgstr "Barashada Mashiinka"
+
+msgid "Natural Language Processing"
+msgstr "Farsamaynta Luqadda Dabiiciga ah"
+
+msgid "Computer Vision"
+msgstr "Aragtida Kombiyuutarka"
+
+msgid "Generative AI"
+msgstr "Garsoornimada Macmal ee Abuurista"
+
+msgid "Digital Transformation"
+msgstr "Isbeddelka Dijital"
+
+msgid "We help you find innovative, practical ways to modernize your operations and create better experiences for your customers."
+msgstr "Waxaan kaa caawinnaa in aad hesho wadooyinka hal-abuurka ah ee casriga ah si aad u casriyeyso hawlgalaadkaaga oo aad u abuurto waayo-aragnimooyin wanaagsan macaamiishaada."
+
+msgid "Legacy Software Modernization"
+msgstr "Casriyeynta Barnaamijyada Hore"
+
+msgid "Cloud Migration Services"
+msgstr "Adeegyada Guuritaanka Daruuraha"
+
+msgid "Data Analytics Services"
+msgstr "Adeegyada Falanqaynta Xogta"
+
+msgid "Infrastructure Services"
+msgstr "Adeegyada Kaabayaasha"
+
+msgid "We keep your IT infrastructure running at peak performance with DevOps and managed services ensuring maximum uptime and security."
+msgstr "Waxaan kaabahaaga IT ka dhigaa mid shaqeynaya horumarka ugu sareeya DevOps iyo adeegyada maamulka si loo xaqiijiyo waqti shaqo ugu badan iyo amaan."
+
+msgid "DevOps Services"
+msgstr "Adeegyada DevOps"
+
+msgid "Managed IT Services"
+msgstr "Adeegyada IT ee Maamulka"
+
+msgid "Software QA Testing"
+msgstr "Tijaabinta Tayada Barnaamijka"
+
+msgid "Launch with confidence. We thoroughly test your applications to guarantee they're reliable, efficient, and free of bugs."
+msgstr "Bilow si kalsooni leh. Waxaan si qoto dheer u tijaabinaynaa abkaaga si loo hubiyo inay la-aaminsan yihiin, wax-ku-ool ah, oo ka nadiif ah khaladaadka."
+
+msgid "QA Outsourcing"
+msgstr "Ku-xigeenka Tayada"
+
+msgid "Automation Testing"
+msgstr "Tijaabinta Automashinka"
+
+msgid "Performance Testing"
+msgstr "Tijaabinta Waxqabadka"
+
+msgid "Functional Testing"
+msgstr "Tijaabinta Hawleedka"
+
+msgid "Usability Testing"
+msgstr "Tijaabinta Isticmaalka"
+
+msgid "How We Turn"
+msgstr "Sidaan u Rogno"
+
+msgid "Ideas Into Products"
+msgstr "Fikradaha Alaabta"
+
+msgid "A structured, transparent three-phase process that keeps you in the loop — from the first discovery call to launch day and beyond."
+msgstr "Hannaan habaysan oo hufan oo saddex-marxalood ah oo kaa xog-warisan — ka bilaabma wicitaanka baadhinaada koowaad ilaa maalinta furitaanka iyo ka dib."
+
+msgid "Discovery"
+msgstr "Baadhin"
+
+msgid "Discovery & Strategy"
+msgstr "Baadhin & Xeelad"
+
+msgid "We start by understanding your business, goals, and users through structured conversations — ensuring we plan and build exactly what you need before a single line of code is written."
+msgstr "Waxaan bilaabaa fahamka ganacsigaaga, ambacyadaada, iyo isticmaalayaashaada — si aannu u qorsheyno oo u dhisno si sax ah waxa aad u baahan tahay ka hor inta aan la qorin hal xariiq koodh ah."
+
+msgid "Requirements & scope definition"
+msgstr "Qeexida baahiyaasha iyo xudduudaha"
+
+msgid "Technical architecture plan"
+msgstr "Qorshaha dhismaha farsamada"
+
+msgid "Project timeline & milestones"
+msgstr "Jadwalka mashruuca iyo gaadhitaannada"
+
+msgid "Transparent cost estimate"
+msgstr "Qiyaas kharash hufan"
+
+msgid "Build"
+msgstr "Dhismo"
+
+msgid "Our team designs and builds in focused sprints with continuous feedback loops — so you see real progress every week and can steer direction at any point."
+msgstr "Kooxdayadu waxay naqshadeysaa oo dhisaa sprints si qoto dheer u diiradsan — si aad arki karto horumar dhabta ah toddobaad kastaa."
+
+msgid "UI/UX design & prototyping"
+msgstr "Naqshadeynta UI/UX iyo nemodhyada"
+
+msgid "Agile development sprints"
+msgstr "Sprints horumarinta Agile"
+
+msgid "Weekly demos & updates"
+msgstr "Bandhigyo iyo cusbooneysiinyo toddobaadleh"
+
+msgid "Automated QA & testing"
+msgstr "QA iyo tijaabinta automashinka"
+
+msgid "Launch"
+msgstr "Furitaan"
+
+msgid "Launch & Growth"
+msgstr "Furitaan & Koboc"
+
+msgid "We deploy your product to production, ensure everything runs flawlessly, and stay by your side as you scale — handling updates, performance, and new feature delivery."
+msgstr "Waxaan geynaynaa alaabta production-ka, hubinayaa in wax walba si siman u socdaan, oo kula joogna adiga oo kobcaya."
+
+msgid "Production deployment"
+msgstr "Gaarsiinta production-ka"
+
+msgid "Performance monitoring"
+msgstr "Kormeerka waxqabadka"
+
+msgid "Ongoing support & maintenance"
+msgstr "Taageero iyo dayactir joogto ah"
+
+msgid "Continuous feature delivery"
+msgstr "Gaarsiinta sifada joogtada ah"
+
+msgid "What You Get"
+msgstr "Waxa Aad Helayso"
+
+msgid "Yes, we cover the tech stack"
+msgstr "Haa, waxaan daboolnaa barnaamijyada teknoolajiga"
+
+msgid "and AI coding tools you rely on"
+msgstr "iyo qaababka koodhka garsoornimada macmal ee aad ku tiirsantahay"
+
+msgid "Our team has expertise in 100+ technologies and programming languages,"
+msgstr "Kooxdayadu waxay leedahay khibrad 100+ oo teknoolajiyado ah iyo luuqadaha barnaamijyada,"
+
+msgid "including the AI coding tools rewriting how software gets built."
+msgstr "oo ay ku jiraan qaababka garsoornimada macmal ee dib u qoraya sida barnaamijyada loo dhiso."
+
+msgid "Our full repertoire"
+msgstr "Liistayadeenna oo dhan"

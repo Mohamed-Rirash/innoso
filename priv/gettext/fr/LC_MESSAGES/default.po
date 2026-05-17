@@ -364,3 +364,240 @@ msgstr "Réserver une consultation gratuite"
 
 msgid "Home"
 msgstr "Accueil"
+
+msgid "Software Development"
+msgstr "Développement logiciel"
+
+msgid "We build unique software tailored to your exact needs — from consulting to delivery, with craftsmanship at every step."
+msgstr "Nous créons des logiciels uniques adaptés à vos besoins exacts — du conseil à la livraison, avec du savoir-faire à chaque étape."
+
+msgid "Software Consulting"
+msgstr "Conseil en logiciel"
+
+msgid "Custom Software Development"
+msgstr "Développement de logiciels sur mesure"
+
+msgid "Enterprise Software Development"
+msgstr "Développement de logiciels d'entreprise"
+
+msgid "Software Maintenance and Support"
+msgstr "Maintenance et support logiciel"
+
+msgid "Mobile App Development"
+msgstr "Développement d'applications mobiles"
+
+msgid "A high-performance mobile app can engage users and grow your business. We build for iOS and Android."
+msgstr "Une application mobile haute performance peut engager vos utilisateurs et développer votre activité. Nous développons pour iOS et Android."
+
+msgid "Android App Development"
+msgstr "Développement d'applications Android"
+
+msgid "iOS App Development"
+msgstr "Développement d'applications iOS"
+
+msgid "Cross-platform App Development"
+msgstr "Développement d'applications multiplateformes"
+
+msgid "Web Application Development"
+msgstr "Développement d'applications web"
+
+msgid "Your website is your digital presence. We build custom web apps that are fast, user-friendly, and beautifully crafted."
+msgstr "Votre site web est votre présence numérique. Nous créons des applications web sur mesure, rapides, conviviales et soignées."
+
+msgid "Custom Web Application Development"
+msgstr "Développement d'applications web sur mesure"
+
+msgid "Web Portal Development"
+msgstr "Développement de portails web"
+
+msgid "PWA Development"
+msgstr "Développement PWA"
+
+msgid "Ecommerce Web App Development"
+msgstr "Développement d'applications e-commerce"
+
+msgid "Software Product Development"
+msgstr "Développement de produits logiciels"
+
+msgid "From quick MVPs and PoCs to full-blown SaaS products that scale — we partner with you to bring your idea to market."
+msgstr "Des MVPs rapides aux produits SaaS complets — nous vous accompagnons pour lancer votre idée sur le marché."
+
+msgid "MVP Development"
+msgstr "Développement MVP"
+
+msgid "PoC Development"
+msgstr "Développement PoC"
+
+msgid "SaaS Development"
+msgstr "Développement SaaS"
+
+msgid "Software Development Outsourcing"
+msgstr "Externalisation du développement logiciel"
+
+msgid "Looking to scale your development? We offer flexible outsourcing — from dedicated teams to staff augmentation."
+msgstr "Vous souhaitez faire évoluer votre développement ? Nous proposons une externalisation flexible — des équipes dédiées à l'augmentation des effectifs."
+
+msgid "Onshore Software Development"
+msgstr "Développement logiciel local"
+
+msgid "Hire Software Developers"
+msgstr "Recrutement de développeurs"
+
+msgid "Dedicated Development Team"
+msgstr "Équipe de développement dédiée"
+
+msgid "IT Staff Augmentation"
+msgstr "Augmentation des effectifs IT"
+
+msgid "AI Development"
+msgstr "Développement IA"
+
+msgid "We build AI-powered solutions that help your business unlock the potential of the latest technologies."
+msgstr "Nous créons des solutions propulsées par l'IA qui aident votre entreprise à exploiter le potentiel des dernières technologies."
+
+msgid "Machine Learning"
+msgstr "Apprentissage automatique"
+
+msgid "Natural Language Processing"
+msgstr "Traitement du langage naturel"
+
+msgid "Computer Vision"
+msgstr "Vision par ordinateur"
+
+msgid "Generative AI"
+msgstr "IA générative"
+
+msgid "Digital Transformation"
+msgstr "Transformation numérique"
+
+msgid "We help you find innovative, practical ways to modernize your operations and create better experiences for your customers."
+msgstr "Nous vous aidons à trouver des moyens innovants et pratiques de moderniser vos opérations et de créer de meilleures expériences pour vos clients."
+
+msgid "Legacy Software Modernization"
+msgstr "Modernisation des logiciels existants"
+
+msgid "Cloud Migration Services"
+msgstr "Services de migration vers le cloud"
+
+msgid "Data Analytics Services"
+msgstr "Services d'analyse de données"
+
+msgid "Infrastructure Services"
+msgstr "Services d'infrastructure"
+
+msgid "We keep your IT infrastructure running at peak performance with DevOps and managed services ensuring maximum uptime and security."
+msgstr "Nous maintenons votre infrastructure IT à des performances optimales grâce aux services DevOps et gérés garantissant une disponibilité maximale et la sécurité."
+
+msgid "DevOps Services"
+msgstr "Services DevOps"
+
+msgid "Managed IT Services"
+msgstr "Services IT gérés"
+
+msgid "Software QA Testing"
+msgstr "Tests QA logiciel"
+
+msgid "Launch with confidence. We thoroughly test your applications to guarantee they're reliable, efficient, and free of bugs."
+msgstr "Lancez en toute confiance. Nous testons minutieusement vos applications pour garantir leur fiabilité, efficacité et l'absence de bugs."
+
+msgid "QA Outsourcing"
+msgstr "Externalisation QA"
+
+msgid "Automation Testing"
+msgstr "Tests d'automatisation"
+
+msgid "Performance Testing"
+msgstr "Tests de performance"
+
+msgid "Functional Testing"
+msgstr "Tests fonctionnels"
+
+msgid "Usability Testing"
+msgstr "Tests d'utilisabilité"
+
+msgid "How We Turn"
+msgstr "Comment nous transformons"
+
+msgid "Ideas Into Products"
+msgstr "les idées en produits"
+
+msgid "A structured, transparent three-phase process that keeps you in the loop — from the first discovery call to launch day and beyond."
+msgstr "Un processus structuré et transparent en trois phases qui vous tient informé — du premier appel de découverte au jour du lancement et au-delà."
+
+msgid "Discovery"
+msgstr "Découverte"
+
+msgid "Discovery & Strategy"
+msgstr "Découverte et Stratégie"
+
+msgid "We start by understanding your business, goals, and users through structured conversations — ensuring we plan and build exactly what you need before a single line of code is written."
+msgstr "Nous commençons par comprendre votre entreprise, vos objectifs et vos utilisateurs — pour planifier et construire exactement ce dont vous avez besoin avant d'écrire la moindre ligne de code."
+
+msgid "Requirements & scope definition"
+msgstr "Définition des exigences et du périmètre"
+
+msgid "Technical architecture plan"
+msgstr "Plan d'architecture technique"
+
+msgid "Project timeline & milestones"
+msgstr "Calendrier et jalons du projet"
+
+msgid "Transparent cost estimate"
+msgstr "Estimation transparente des coûts"
+
+msgid "Build"
+msgstr "Construction"
+
+msgid "Our team designs and builds in focused sprints with continuous feedback loops — so you see real progress every week and can steer direction at any point."
+msgstr "Notre équipe conçoit et développe en sprints ciblés avec des boucles de rétroaction continues — vous voyez ainsi des progrès réels chaque semaine."
+
+msgid "UI/UX design & prototyping"
+msgstr "Design UI/UX et prototypage"
+
+msgid "Agile development sprints"
+msgstr "Sprints de développement agile"
+
+msgid "Weekly demos & updates"
+msgstr "Démos et mises à jour hebdomadaires"
+
+msgid "Automated QA & testing"
+msgstr "Assurance qualité et tests automatisés"
+
+msgid "Launch"
+msgstr "Lancement"
+
+msgid "Launch & Growth"
+msgstr "Lancement et Croissance"
+
+msgid "We deploy your product to production, ensure everything runs flawlessly, and stay by your side as you scale — handling updates, performance, and new feature delivery."
+msgstr "Nous déployons votre produit en production, assurons son bon fonctionnement et restons à vos côtés pendant votre croissance."
+
+msgid "Production deployment"
+msgstr "Déploiement en production"
+
+msgid "Performance monitoring"
+msgstr "Surveillance des performances"
+
+msgid "Ongoing support & maintenance"
+msgstr "Support et maintenance continus"
+
+msgid "Continuous feature delivery"
+msgstr "Livraison continue de fonctionnalités"
+
+msgid "What You Get"
+msgstr "Ce que vous obtenez"
+
+msgid "Yes, we cover the tech stack"
+msgstr "Oui, nous couvrons la stack technique"
+
+msgid "and AI coding tools you rely on"
+msgstr "et les outils IA dont vous dépendez"
+
+msgid "Our team has expertise in 100+ technologies and programming languages,"
+msgstr "Notre équipe maîtrise plus de 100 technologies et langages de programmation,"
+
+msgid "including the AI coding tools rewriting how software gets built."
+msgstr "y compris les outils IA qui réinventent la façon dont les logiciels sont construits."
+
+msgid "Our full repertoire"
+msgstr "Notre répertoire complet"

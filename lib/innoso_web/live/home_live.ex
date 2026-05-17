@@ -30,59 +30,125 @@ defmodule InnosoWeb.HomeLive do
     [
       %{
         icon: "hero-code-bracket",
-        title: gettext("Custom Web Apps"),
-        desc: gettext("Tailor-made web solutions built for your unique challenges, designed to scale with your growth."),
+        title: gettext("Software Development"),
+        desc: gettext("We build unique software tailored to your exact needs — from consulting to delivery, with craftsmanship at every step."),
+        features: [
+          gettext("Software Consulting"),
+          gettext("Custom Software Development"),
+          gettext("Enterprise Software Development"),
+          gettext("Software Maintenance and Support")
+        ],
         color: "text-violet-500 dark:text-violet-400",
         bg: "bg-violet-500/10 dark:bg-violet-500/15",
         glow: "bg-violet-500"
       },
       %{
         icon: "hero-device-phone-mobile",
-        title: gettext("Mobile Apps"),
-        desc: gettext("Native and cross-platform apps delivering seamless, polished experiences on iOS and Android."),
+        title: gettext("Mobile App Development"),
+        desc: gettext("A high-performance mobile app can engage users and grow your business. We build for iOS and Android."),
+        features: [
+          gettext("Android App Development"),
+          gettext("iOS App Development"),
+          gettext("Cross-platform App Development")
+        ],
         color: "text-blue-500 dark:text-blue-400",
         bg: "bg-blue-500/10 dark:bg-blue-500/15",
         glow: "bg-blue-500"
       },
       %{
-        icon: "hero-building-office-2",
-        title: gettext("Enterprise Systems"),
-        desc: gettext("Robust, secure platforms for enterprises and public-sector organizations demanding reliability."),
+        icon: "hero-globe-alt",
+        title: gettext("Web Application Development"),
+        desc: gettext("Your website is your digital presence. We build custom web apps that are fast, user-friendly, and beautifully crafted."),
+        features: [
+          gettext("Custom Web Application Development"),
+          gettext("Web Portal Development"),
+          gettext("PWA Development"),
+          gettext("Ecommerce Web App Development")
+        ],
         color: "text-indigo-500 dark:text-indigo-400",
         bg: "bg-indigo-500/10 dark:bg-indigo-500/15",
         glow: "bg-indigo-500"
       },
       %{
-        icon: "hero-shopping-cart",
-        title: gettext("E-commerce"),
-        desc: gettext("Complete online stores with payments, inventory management, and powerful analytics."),
+        icon: "hero-cube",
+        title: gettext("Software Product Development"),
+        desc: gettext("From quick MVPs and PoCs to full-blown SaaS products that scale — we partner with you to bring your idea to market."),
+        features: [
+          gettext("MVP Development"),
+          gettext("PoC Development"),
+          gettext("SaaS Development")
+        ],
+        color: "text-sky-500 dark:text-sky-400",
+        bg: "bg-sky-500/10 dark:bg-sky-500/15",
+        glow: "bg-sky-500"
+      },
+      %{
+        icon: "hero-users",
+        title: gettext("Software Development Outsourcing"),
+        desc: gettext("Looking to scale your development? We offer flexible outsourcing — from dedicated teams to staff augmentation."),
+        features: [
+          gettext("Onshore Software Development"),
+          gettext("Hire Software Developers"),
+          gettext("Dedicated Development Team"),
+          gettext("IT Staff Augmentation")
+        ],
         color: "text-emerald-500 dark:text-emerald-400",
         bg: "bg-emerald-500/10 dark:bg-emerald-500/15",
         glow: "bg-emerald-500"
       },
       %{
-        icon: "hero-globe-alt",
-        title: gettext("Landing Pages"),
-        desc: gettext("High-converting, beautifully designed pages that attract customers and represent your brand."),
-        color: "text-pink-500 dark:text-pink-400",
-        bg: "bg-pink-500/10 dark:bg-pink-500/15",
-        glow: "bg-pink-500"
+        icon: "hero-cpu-chip",
+        title: gettext("AI Development"),
+        desc: gettext("We build AI-powered solutions that help your business unlock the potential of the latest technologies."),
+        features: [
+          gettext("Machine Learning"),
+          gettext("Natural Language Processing"),
+          gettext("Computer Vision"),
+          gettext("Generative AI")
+        ],
+        color: "text-purple-500 dark:text-purple-400",
+        bg: "bg-purple-500/10 dark:bg-purple-500/15",
+        glow: "bg-purple-500"
       },
       %{
-        icon: "hero-chart-bar-square",
-        title: gettext("Dashboards"),
-        desc: gettext("Intuitive control centers delivering real-time insight and full control over your operations."),
+        icon: "hero-arrow-path",
+        title: gettext("Digital Transformation"),
+        desc: gettext("We help you find innovative, practical ways to modernize your operations and create better experiences for your customers."),
+        features: [
+          gettext("Legacy Software Modernization"),
+          gettext("Cloud Migration Services"),
+          gettext("Data Analytics Services")
+        ],
         color: "text-amber-500 dark:text-amber-400",
         bg: "bg-amber-500/10 dark:bg-amber-500/15",
         glow: "bg-amber-500"
       },
       %{
-        icon: "hero-light-bulb",
-        title: gettext("Tech Consulting"),
-        desc: gettext("Strategic guidance to help your business overcome challenges and unlock growth through technology."),
+        icon: "hero-server",
+        title: gettext("Infrastructure Services"),
+        desc: gettext("We keep your IT infrastructure running at peak performance with DevOps and managed services ensuring maximum uptime and security."),
+        features: [
+          gettext("DevOps Services"),
+          gettext("Managed IT Services")
+        ],
         color: "text-teal-500 dark:text-teal-400",
         bg: "bg-teal-500/10 dark:bg-teal-500/15",
         glow: "bg-teal-500"
+      },
+      %{
+        icon: "hero-shield-check",
+        title: gettext("Software QA Testing"),
+        desc: gettext("Launch with confidence. We thoroughly test your applications to guarantee they're reliable, efficient, and free of bugs."),
+        features: [
+          gettext("QA Outsourcing"),
+          gettext("Automation Testing"),
+          gettext("Performance Testing"),
+          gettext("Functional Testing"),
+          gettext("Usability Testing")
+        ],
+        color: "text-rose-500 dark:text-rose-400",
+        bg: "bg-rose-500/10 dark:bg-rose-500/15",
+        glow: "bg-rose-500"
       }
     ]
   end
@@ -91,23 +157,50 @@ defmodule InnosoWeb.HomeLive do
     [
       %{
         number: "01",
-        title: gettext("Discover"),
-        desc: gettext("We listen deeply to understand your vision, goals, and constraints before writing a single line of code."),
+        phase: gettext("Discovery"),
+        title: gettext("Discovery & Strategy"),
+        desc: gettext("We start by understanding your business, goals, and users through structured conversations — ensuring we plan and build exactly what you need before a single line of code is written."),
         icon: "hero-magnifying-glass",
+        deliverables: [
+          gettext("Requirements & scope definition"),
+          gettext("Technical architecture plan"),
+          gettext("Project timeline & milestones"),
+          gettext("Transparent cost estimate")
+        ],
+        color: "text-violet-500 dark:text-violet-400",
+        bg: "bg-violet-500/10 dark:bg-violet-500/15",
         glow: "bg-violet-500"
       },
       %{
         number: "02",
-        title: gettext("Design & Build"),
-        desc: gettext("Our team designs and develops your solution with modern technology and continuous feedback loops."),
+        phase: gettext("Build"),
+        title: gettext("Design & Development"),
+        desc: gettext("Our team designs and builds in focused sprints with continuous feedback loops — so you see real progress every week and can steer direction at any point."),
         icon: "hero-wrench-screwdriver",
+        deliverables: [
+          gettext("UI/UX design & prototyping"),
+          gettext("Agile development sprints"),
+          gettext("Weekly demos & updates"),
+          gettext("Automated QA & testing")
+        ],
+        color: "text-primary",
+        bg: "bg-primary/10 dark:bg-primary/15",
         glow: "bg-primary"
       },
       %{
         number: "03",
-        title: gettext("Launch & Support"),
-        desc: gettext("We deploy, test, and hand over a polished product — then stay available for ongoing support."),
+        phase: gettext("Launch"),
+        title: gettext("Launch & Growth"),
+        desc: gettext("We deploy your product to production, ensure everything runs flawlessly, and stay by your side as you scale — handling updates, performance, and new feature delivery."),
         icon: "hero-rocket-launch",
+        deliverables: [
+          gettext("Production deployment"),
+          gettext("Performance monitoring"),
+          gettext("Ongoing support & maintenance"),
+          gettext("Continuous feature delivery")
+        ],
+        color: "text-secondary",
+        bg: "bg-secondary/10 dark:bg-secondary/15",
         glow: "bg-secondary"
       }
     ]
@@ -371,10 +464,10 @@ defmodule InnosoWeb.HomeLive do
             </p>
           </div>
 
-          <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <div
               :for={service <- @services}
-              class="group relative rounded-2xl border border-black/[0.08] dark:border-white/[0.07] bg-white dark:bg-base-200 p-6 overflow-hidden transition-all duration-300 hover:-translate-y-2 cursor-default"
+              class="group relative rounded-2xl border border-black/[0.08] dark:border-white/[0.07] bg-white dark:bg-base-200 p-6 overflow-hidden transition-all duration-300 hover:-translate-y-1.5 cursor-default flex flex-col"
             >
               <%!-- Per-service neon bottom glow --%>
               <div class={["absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-300", service.glow]}></div>
@@ -384,7 +477,13 @@ defmodule InnosoWeb.HomeLive do
                 <.icon name={service.icon} class={["size-6", service.color]} />
               </div>
               <h3 class="relative font-black text-base mb-2 leading-snug">{service.title}</h3>
-              <p class="relative text-sm text-base-content/52 leading-relaxed">{service.desc}</p>
+              <p class="relative text-sm text-base-content/52 leading-relaxed mb-5">{service.desc}</p>
+              <ul class="relative mt-auto space-y-2">
+                <li :for={feature <- service.features} class="flex items-center gap-2 text-sm text-base-content/60">
+                  <.icon name="hero-check-circle" class={["size-4 shrink-0", service.color]} />
+                  <span>{feature}</span>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -392,60 +491,165 @@ defmodule InnosoWeb.HomeLive do
 
       <%!-- ═══════════════════ PROCESS ═══════════════════ --%>
       <section class="px-4 sm:px-6 lg:px-8 py-24">
-        <div class="max-w-5xl mx-auto">
-          <div class="text-center mb-16">
+        <div class="max-w-6xl mx-auto">
+
+          <%!-- Header --%>
+          <div class="text-center mb-20">
             <span class="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 dark:bg-primary/15 border border-primary/20 dark:border-primary/25 px-4 py-1.5 rounded-full mb-5">
               {gettext("How We Work")}
             </span>
             <h2 class="text-4xl sm:text-5xl font-black tracking-tight mb-5">
-              {gettext("Simple.")}
+              {gettext("How We Turn")}
               <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                {gettext("Transparent.")}
+                {gettext("Ideas Into Products")}
               </span>
-              {gettext("Fast.")}
             </h2>
-            <p class="text-base-content/50 max-w-lg mx-auto text-lg leading-relaxed">
-              {gettext("A proven three-step process to get you from idea to a live product — efficiently and reliably.")}
+            <p class="text-base-content/50 max-w-xl mx-auto text-lg leading-relaxed">
+              {gettext("A structured, transparent three-phase process that keeps you in the loop — from the first discovery call to launch day and beyond.")}
             </p>
           </div>
 
-          <div class="grid md:grid-cols-3 gap-5">
+          <%!-- Steps grid with connecting line --%>
+          <div class="relative">
+            <%!-- Gradient connector line (desktop) --%>
             <div
-              :for={step <- @steps}
-              class="group relative rounded-2xl border border-black/[0.08] dark:border-white/[0.07] bg-white dark:bg-base-200 p-8 overflow-hidden transition-all duration-300 hover:-translate-y-1.5 text-center"
-            >
-              <%!-- Per-step neon bottom glow --%>
-              <div class={["absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-300", step.glow]}></div>
-              <div class={["absolute -bottom-4 left-1/2 -translate-x-1/2 w-1/2 h-12 blur-2xl opacity-0 group-hover:opacity-70 transition-all duration-500 pointer-events-none", step.glow]}></div>
+              aria-hidden="true"
+              class="hidden md:block absolute top-7 left-[16.67%] right-[16.67%] h-px bg-gradient-to-r from-violet-500/40 via-primary/50 to-secondary/40"
+            ></div>
 
-              <div class="relative w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-primary/25 group-hover:scale-110 transition-transform duration-300">
-                <span class="text-white font-black text-xl">{step.number}</span>
+            <div class="grid md:grid-cols-3 gap-6">
+              <div :for={step <- @steps} class="flex flex-col">
+
+                <%!-- Step number badge (sits on connecting line) --%>
+                <div class="relative z-10 mb-6 md:self-center">
+                  <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg shadow-primary/25">
+                    <span class="text-white font-black text-lg tracking-tight">{step.number}</span>
+                  </div>
+                </div>
+
+                <%!-- Card --%>
+                <div class="group relative rounded-2xl border border-black/[0.08] dark:border-white/[0.07] bg-white dark:bg-base-200 p-6 overflow-hidden transition-all duration-300 hover:-translate-y-1.5 flex-1 flex flex-col">
+                  <%!-- Neon glow --%>
+                  <div class={["absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-300", step.glow]}></div>
+                  <div class={["absolute -bottom-4 left-1/2 -translate-x-1/2 w-1/2 h-12 blur-2xl opacity-0 group-hover:opacity-70 transition-all duration-500 pointer-events-none", step.glow]}></div>
+
+                  <%!-- Phase tag + icon row --%>
+                  <div class="relative flex items-center gap-3 mb-4">
+                    <div class={["w-10 h-10 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300", step.bg]}>
+                      <.icon name={step.icon} class={["size-5", step.color]} />
+                    </div>
+                    <span class={["text-xs font-black uppercase tracking-widest", step.color]}>
+                      {step.phase}
+                    </span>
+                  </div>
+
+                  <%!-- Title --%>
+                  <h3 class="relative font-black text-lg mb-2 leading-snug">{step.title}</h3>
+
+                  <%!-- Description --%>
+                  <p class="relative text-sm text-base-content/55 leading-relaxed mb-5">{step.desc}</p>
+
+                  <%!-- Divider --%>
+                  <div class="relative border-t border-black/[0.06] dark:border-white/[0.07] mb-4"></div>
+
+                  <%!-- Deliverables --%>
+                  <div class="relative mt-auto">
+                    <p class="text-[10px] font-black uppercase tracking-widest text-base-content/35 mb-3">
+                      {gettext("What You Get")}
+                    </p>
+                    <ul class="space-y-2">
+                      <li
+                        :for={item <- step.deliverables}
+                        class="flex items-center gap-2 text-sm text-base-content/60"
+                      >
+                        <.icon name="hero-check-circle" class={["size-4 shrink-0", step.color]} />
+                        <span>{item}</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
-              <h3 class="text-xl font-black mb-3">{step.title}</h3>
-              <p class="text-base-content/55 text-sm leading-relaxed">{step.desc}</p>
             </div>
           </div>
+        </div>
+      </section>
+
+      <%!-- ═══════════════════ TECH STACK ═══════════════════ --%>
+      <section class="py-24 overflow-hidden">
+        <%!-- Heading --%>
+        <div class="text-center px-4 sm:px-6 mb-16 max-w-4xl mx-auto">
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight mb-5">
+            {gettext("Yes, we cover the tech stack")}
+            <br class="hidden sm:block" />
+            {gettext("and AI coding tools you rely on")}<span class="text-primary">.</span>
+          </h2>
+          <p class="text-base-content/50 text-base sm:text-lg leading-relaxed">
+            {gettext("Our team has expertise in 100+ technologies and programming languages,")}<br />
+            {gettext("including the AI coding tools rewriting how software gets built.")}
+          </p>
+        </div>
+
+        <%!-- Marquee rows --%>
+        <div class="relative select-none">
+          <%!-- Edge fade masks --%>
+          <div aria-hidden="true" class="pointer-events-none absolute inset-y-0 left-0 w-32 z-10 bg-gradient-to-r from-base-100 to-transparent"></div>
+          <div aria-hidden="true" class="pointer-events-none absolute inset-y-0 right-0 w-32 z-10 bg-gradient-to-l from-base-100 to-transparent"></div>
+
+          <%!-- Row 1 — left to right --%>
+          <div class="flex overflow-hidden mb-2">
+            <div class="flex items-center gap-10 sm:gap-16 animate-marquee whitespace-nowrap">
+              <span :for={tech <- ~w(Node.js Java React .NET Python C# Ruby\ on\ Rails TypeScript Kotlin Swift Go Rust Elixir Django Node.js Java React .NET Python C# Ruby\ on\ Rails TypeScript Kotlin Swift Go Rust Elixir Django)} class="text-5xl sm:text-6xl lg:text-7xl font-black text-base-content/10 dark:text-base-content/[0.07] hover:text-base-content/25 dark:hover:text-base-content/20 transition-colors duration-300 cursor-default px-2">
+                {tech}
+              </span>
+            </div>
+          </div>
+
+          <%!-- Row 2 — right to left --%>
+          <div class="flex overflow-hidden">
+            <div class="flex items-center gap-10 sm:gap-16 animate-marquee-reverse whitespace-nowrap">
+              <span :for={tech <- ~w(Angular PHP Android iOS Golang Vue.js C++ JavaScript PostgreSQL Redis Docker AWS Flutter Next.js Angular PHP Android iOS Golang Vue.js C++ JavaScript PostgreSQL Redis Docker AWS Flutter Next.js)} class="text-5xl sm:text-6xl lg:text-7xl font-black text-base-content/10 dark:text-base-content/[0.07] hover:text-base-content/25 dark:hover:text-base-content/20 transition-colors duration-300 cursor-default px-2">
+                {tech}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <%!-- CTA link --%>
+        <div class="text-center mt-16">
+          <a
+            href="#services"
+            class="inline-flex items-center gap-2 font-bold text-base-content/60 hover:text-base-content transition-colors border-b-2 border-base-content/20 hover:border-primary pb-1 group"
+          >
+            {gettext("Our full repertoire")}
+            <.icon name="hero-arrow-right" class="size-4 group-hover:translate-x-0.5 transition-transform" />
+          </a>
         </div>
       </section>
 
       <%!-- ═══════════════════ PROJECTS ═══════════════════ --%>
       <section id="projects" class="px-4 sm:px-6 lg:px-8 py-24">
         <div class="max-w-7xl mx-auto">
-          <div class="text-center mb-16">
-            <span class="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 dark:bg-primary/15 border border-primary/20 dark:border-primary/25 px-4 py-1.5 rounded-full mb-5">
-              {gettext("Portfolio")}
-            </span>
-            <h2 class="text-4xl sm:text-5xl font-black tracking-tight mb-5">
-              {gettext("Real Solutions,")}
-              <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                {gettext("Real Impact")}
+
+          <%!-- Header — two-column on sm+ --%>
+          <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16">
+            <div>
+              <span class="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 dark:bg-primary/15 border border-primary/20 dark:border-primary/25 px-4 py-1.5 rounded-full mb-5">
+                {gettext("Portfolio")}
               </span>
-            </h2>
-            <p class="text-base-content/50 max-w-lg mx-auto text-lg leading-relaxed">
+              <h2 class="text-4xl sm:text-5xl font-black tracking-tight">
+                {gettext("Real Solutions,")}
+                <br />
+                <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                  {gettext("Real Impact")}
+                </span>
+              </h2>
+            </div>
+            <p class="text-base-content/50 text-base sm:text-lg leading-relaxed max-w-xs sm:text-right sm:pb-1">
               {gettext("Explore some of the products we've built for clients across industries and borders.")}
             </p>
           </div>
 
+          <%!-- Empty state --%>
           <div :if={@projects == []} class="text-center py-24">
             <div class="w-20 h-20 rounded-2xl bg-white dark:bg-base-200 border border-black/[0.08] dark:border-white/[0.07] flex items-center justify-center mx-auto mb-5">
               <.icon name="hero-briefcase" class="size-10 text-base-content/25" />
@@ -454,59 +658,107 @@ defmodule InnosoWeb.HomeLive do
             <p class="text-base-content/28 text-sm mt-1">{gettext("Check back shortly — we're updating our portfolio.")}</p>
           </div>
 
+          <%!-- Projects grid --%>
           <div :if={@projects != []} class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             <.link
-              :for={project <- @projects}
+              :for={{project, idx} <- Enum.with_index(@projects, 1)}
               navigate={~p"/projects/#{project.id}"}
               class="group flex flex-col rounded-2xl border border-black/[0.08] dark:border-white/[0.07] bg-white dark:bg-base-200 overflow-hidden transition-all duration-300 hover:-translate-y-2 relative"
             >
-              <%!-- Cover image --%>
-              <div class="relative h-52 overflow-hidden shrink-0">
-                <img :if={project.cover_image} src={project.cover_image} alt={project.name} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                <div :if={!project.cover_image} class="w-full h-full bg-gradient-to-br from-primary/12 via-primary/4 to-secondary/12 flex items-center justify-center">
-                  <div class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
-                    <.icon name="hero-briefcase" class="size-8 text-primary/35" />
-                  </div>
+              <%!-- Cover image / placeholder --%>
+              <div class="relative h-56 overflow-hidden shrink-0">
+                <img
+                  :if={project.cover_image}
+                  src={project.cover_image}
+                  alt={project.name}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div
+                  :if={!project.cover_image}
+                  class="w-full h-full bg-gradient-to-br from-primary/12 via-primary/4 to-secondary/12 flex items-center justify-center"
+                >
+                  <.icon name="hero-briefcase" class="size-10 text-primary/20" />
                 </div>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent"></div>
-                <span class="absolute top-3 left-3 text-xs font-bold uppercase tracking-wide px-2.5 py-1 rounded-lg bg-black/50 backdrop-blur-sm border border-white/15 text-white/90">
+
+                <%!-- Gradient scrim --%>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent"></div>
+
+                <%!-- Top-left: industry badge --%>
+                <span class="absolute top-3 left-3 text-xs font-bold uppercase tracking-wide px-2.5 py-1 rounded-lg bg-black/55 backdrop-blur-sm border border-white/[0.12] text-white/90">
                   {project.client_type}
                 </span>
-                <div class="absolute top-3 right-3 w-8 h-8 rounded-xl bg-black/50 backdrop-blur-sm border border-white/15 flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-200">
-                  <.icon name="hero-arrow-up-right" class="size-4 text-white" />
+
+                <%!-- Top-right: status badges --%>
+                <div class="absolute top-3 right-3 flex items-center gap-1.5">
+                  <span
+                    :if={project.live_url}
+                    class="flex items-center gap-1 text-[11px] font-bold px-2 py-0.5 rounded-lg bg-emerald-500/85 backdrop-blur-sm border border-emerald-300/20 text-white"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+                    {gettext("Live")}
+                  </span>
+                  <span
+                    :if={project.demo_credentials != []}
+                    class="text-[11px] font-bold px-2 py-0.5 rounded-lg bg-amber-500/85 backdrop-blur-sm border border-amber-300/20 text-white"
+                  >
+                    {gettext("Demo")}
+                  </span>
+                </div>
+
+                <%!-- Bottom row: project number + hover arrow --%>
+                <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between">
+                  <span class="text-[11px] font-black text-white/35 tracking-widest uppercase font-mono">
+                    #{String.pad_leading(Integer.to_string(idx), 2, "0")}
+                  </span>
+                  <div class="w-7 h-7 rounded-xl bg-black/55 backdrop-blur-sm border border-white/[0.12] flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-200">
+                    <.icon name="hero-arrow-up-right" class="size-3.5 text-white" />
+                  </div>
                 </div>
               </div>
 
-              <%!-- Body --%>
+              <%!-- Card body --%>
               <div class="flex flex-col flex-1 p-5 relative">
-                <%!-- Neon bottom glow — primary --%>
+                <%!-- Neon bottom glow --%>
                 <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-1/2 h-12 bg-primary/40 blur-2xl opacity-0 group-hover:opacity-80 transition-all duration-500 pointer-events-none"></div>
 
                 <h3 class="font-black text-lg leading-snug mb-2 group-hover:text-primary transition-colors duration-200">
                   {project.name}
                 </h3>
-                <p class="text-sm text-base-content/55 line-clamp-2 leading-relaxed flex-1">
-                  {project.description}
+                <p class="text-sm text-base-content/55 line-clamp-3 leading-relaxed flex-1">
+                  {InnosoWeb.Markdown.plain_text(project.description)}
                 </p>
 
+                <%!-- Tech stack tags — show up to 4, +N overflow --%>
                 <div :if={project.tags} class="flex flex-wrap gap-1.5 mt-4">
                   <span
-                    :for={tag <- project.tags |> String.split(",") |> Enum.map(&String.trim/1) |> Enum.take(3)}
+                    :for={tag <- project.tags |> String.split(",") |> Enum.map(&String.trim/1) |> Enum.take(4)}
                     class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-primary/8 dark:bg-primary/15 border border-primary/15 dark:border-primary/25 text-primary"
                   >
                     {tag}
                   </span>
+                  <span
+                    :if={(project.tags |> String.split(",") |> Enum.map(&String.trim/1) |> length()) > 4}
+                    class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-base-content/[0.05] border border-base-content/10 text-base-content/40"
+                  >
+                    +{(project.tags |> String.split(",") |> Enum.map(&String.trim/1) |> length()) - 4}
+                  </span>
                 </div>
 
+                <%!-- Footer --%>
                 <div class="flex items-center justify-between mt-4 pt-4 border-t border-black/[0.06] dark:border-white/[0.08]">
                   <span class="text-sm font-bold text-primary flex items-center gap-1.5">
-                    {gettext("View Details")}
+                    {gettext("View Case Study")}
                     <.icon name="hero-arrow-right" class="size-3.5 group-hover:translate-x-0.5 transition-transform" />
                   </span>
-                  <span :if={project.live_url} class="text-xs text-base-content/38 font-medium flex items-center gap-1">
-                    <.icon name="hero-globe-alt" class="size-3.5" /> {gettext("Live")}
-                  </span>
+                  <div class="flex items-center gap-3 text-xs text-base-content/35 font-medium">
+                    <span :if={project.live_url} class="flex items-center gap-1">
+                      <.icon name="hero-globe-alt" class="size-3.5" /> {gettext("Live")}
+                    </span>
+                    <span :if={project.demo_credentials != []} class="flex items-center gap-1">
+                      <.icon name="hero-play-circle" class="size-3.5" /> {gettext("Demo")}
+                    </span>
+                  </div>
                 </div>
               </div>
             </.link>
@@ -517,6 +769,8 @@ defmodule InnosoWeb.HomeLive do
       <%!-- ═══════════════════ TEAM ═══════════════════ --%>
       <section id="team" class="px-4 sm:px-6 lg:px-8 py-24">
         <div class="max-w-7xl mx-auto">
+
+          <%!-- Header --%>
           <div class="text-center mb-16">
             <span class="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 dark:bg-primary/15 border border-primary/20 dark:border-primary/25 px-4 py-1.5 rounded-full mb-5">
               {gettext("The Team")}
@@ -532,6 +786,7 @@ defmodule InnosoWeb.HomeLive do
             </p>
           </div>
 
+          <%!-- Empty state --%>
           <div :if={@members == []} class="text-center py-24">
             <div class="w-20 h-20 rounded-2xl bg-white dark:bg-base-200 border border-black/[0.08] dark:border-white/[0.07] flex items-center justify-center mx-auto mb-5">
               <.icon name="hero-users" class="size-10 text-base-content/25" />
@@ -539,23 +794,109 @@ defmodule InnosoWeb.HomeLive do
             <p class="text-base-content/40 font-semibold text-lg">{gettext("Team profiles coming soon")}</p>
           </div>
 
-          <div :if={@members != []} class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+          <%!-- Team grid — profile cards --%>
+          <div :if={@members != []} class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
             <div
-              :for={member <- @members}
-              class="group relative text-center rounded-2xl border border-black/[0.08] dark:border-white/[0.07] bg-white dark:bg-base-200 p-7 overflow-hidden transition-all duration-300 hover:-translate-y-1.5"
+              :for={{member, idx} <- Enum.with_index(@members, 1)}
+              id={"member-#{member.id}"}
+              class="group flex flex-col rounded-2xl overflow-hidden border border-black/[0.08] dark:border-white/[0.07] bg-white dark:bg-base-200 cursor-default transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/8 hover:border-primary/20 dark:hover:border-primary/30"
             >
-              <%!-- Neon bottom glow — primary --%>
-              <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-1/2 h-12 bg-primary/40 blur-2xl opacity-0 group-hover:opacity-80 transition-all duration-500 pointer-events-none"></div>
+              <%!-- Photo section --%>
+              <div class="relative h-56 overflow-hidden shrink-0">
+                <img
+                  :if={member.photo}
+                  src={member.photo}
+                  alt={member.name}
+                  class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                />
+                <div
+                  :if={!member.photo}
+                  class="w-full h-full bg-gradient-to-br from-primary/15 via-secondary/8 to-base-300 dark:to-base-300 flex items-center justify-center"
+                >
+                  <span class="text-7xl font-black text-primary/20 select-none leading-none">
+                    {member.name |> String.split(" ") |> Enum.map(&String.first/1) |> Enum.take(2) |> Enum.join()}
+                  </span>
+                </div>
 
-              <div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-primary/20 to-secondary/20 overflow-hidden mx-auto mb-5 ring-2 ring-black/[0.04] dark:ring-white/[0.08] group-hover:ring-primary/30 transition-all duration-300">
-                <img :if={member.photo} src={member.photo} alt={member.name} class="w-full h-full object-cover" />
-                <div :if={!member.photo} class="w-full h-full flex items-center justify-center">
-                  <.icon name="hero-user" class="size-10 text-base-content/25" />
+                <%!-- Gradient scrim into card body --%>
+                <div class="absolute inset-0 bg-gradient-to-t from-white dark:from-base-200 via-transparent to-transparent opacity-60"></div>
+
+                <%!-- Member number — top right --%>
+                <div class="absolute top-3 right-3 w-7 h-7 rounded-xl bg-black/40 backdrop-blur-sm border border-white/[0.12] flex items-center justify-center">
+                  <span class="text-[10px] font-black text-white/50">#{idx}</span>
                 </div>
               </div>
-              <h3 class="font-black text-base mb-1">{member.name}</h3>
-              <p class="text-sm font-semibold text-primary/80">{member.role}</p>
+
+              <%!-- Info section --%>
+              <div class="flex flex-col flex-1 px-5 pb-5 pt-3 relative">
+                <%!-- Neon bottom glow --%>
+                <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-1/2 h-10 bg-primary/30 blur-2xl opacity-0 group-hover:opacity-80 transition-all duration-500 pointer-events-none"></div>
+
+                <%!-- Name + role --%>
+                <h3 class="font-black text-base leading-snug group-hover:text-primary transition-colors duration-200">
+                  {member.name}
+                </h3>
+                <div class="flex items-center gap-1.5 mt-1 mb-3">
+                  <span class="w-1 h-1 rounded-full bg-primary/60 group-hover:bg-primary transition-colors shrink-0"></span>
+                  <p class="text-xs font-bold text-primary/70 uppercase tracking-wide">{member.role}</p>
+                </div>
+
+                <%!-- Bio --%>
+                <p :if={member.bio} class="text-sm text-base-content/55 leading-relaxed line-clamp-3 flex-1">
+                  {member.bio}
+                </p>
+                <div :if={!member.bio} class="flex-1"></div>
+
+                <%!-- Skills --%>
+                <div :if={member.skills} class="flex flex-wrap gap-1.5 mt-4">
+                  <span
+                    :for={skill <- member.skills |> String.split(",") |> Enum.map(&String.trim/1) |> Enum.reject(&(&1 == "")) |> Enum.take(5)}
+                    class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-primary/8 dark:bg-primary/12 border border-primary/15 dark:border-primary/20 text-primary"
+                  >
+                    {skill}
+                  </span>
+                  <span
+                    :if={(member.skills |> String.split(",") |> Enum.map(&String.trim/1) |> Enum.reject(&(&1 == "")) |> length()) > 5}
+                    class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-base-content/[0.05] border border-base-content/10 text-base-content/40"
+                  >
+                    +{(member.skills |> String.split(",") |> Enum.map(&String.trim/1) |> Enum.reject(&(&1 == "")) |> length()) - 5}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <%!-- Stats strip --%>
+          <div :if={@members != []} class="mt-14 pt-10 border-t border-black/[0.06] dark:border-white/[0.07] flex flex-wrap items-center justify-center gap-10 sm:gap-16">
+            <div class="text-center">
+              <div class="text-3xl sm:text-4xl font-black bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent leading-none">
+                {length(@members)}
+              </div>
+              <div class="text-[10px] font-black text-base-content/40 uppercase tracking-widest mt-2">
+                {gettext("Team Members")}
+              </div>
+            </div>
+            <div class="w-px h-10 bg-black/[0.07] dark:bg-white/[0.07] hidden sm:block"></div>
+            <div class="text-center">
+              <div class="text-3xl sm:text-4xl font-black bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent leading-none">100%</div>
+              <div class="text-[10px] font-black text-base-content/40 uppercase tracking-widest mt-2">
+                {gettext("Remote-Ready")}
+              </div>
+            </div>
+            <div class="w-px h-10 bg-black/[0.07] dark:bg-white/[0.07] hidden sm:block"></div>
+            <div class="text-center">
+              <div class="text-3xl sm:text-4xl font-black bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent leading-none">24/7</div>
+              <div class="text-[10px] font-black text-base-content/40 uppercase tracking-widest mt-2">
+                {gettext("Support")}
+              </div>
+            </div>
+            <div class="w-px h-10 bg-black/[0.07] dark:bg-white/[0.07] hidden sm:block"></div>
+            <div class="text-center">
+              <div class="text-3xl sm:text-4xl font-black bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent leading-none">5+</div>
+              <div class="text-[10px] font-black text-base-content/40 uppercase tracking-widest mt-2">
+                {gettext("Countries")}
+              </div>
             </div>
           </div>
         </div>

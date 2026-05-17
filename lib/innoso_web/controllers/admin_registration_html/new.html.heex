@@ -1,19 +1,16 @@
-<Layouts.app flash={@flash} current_scope={@current_scope}>
-  <div class="mx-auto max-w-sm">
-    <div class="text-center">
-      <.header>
-        Register for an account
-        <:subtitle>
-          Already registered?
-          <.link navigate={~p"/admin/login"} class="font-semibold text-brand hover:underline">
-            Log in
-          </.link>
-          to your account now.
-        </:subtitle>
-      </.header>
+<Layouts.auth flash={@flash} current_scope={@current_scope}>
+  <div class="rounded-2xl border border-black/[0.08] dark:border-white/[0.07] bg-white dark:bg-base-200 p-8 shadow-xl shadow-black/5">
+    <div class="text-center mb-6">
+      <h1 class="text-xl font-black tracking-tight">Create an account</h1>
+      <p class="text-base-content/50 text-sm mt-1">
+        Already have one?
+        <.link navigate={~p"/admin/login"} class="font-semibold text-primary hover:underline">
+          Sign in
+        </.link>
+      </p>
     </div>
 
-    <.form :let={f} for={@changeset} action={~p"/admin/login"}>
+    <.form :let={f} for={@changeset} action={~p"/admin/login"} class="space-y-4">
       <.input
         field={f[:email]}
         type="email"
@@ -23,10 +20,9 @@
         required
         phx-mounted={JS.focus()}
       />
-
-      <.button phx-disable-with="Creating account..." class="btn btn-primary w-full">
-        Create an account
+      <.button phx-disable-with="Creating account..." class="btn btn-primary w-full rounded-xl font-bold">
+        Create account <.icon name="hero-arrow-right" class="size-4" />
       </.button>
     </.form>
   </div>
-</Layouts.app>
+</Layouts.auth>

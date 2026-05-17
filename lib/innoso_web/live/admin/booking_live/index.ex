@@ -6,7 +6,7 @@ defmodule InnosoWeb.Admin.BookingLive.Index do
   @impl true
   def render(assigns) do
     ~H"""
-    <Layouts.admin flash={@flash} current_scope={@current_scope}>
+    <Layouts.admin flash={@flash} current_scope={@current_scope} current_path={@current_path}>
       <div class="p-8">
         <div class="mb-6">
           <h1 class="text-2xl font-bold">Bookings</h1>
@@ -96,8 +96,11 @@ defmodule InnosoWeb.Admin.BookingLive.Index do
   end
 
   @impl true
-  def handle_params(_params, _url, socket) do
-    {:noreply, assign(socket, :page_title, "Bookings")}
+  def handle_params(_params, url, socket) do
+    {:noreply,
+     socket
+     |> assign(:current_path, URI.parse(url).path)
+     |> assign(:page_title, "Bookings")}
   end
 
   @impl true

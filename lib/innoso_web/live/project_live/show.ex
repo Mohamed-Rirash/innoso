@@ -17,11 +17,17 @@ defmodule InnosoWeb.ProjectLive.Show do
           |> Enum.reject(&(&1 == "")),
         else: []
 
+    credentials =
+      (project.demo_credentials || [])
+      |> Enum.reject(fn c -> c["username"] == nil and c["password"] == nil end)
+
     {:ok,
      socket
      |> assign(:project, project)
      |> assign(:others, others)
      |> assign(:tags, tags)
+     |> assign(:credentials, credentials)
+     |> assign(:description_html, InnosoWeb.Markdown.render(project.description))
      |> assign(:page_title, project.name <> " — Innoso")}
   end
 
@@ -121,9 +127,9 @@ defmodule InnosoWeb.ProjectLive.Show do
                 <.icon name="hero-document-text" class="size-3.5" />
                 {gettext("About This Project")}
               </p>
-              <p class="text-lg text-base-content/65 leading-relaxed whitespace-pre-line">
-                {@project.description}
-              </p>
+              <div class="text-base text-base-content/65 leading-relaxed md-content">
+                <%= Phoenix.HTML.raw(@description_html) %>
+              </div>
             </div>
 
             <%!-- Technologies card — secondary glow --%>
@@ -146,7 +152,7 @@ defmodule InnosoWeb.ProjectLive.Show do
             </div>
 
             <%!-- Demo credentials card — amber glow --%>
-            <div :if={@project.demo_username} class="group relative rounded-2xl border border-black/[0.08] dark:border-white/[0.07] bg-white dark:bg-base-200 p-8 overflow-hidden transition-all duration-300 hover:border-amber-500/30 dark:hover:border-amber-500/40">
+            <div :if={@credentials != []} class="group relative rounded-2xl border border-black/[0.08] dark:border-white/[0.07] bg-white dark:bg-base-200 p-8 overflow-hidden transition-all duration-300 hover:border-amber-500/30 dark:hover:border-amber-500/40">
               <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-1/2 h-12 bg-amber-500/40 blur-2xl opacity-0 group-hover:opacity-80 transition-all duration-500 pointer-events-none"></div>
 
@@ -154,25 +160,72 @@ defmodule InnosoWeb.ProjectLive.Show do
                 <.icon name="hero-key" class="size-3.5" />
                 {gettext("Demo Credentials")}
               </p>
-              <div class="grid sm:grid-cols-2 gap-4">
-                <div class="rounded-xl border border-black/[0.07] dark:border-white/[0.08] bg-black/[0.02] dark:bg-white/[0.03] p-4">
-                  <p class="text-[10px] font-black text-base-content/40 uppercase tracking-widest mb-2">
-                    {gettext("Username")}
-                  </p>
-                  <p class="font-mono font-bold text-base-content tracking-wide">
-                    {@project.demo_username}
-                  </p>
-                </div>
+
+              <div class="space-y-4">
                 <div
-                  :if={@project.demo_password}
+                  :for={{cred, idx} <- Enum.with_index(@credentials)}
                   class="rounded-xl border border-black/[0.07] dark:border-white/[0.08] bg-black/[0.02] dark:bg-white/[0.03] p-4"
                 >
-                  <p class="text-[10px] font-black text-base-content/40 uppercase tracking-widest mb-2">
-                    {gettext("Password")}
-                  </p>
-                  <p class="font-mono font-bold text-base-content tracking-wide">
-                    {@project.demo_password}
-                  </p>
+                  <%!-- Role badge --%>
+                  <div
+                    :if={cred["role"] not in [nil, ""]}
+                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-[11px] font-black text-amber-600 dark:text-amber-400 uppercase tracking-widest mb-4"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0"></span>
+                    {cred["role"]}
+                  </div>
+
+                  <div class="grid sm:grid-cols-2 gap-3">
+                    <%!-- Username --%>
+                    <div :if={cred["username"] not in [nil, ""]} class="flex items-start justify-between gap-2">
+                      <div class="min-w-0">
+                        <p class="text-[10px] font-black text-base-content/40 uppercase tracking-widest mb-1.5">
+                          {gettext("Username")}
+                        </p>
+                        <p class="font-mono font-bold text-sm text-base-content tracking-wide truncate">
+                          {cred["username"]}
+                        </p>
+                      </div>
+                      <button
+                        id={"copy-#{idx}-username"}
+                        phx-hook="CopyText"
+                        data-copy={cred["username"]}
+                        class="w-7 h-7 rounded-lg bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.07] dark:border-white/[0.10] flex items-center justify-center hover:bg-amber-500/10 hover:border-amber-500/30 transition-all shrink-0 mt-5"
+                      >
+                        <span class="copy-normal">
+                          <.icon name="hero-clipboard-document" class="size-3.5 text-base-content/40" />
+                        </span>
+                        <span class="copy-success hidden">
+                          <.icon name="hero-check" class="size-3.5 text-amber-500" />
+                        </span>
+                      </button>
+                    </div>
+
+                    <%!-- Password --%>
+                    <div :if={cred["password"] not in [nil, ""]} class="flex items-start justify-between gap-2">
+                      <div class="min-w-0">
+                        <p class="text-[10px] font-black text-base-content/40 uppercase tracking-widest mb-1.5">
+                          {gettext("Password")}
+                        </p>
+                        <p class="font-mono font-bold text-sm text-base-content tracking-wide truncate">
+                          {cred["password"]}
+                        </p>
+                      </div>
+                      <button
+                        id={"copy-#{idx}-password"}
+                        phx-hook="CopyText"
+                        data-copy={cred["password"]}
+                        class="w-7 h-7 rounded-lg bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.07] dark:border-white/[0.10] flex items-center justify-center hover:bg-amber-500/10 hover:border-amber-500/30 transition-all shrink-0 mt-5"
+                      >
+                        <span class="copy-normal">
+                          <.icon name="hero-clipboard-document" class="size-3.5 text-base-content/40" />
+                        </span>
+                        <span class="copy-success hidden">
+                          <.icon name="hero-check" class="size-3.5 text-amber-500" />
+                        </span>
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -316,7 +369,7 @@ defmodule InnosoWeb.ProjectLive.Show do
                   {project.name}
                 </h3>
                 <p class="text-sm text-base-content/52 line-clamp-2 leading-relaxed flex-1">
-                  {project.description}
+                  {InnosoWeb.Markdown.plain_text(project.description)}
                 </p>
                 <div class="flex items-center justify-between mt-4 pt-4 border-t border-black/[0.06] dark:border-white/[0.07]">
                   <span class="text-sm font-bold text-primary flex items-center gap-1.5">

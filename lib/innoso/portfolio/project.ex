@@ -7,8 +7,7 @@ defmodule Innoso.Portfolio.Project do
     field :description, :string
     field :cover_image, :string
     field :live_url, :string
-    field :demo_username, :string
-    field :demo_password, :string
+    field :demo_credentials, {:array, :map}, default: []
     field :client_type, :string
     field :tags, :string
 
@@ -23,8 +22,7 @@ defmodule Innoso.Portfolio.Project do
       :description,
       :cover_image,
       :live_url,
-      :demo_username,
-      :demo_password,
+      :demo_credentials,
       :client_type,
       :tags
     ])
