@@ -93,6 +93,23 @@ defmodule InnosoWeb.Admin.PostLive.Index do
                       >
                         <.icon name="hero-arrow-top-right-on-square" class="size-3.5" />
                       </.link>
+                      <button
+                        :if={!Blog.published?(post)}
+                        phx-click="publish"
+                        phx-value-id={post.id}
+                        class="btn btn-xs btn-success gap-1"
+                      >
+                        <.icon name="hero-globe-alt" class="size-3.5" /> Publish
+                      </button>
+                      <button
+                        :if={Blog.published?(post)}
+                        phx-click="unpublish"
+                        phx-value-id={post.id}
+                        data-confirm="Take this post offline?"
+                        class="btn btn-xs btn-ghost text-warning gap-1"
+                      >
+                        <.icon name="hero-eye-slash" class="size-3.5" /> Unpublish
+                      </button>
                       <.link navigate={~p"/admin/blog/#{post.id}/edit"} class="btn btn-ghost btn-xs gap-1">
                         <.icon name="hero-pencil" class="size-3.5" /> Edit
                       </.link>
@@ -127,6 +144,18 @@ defmodule InnosoWeb.Admin.PostLive.Index do
   end
 
   @impl true
+  def handle_event("publish", %{"id" => id}, socket) do
+    post = Blog.get_post!(id)
+    {:ok, _} = Blog.update_post(post, %{published_at: DateTime.utc_now()})
+    {:noreply, socket |> assign(:posts, Blog.list_all_posts()) |> put_flash(:info, "\"#{post.title}\" is now live")}
+  end
+
+  def handle_event("unpublish", %{"id" => id}, socket) do
+    post = Blog.get_post!(id)
+    {:ok, _} = Blog.update_post(post, %{published_at: nil})
+    {:noreply, socket |> assign(:posts, Blog.list_all_posts()) |> put_flash(:info, "\"#{post.title}\" moved back to draft")}
+  end
+
   def handle_event("delete", %{"id" => id}, socket) do
     post = Blog.get_post!(id)
     {:ok, _} = Blog.delete_post(post)

@@ -82,7 +82,37 @@ defmodule InnosoWeb.Admin.PostLive.FormComponent do
         <.input field={@form[:excerpt]} type="textarea" label="Excerpt (optional)" rows="3"
           placeholder="Short summary shown in listing. Auto-generated from body if left blank." />
         <.input field={@form[:cover_image]} type="text" label="Cover Image URL" placeholder="https://..." />
-        <.input field={@form[:published_at]} type="datetime-local" label="Publish At (leave blank to save as draft)" />
+        <%!-- Publish date + time (separate inputs for clarity) --%>
+        <div>
+          <p class="text-sm font-semibold leading-6 text-base-content mb-1.5">
+            Publish At
+            <span class="text-xs font-normal text-base-content/40 ml-1">— leave blank to save as draft</span>
+          </p>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="text-[11px] font-bold text-base-content/45 uppercase tracking-wide mb-1 block">Date</label>
+              <input
+                type="date"
+                name="pub_date"
+                value={@pub_date}
+                class="input input-bordered w-full text-sm rounded-xl"
+              />
+            </div>
+            <div>
+              <label class="text-[11px] font-bold text-base-content/45 uppercase tracking-wide mb-1 block">Time</label>
+              <input
+                type="time"
+                name="pub_time"
+                value={@pub_time}
+                class="input input-bordered w-full text-sm rounded-xl"
+              />
+            </div>
+          </div>
+          <p class="text-[11px] text-base-content/38 mt-1.5 flex items-center gap-1">
+            <.icon name="hero-information-circle" class="size-3.5 shrink-0" />
+            Times are stored in UTC. Leave date blank to keep as draft.
+          </p>
+        </div>
 
         <.button class="btn btn-primary w-full" phx-disable-with="Saving...">Save Post</.button>
       </.form>
@@ -92,25 +122,45 @@ defmodule InnosoWeb.Admin.PostLive.FormComponent do
 
   @impl true
   def update(%{post: post} = assigns, socket) do
+    {pub_date, pub_time} = split_datetime(post.published_at)
+
     {:ok,
      socket
      |> assign(assigns)
+     |> assign(:pub_date, pub_date)
+     |> assign(:pub_time, pub_time)
      |> assign_new(:body_tab, fn -> :write end)
      |> assign_new(:body_preview, fn -> "" end)
      |> assign_new(:form, fn -> to_form(Blog.change_post(post)) end)}
   end
 
   @impl true
-  def handle_event("validate", %{"post" => params}, socket) do
-    params = maybe_autofill_slug(params, socket)
-    changeset = Blog.change_post(socket.assigns.post, params)
-    {:noreply, assign(socket, form: to_form(changeset, action: :validate))}
+  def handle_event("validate", params, socket) do
+    post_params = Map.get(params, "post", %{})
+    pub_date = Map.get(params, "pub_date", socket.assigns.pub_date)
+    pub_time = Map.get(params, "pub_time", socket.assigns.pub_time)
+
+    post_params = maybe_autofill_slug(post_params, socket)
+    changeset = Blog.change_post(socket.assigns.post, post_params)
+
+    {:noreply,
+     socket
+     |> assign(:pub_date, pub_date)
+     |> assign(:pub_time, pub_time)
+     |> assign(:form, to_form(changeset, action: :validate))}
   end
 
-  def handle_event("save", %{"post" => params}, socket) do
-    params = maybe_autofill_slug(params, socket)
-    params = normalize_published_at(params)
-    save_post(socket, socket.assigns.action, params)
+  def handle_event("save", params, socket) do
+    post_params = Map.get(params, "post", %{})
+    pub_date = Map.get(params, "pub_date", "")
+    pub_time = Map.get(params, "pub_time", "")
+
+    post_params =
+      post_params
+      |> maybe_autofill_slug(socket)
+      |> Map.put("published_at", combine_datetime(pub_date, pub_time))
+
+    save_post(socket, socket.assigns.action, post_params)
   end
 
   def handle_event("switch_tab", %{"tab" => "preview"}, socket) do
@@ -129,21 +179,20 @@ defmodule InnosoWeb.Admin.PostLive.FormComponent do
 
   defp maybe_autofill_slug(params, _socket), do: params
 
-  defp normalize_published_at(%{"published_at" => ""} = params) do
-    Map.put(params, "published_at", nil)
+  defp split_datetime(nil), do: {"", "09:00"}
+  defp split_datetime(%DateTime{} = dt) do
+    {Calendar.strftime(dt, "%Y-%m-%d"), Calendar.strftime(dt, "%H:%M")}
   end
+  defp split_datetime(_), do: {"", "09:00"}
 
-  defp normalize_published_at(%{"published_at" => dt_str} = params) when is_binary(dt_str) do
-    case NaiveDateTime.from_iso8601(dt_str <> ":00") do
-      {:ok, ndt} ->
-        Map.put(params, "published_at", DateTime.from_naive!(ndt, "Etc/UTC"))
-
-      _ ->
-        params
+  defp combine_datetime("", _), do: nil
+  defp combine_datetime(date, time) do
+    t = if time == "", do: "00:00", else: time
+    case NaiveDateTime.from_iso8601("#{date}T#{t}:00") do
+      {:ok, ndt} -> DateTime.from_naive!(ndt, "Etc/UTC")
+      _ -> nil
     end
   end
-
-  defp normalize_published_at(params), do: params
 
   defp save_post(socket, :edit, params) do
     case Blog.update_post(socket.assigns.post, params) do

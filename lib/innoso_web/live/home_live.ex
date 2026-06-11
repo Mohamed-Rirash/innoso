@@ -759,22 +759,21 @@ defmodule InnosoWeb.HomeLive do
       <section id="projects" class="px-4 sm:px-6 lg:px-8 py-24">
         <div class="max-w-7xl mx-auto">
 
-          <%!-- Header — two-column on sm+ --%>
-          <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16">
+          <%!-- Header --%>
+          <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
             <div>
               <span class="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 dark:bg-primary/15 border border-primary/20 dark:border-primary/25 px-4 py-1.5 rounded-full mb-5">
                 {gettext("Portfolio")}
               </span>
-              <h2 class="text-4xl sm:text-5xl font-black tracking-tight">
-                {gettext("Real Solutions,")}
-                <br />
+              <h2 class="text-4xl sm:text-5xl font-black tracking-tight leading-tight">
+                {gettext("Work we're")}<br />
                 <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                  {gettext("Real Impact")}
+                  {gettext("proud of.")}
                 </span>
               </h2>
             </div>
-            <p class="text-base-content/50 text-base sm:text-lg leading-relaxed max-w-xs sm:text-right sm:pb-1">
-              {gettext("Explore some of the products we've built for clients across industries and borders.")}
+            <p class="text-base-content/50 text-lg leading-relaxed max-w-xs sm:text-right sm:pb-1">
+              {gettext("Products built for clients across industries and borders.")}
             </p>
           </div>
 
@@ -784,113 +783,145 @@ defmodule InnosoWeb.HomeLive do
               <.icon name="hero-briefcase" class="size-10 text-base-content/25" />
             </div>
             <p class="text-base-content/40 font-semibold text-lg">{gettext("Projects coming soon")}</p>
-            <p class="text-base-content/28 text-sm mt-1">{gettext("Check back shortly — we're updating our portfolio.")}</p>
+            <p class="text-base-content/30 text-sm mt-1">{gettext("Check back shortly — we're updating our portfolio.")}</p>
           </div>
 
-          <%!-- Projects grid --%>
-          <div :if={@projects != []} class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div :if={@projects != []}>
+            <% [fp | rest_p] = @projects %>
+
+            <%!-- Featured first project — full-width hero card --%>
             <.link
-              :for={{project, idx} <- Enum.with_index(@projects, 1)}
-              navigate={~p"/projects/#{project.id}"}
-              class="group flex flex-col rounded-2xl border border-black/[0.08] dark:border-white/[0.07] bg-white dark:bg-base-200 overflow-hidden transition-all duration-300 hover:-translate-y-2 relative"
+              navigate={~p"/projects/#{fp.id}"}
+              class="group relative block rounded-3xl overflow-hidden mb-4 aspect-[16/7] min-h-[260px]"
             >
-              <%!-- Cover image / placeholder --%>
-              <div class="relative h-56 overflow-hidden shrink-0">
-                <img
-                  :if={project.cover_image}
-                  src={project.cover_image}
-                  alt={project.name}
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div
-                  :if={!project.cover_image}
-                  class="w-full h-full bg-gradient-to-br from-primary/12 via-primary/4 to-secondary/12 flex items-center justify-center"
-                >
-                  <.icon name="hero-briefcase" class="size-10 text-primary/20" />
+              <img
+                :if={fp.cover_image}
+                src={fp.cover_image}
+                alt={fp.name}
+                class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div
+                :if={!fp.cover_image}
+                class="absolute inset-0 bg-gradient-to-br from-primary/25 via-violet-600/20 to-secondary/25"
+              >
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <.icon name="hero-briefcase" class="size-24 text-white/10" />
                 </div>
+              </div>
 
-                <%!-- Gradient scrim --%>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent"></div>
+              <%!-- Gradient overlay --%>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+              <div class="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent"></div>
 
-                <%!-- Top-left: industry badge --%>
-                <span class="absolute top-3 left-3 text-xs font-bold uppercase tracking-wide px-2.5 py-1 rounded-lg bg-black/55 backdrop-blur-sm border border-white/[0.12] text-white/90">
-                  {project.client_type}
+              <%!-- Top badges --%>
+              <div class="absolute top-5 left-5 right-5 flex items-start justify-between">
+                <span class="text-xs font-bold uppercase tracking-wide px-3 py-1.5 rounded-full bg-black/50 backdrop-blur-sm border border-white/15 text-white/80">
+                  {fp.client_type}
                 </span>
-
-                <%!-- Top-right: status badges --%>
-                <div class="absolute top-3 right-3 flex items-center gap-1.5">
-                  <span
-                    :if={project.live_url}
-                    class="flex items-center gap-1 text-[11px] font-bold px-2 py-0.5 rounded-lg bg-emerald-500/85 backdrop-blur-sm border border-emerald-300/20 text-white"
-                  >
+                <div class="flex items-center gap-2">
+                  <span :if={fp.live_url} class="flex items-center gap-1.5 text-[11px] font-bold px-2.5 py-1 rounded-full bg-emerald-500/85 backdrop-blur-sm border border-emerald-300/20 text-white">
                     <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
                     {gettext("Live")}
                   </span>
-                  <span
-                    :if={project.demo_credentials != []}
-                    class="text-[11px] font-bold px-2 py-0.5 rounded-lg bg-amber-500/85 backdrop-blur-sm border border-amber-300/20 text-white"
-                  >
+                  <span :if={fp.demo_credentials != []} class="text-[11px] font-bold px-2.5 py-1 rounded-full bg-amber-500/85 backdrop-blur-sm border border-amber-300/20 text-white">
                     {gettext("Demo")}
                   </span>
                 </div>
-
-                <%!-- Bottom row: project number + hover arrow --%>
-                <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between">
-                  <span class="text-[11px] font-black text-white/35 tracking-widest uppercase font-mono">
-                    #{String.pad_leading(Integer.to_string(idx), 2, "0")}
-                  </span>
-                  <div class="w-7 h-7 rounded-xl bg-black/55 backdrop-blur-sm border border-white/[0.12] flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-200">
-                    <.icon name="hero-arrow-up-right" class="size-3.5 text-white" />
-                  </div>
-                </div>
               </div>
 
-              <%!-- Card body --%>
-              <div class="flex flex-col flex-1 p-5 relative">
-                <%!-- Neon bottom glow --%>
-                <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-1/2 h-12 bg-primary/40 blur-2xl opacity-0 group-hover:opacity-80 transition-all duration-500 pointer-events-none"></div>
-
-                <h3 class="font-black text-lg leading-snug mb-2 group-hover:text-primary transition-colors duration-200">
-                  {project.name}
-                </h3>
-                <p class="text-sm text-base-content/55 line-clamp-3 leading-relaxed flex-1">
-                  {InnosoWeb.Markdown.plain_text(project.description)}
+              <%!-- Bottom content --%>
+              <div class="absolute bottom-0 left-0 right-0 p-6 sm:p-10">
+                <p class="text-[10px] font-black text-white/35 uppercase tracking-[0.2em] font-mono mb-3">
+                  #01 — {gettext("Featured Project")}
                 </p>
-
-                <%!-- Tech stack tags — show up to 4, +N overflow --%>
-                <div :if={project.tags} class="flex flex-wrap gap-1.5 mt-4">
-                  <span
-                    :for={tag <- project.tags |> String.split(",") |> Enum.map(&String.trim/1) |> Enum.take(4)}
-                    class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-primary/8 dark:bg-primary/15 border border-primary/15 dark:border-primary/25 text-primary"
-                  >
-                    {tag}
-                  </span>
-                  <span
-                    :if={(project.tags |> String.split(",") |> Enum.map(&String.trim/1) |> length()) > 4}
-                    class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-base-content/[0.05] border border-base-content/10 text-base-content/40"
-                  >
-                    +{(project.tags |> String.split(",") |> Enum.map(&String.trim/1) |> length()) - 4}
-                  </span>
-                </div>
-
-                <%!-- Footer --%>
-                <div class="flex items-center justify-between mt-4 pt-4 border-t border-black/[0.06] dark:border-white/[0.08]">
-                  <span class="text-sm font-bold text-primary flex items-center gap-1.5">
-                    {gettext("View Case Study")}
-                    <.icon name="hero-arrow-right" class="size-3.5 group-hover:translate-x-0.5 transition-transform" />
-                  </span>
-                  <div class="flex items-center gap-3 text-xs text-base-content/35 font-medium">
-                    <span :if={project.live_url} class="flex items-center gap-1">
-                      <.icon name="hero-globe-alt" class="size-3.5" /> {gettext("Live")}
-                    </span>
-                    <span :if={project.demo_credentials != []} class="flex items-center gap-1">
-                      <.icon name="hero-play-circle" class="size-3.5" /> {gettext("Demo")}
+                <h3 class="text-2xl sm:text-4xl font-black text-white leading-tight mb-3">{fp.name}</h3>
+                <p class="text-white/55 text-sm sm:text-base leading-relaxed line-clamp-2 mb-5 max-w-2xl">
+                  {InnosoWeb.Markdown.plain_text(fp.description)}
+                </p>
+                <div class="flex flex-wrap items-center justify-between gap-4">
+                  <div :if={fp.tags} class="flex flex-wrap gap-1.5">
+                    <span
+                      :for={tag <- fp.tags |> String.split(",") |> Enum.map(&String.trim/1) |> Enum.take(5)}
+                      class="text-[11px] font-bold px-2.5 py-1 rounded-full bg-white/10 border border-white/15 text-white/70"
+                    >
+                      {tag}
                     </span>
                   </div>
+                  <span class="inline-flex items-center gap-2 text-sm font-black text-white/70 group-hover:text-white transition-colors">
+                    {gettext("View Case Study")}
+                    <.icon name="hero-arrow-right" class="size-4 group-hover:translate-x-1 transition-transform" />
+                  </span>
                 </div>
               </div>
             </.link>
+
+            <%!-- Remaining projects grid --%>
+            <div :if={rest_p != []} class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <.link
+                :for={{project, idx} <- Enum.with_index(rest_p, 2)}
+                navigate={~p"/projects/#{project.id}"}
+                class="group flex flex-col rounded-2xl overflow-hidden border border-black/[0.08] dark:border-white/[0.07] bg-white dark:bg-base-200 hover:-translate-y-1.5 hover:border-primary/20 dark:hover:border-primary/25 transition-all duration-300"
+              >
+                <%!-- Image --%>
+                <div class="relative aspect-video overflow-hidden shrink-0">
+                  <img
+                    :if={project.cover_image}
+                    src={project.cover_image}
+                    alt={project.name}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div
+                    :if={!project.cover_image}
+                    class="w-full h-full bg-gradient-to-br from-primary/12 via-primary/4 to-secondary/12 flex items-center justify-center"
+                  >
+                    <.icon name="hero-briefcase" class="size-8 text-primary/20" />
+                  </div>
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent"></div>
+
+                  <div class="absolute top-3 right-3 flex gap-1.5">
+                    <span :if={project.live_url} class="flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/85 backdrop-blur-sm text-white">
+                      <span class="w-1 h-1 rounded-full bg-white animate-pulse"></span>
+                      {gettext("Live")}
+                    </span>
+                    <span :if={project.demo_credentials != []} class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-500/85 backdrop-blur-sm text-white">
+                      {gettext("Demo")}
+                    </span>
+                  </div>
+
+                  <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+                    <span class="text-[10px] font-black text-white/35 font-mono tracking-widest">
+                      #{String.pad_leading(Integer.to_string(idx), 2, "0")}
+                    </span>
+                    <div class="w-7 h-7 rounded-xl bg-black/55 backdrop-blur-sm border border-white/15 flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-200">
+                      <.icon name="hero-arrow-up-right" class="size-3.5 text-white" />
+                    </div>
+                  </div>
+                </div>
+
+                <%!-- Body --%>
+                <div class="flex flex-col flex-1 p-5">
+                  <span class="text-[10px] font-black text-base-content/30 uppercase tracking-widest mb-2">{project.client_type}</span>
+                  <h3 class="font-black text-base leading-snug mb-2 group-hover:text-primary transition-colors duration-200">{project.name}</h3>
+                  <p class="text-sm text-base-content/52 leading-relaxed line-clamp-2 flex-1 mb-4">
+                    {InnosoWeb.Markdown.plain_text(project.description)}
+                  </p>
+                  <div :if={project.tags} class="flex flex-wrap gap-1.5">
+                    <span
+                      :for={tag <- project.tags |> String.split(",") |> Enum.map(&String.trim/1) |> Enum.take(3)}
+                      class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-primary/8 dark:bg-primary/12 border border-primary/12 dark:border-primary/20 text-primary"
+                    >
+                      {tag}
+                    </span>
+                    <span
+                      :if={(project.tags |> String.split(",") |> Enum.map(&String.trim/1) |> length()) > 3}
+                      class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-base-content/[0.04] border border-base-content/[0.08] text-base-content/35"
+                    >
+                      +{(project.tags |> String.split(",") |> Enum.map(&String.trim/1) |> length()) - 3}
+                    </span>
+                  </div>
+                </div>
+              </.link>
+            </div>
           </div>
         </div>
       </section>
@@ -900,17 +931,19 @@ defmodule InnosoWeb.HomeLive do
         <div class="max-w-7xl mx-auto">
 
           <%!-- Header --%>
-          <div class="text-center mb-16">
-            <span class="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 dark:bg-primary/15 border border-primary/20 dark:border-primary/25 px-4 py-1.5 rounded-full mb-5">
-              {gettext("The Team")}
-            </span>
-            <h2 class="text-4xl sm:text-5xl font-black tracking-tight mb-5">
-              {gettext("Meet the")}
-              <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                {gettext("Builders")}
+          <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
+            <div>
+              <span class="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 dark:bg-primary/15 border border-primary/20 dark:border-primary/25 px-4 py-1.5 rounded-full mb-5">
+                {gettext("The Team")}
               </span>
-            </h2>
-            <p class="text-base-content/50 max-w-lg mx-auto text-lg leading-relaxed">
+              <h2 class="text-4xl sm:text-5xl font-black tracking-tight leading-tight">
+                {gettext("The people")}<br />
+                <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                  {gettext("behind the work.")}
+                </span>
+              </h2>
+            </div>
+            <p class="text-base-content/50 text-lg leading-relaxed max-w-xs sm:text-right sm:pb-1">
               {gettext("Talented developers who pour creativity and expertise into every project.")}
             </p>
           </div>
@@ -923,111 +956,65 @@ defmodule InnosoWeb.HomeLive do
             <p class="text-base-content/40 font-semibold text-lg">{gettext("Team profiles coming soon")}</p>
           </div>
 
-          <%!-- Team grid — profile cards --%>
-          <div :if={@members != []} class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+          <%!-- Horizontal member cards — 2-col grid --%>
+          <div :if={@members != []} class="grid sm:grid-cols-2 gap-3">
             <.link
-              :for={{member, idx} <- Enum.with_index(@members, 1)}
+              :for={member <- @members}
               navigate={~p"/team/#{member.id}"}
               id={"member-#{member.id}"}
-              class="group flex flex-col rounded-2xl overflow-hidden border border-black/[0.08] dark:border-white/[0.07] bg-white dark:bg-base-200 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/8 hover:border-primary/20 dark:hover:border-primary/30"
+              class="group flex items-start gap-5 p-5 rounded-2xl border border-black/[0.08] dark:border-white/[0.07] bg-white dark:bg-base-200 hover:-translate-y-1 hover:border-primary/25 dark:hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
             >
-              <%!-- Photo section --%>
-              <div class="relative h-56 overflow-hidden shrink-0">
-                <img
-                  :if={member.photo}
-                  src={member.photo}
-                  alt={member.name}
-                  class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
-                />
-                <div
-                  :if={!member.photo}
-                  class="w-full h-full bg-gradient-to-br from-primary/15 via-secondary/8 to-base-300 dark:to-base-300 flex items-center justify-center"
-                >
-                  <span class="text-7xl font-black text-primary/20 select-none leading-none">
-                    {member.name |> String.split(" ") |> Enum.map(&String.first/1) |> Enum.take(2) |> Enum.join()}
-                  </span>
-                </div>
-
-                <%!-- Gradient scrim into card body --%>
-                <div class="absolute inset-0 bg-gradient-to-t from-white dark:from-base-200 via-transparent to-transparent opacity-60"></div>
-
-                <%!-- Member number — top right --%>
-                <div class="absolute top-3 right-3 w-7 h-7 rounded-xl bg-black/40 backdrop-blur-sm border border-white/[0.12] flex items-center justify-center">
-                  <span class="text-[10px] font-black text-white/50">#{idx}</span>
+              <%!-- Avatar --%>
+              <div class="shrink-0">
+                <div class="w-[72px] h-[72px] rounded-2xl overflow-hidden border border-black/[0.08] dark:border-white/[0.08] shadow-sm group-hover:scale-105 transition-transform duration-300">
+                  <img
+                    :if={member.photo}
+                    src={member.photo}
+                    alt={member.name}
+                    class="w-full h-full object-cover object-top"
+                  />
+                  <div
+                    :if={!member.photo}
+                    class="w-full h-full bg-gradient-to-br from-primary/20 via-violet-500/12 to-secondary/15 flex items-center justify-center"
+                  >
+                    <span class="text-2xl font-black text-primary/50 select-none leading-none">
+                      {member.name |> String.split(" ") |> Enum.map(&String.first/1) |> Enum.take(2) |> Enum.join()}
+                    </span>
+                  </div>
                 </div>
               </div>
 
-              <%!-- Info section --%>
-              <div class="flex flex-col flex-1 px-5 pb-5 pt-3 relative">
-                <%!-- Neon bottom glow --%>
-                <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-1/2 h-10 bg-primary/30 blur-2xl opacity-0 group-hover:opacity-80 transition-all duration-500 pointer-events-none"></div>
-
-                <%!-- Name + role --%>
-                <h3 class="font-black text-base leading-snug group-hover:text-primary transition-colors duration-200">
-                  {member.name}
-                </h3>
-                <div class="flex items-center gap-1.5 mt-1 mb-3">
-                  <span class="w-1 h-1 rounded-full bg-primary/60 group-hover:bg-primary transition-colors shrink-0"></span>
-                  <p class="text-xs font-bold text-primary/70 uppercase tracking-wide">{member.role}</p>
+              <%!-- Content --%>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-start justify-between gap-2 mb-0.5">
+                  <h3 class="font-black text-base leading-snug group-hover:text-primary transition-colors duration-200">
+                    {member.name}
+                  </h3>
+                  <.icon name="hero-arrow-up-right" class="size-4 text-base-content/20 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200 shrink-0 mt-0.5" />
                 </div>
 
-                <%!-- Bio --%>
-                <p :if={member.bio} class="text-sm text-base-content/55 leading-relaxed line-clamp-3 flex-1">
+                <p class="text-xs font-bold text-primary/65 uppercase tracking-wide mb-2.5">{member.role}</p>
+
+                <p :if={member.bio} class="text-sm text-base-content/50 leading-relaxed line-clamp-2 mb-3">
                   {member.bio}
                 </p>
-                <div :if={!member.bio} class="flex-1"></div>
 
-                <%!-- Skills --%>
-                <div :if={member.skills} class="flex flex-wrap gap-1.5 mt-4">
+                <div :if={member.skills} class="flex flex-wrap gap-1.5">
                   <span
-                    :for={skill <- member.skills |> String.split(",") |> Enum.map(&String.trim/1) |> Enum.reject(&(&1 == "")) |> Enum.take(5)}
-                    class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-primary/8 dark:bg-primary/12 border border-primary/15 dark:border-primary/20 text-primary"
+                    :for={skill <- member.skills |> String.split(",") |> Enum.map(&String.trim/1) |> Enum.reject(&(&1 == "")) |> Enum.take(4)}
+                    class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-primary/8 dark:bg-primary/12 border border-primary/12 dark:border-primary/18 text-primary"
                   >
                     {skill}
                   </span>
                   <span
-                    :if={(member.skills |> String.split(",") |> Enum.map(&String.trim/1) |> Enum.reject(&(&1 == "")) |> length()) > 5}
-                    class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-base-content/[0.05] border border-base-content/10 text-base-content/40"
+                    :if={(member.skills |> String.split(",") |> Enum.map(&String.trim/1) |> Enum.reject(&(&1 == "")) |> length()) > 4}
+                    class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-base-content/[0.04] border border-base-content/[0.08] text-base-content/35"
                   >
-                    +{(member.skills |> String.split(",") |> Enum.map(&String.trim/1) |> Enum.reject(&(&1 == "")) |> length()) - 5}
+                    +{(member.skills |> String.split(",") |> Enum.map(&String.trim/1) |> Enum.reject(&(&1 == "")) |> length()) - 4}
                   </span>
                 </div>
               </div>
             </.link>
-          </div>
-
-          <%!-- Stats strip --%>
-          <div :if={@members != []} class="mt-14 pt-10 border-t border-black/[0.06] dark:border-white/[0.07] flex flex-wrap items-center justify-center gap-10 sm:gap-16">
-            <div class="text-center">
-              <div class="text-3xl sm:text-4xl font-black bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent leading-none">
-                {length(@members)}
-              </div>
-              <div class="text-[10px] font-black text-base-content/40 uppercase tracking-widest mt-2">
-                {gettext("Team Members")}
-              </div>
-            </div>
-            <div class="w-px h-10 bg-black/[0.07] dark:bg-white/[0.07] hidden sm:block"></div>
-            <div class="text-center">
-              <div class="text-3xl sm:text-4xl font-black bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent leading-none">100%</div>
-              <div class="text-[10px] font-black text-base-content/40 uppercase tracking-widest mt-2">
-                {gettext("Remote-Ready")}
-              </div>
-            </div>
-            <div class="w-px h-10 bg-black/[0.07] dark:bg-white/[0.07] hidden sm:block"></div>
-            <div class="text-center">
-              <div class="text-3xl sm:text-4xl font-black bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent leading-none">24/7</div>
-              <div class="text-[10px] font-black text-base-content/40 uppercase tracking-widest mt-2">
-                {gettext("Support")}
-              </div>
-            </div>
-            <div class="w-px h-10 bg-black/[0.07] dark:bg-white/[0.07] hidden sm:block"></div>
-            <div class="text-center">
-              <div class="text-3xl sm:text-4xl font-black bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent leading-none">5+</div>
-              <div class="text-[10px] font-black text-base-content/40 uppercase tracking-widest mt-2">
-                {gettext("Countries")}
-              </div>
-            </div>
           </div>
         </div>
       </section>
