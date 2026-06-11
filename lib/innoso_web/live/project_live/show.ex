@@ -28,7 +28,8 @@ defmodule InnosoWeb.ProjectLive.Show do
      |> assign(:tags, tags)
      |> assign(:credentials, credentials)
      |> assign(:description_html, InnosoWeb.Markdown.render(project.description))
-     |> assign(:page_title, project.name <> " — Innoso")}
+     |> assign(:page_title, project.name <> " — Innoso")
+     |> assign(:page_description, project.description |> InnosoWeb.Markdown.plain_text() |> String.slice(0, 160))}
   end
 
   @impl true

@@ -26,7 +26,8 @@ defmodule InnosoWeb.HomeLive do
      |> assign(:selected_date, first_available_date(slots))
      |> assign(:booking_form, to_form(%{}, as: :booking))
      |> assign(:mobile_menu_open, false)
-     |> assign(:page_title, "Innoso — Modern Tech Solutions")}
+     |> assign(:page_title, "Innoso — Modern Tech Solutions")
+     |> assign(:page_description, "Innoso is a collective of passionate young developers creating world-class software for businesses, governments, and individuals — built with craftsmanship, delivered with care.")}
   end
 
   defp services() do
@@ -366,6 +367,12 @@ defmodule InnosoWeb.HomeLive do
                   <span class="absolute bottom-0.5 inset-x-4 h-0.5 bg-gradient-to-r from-primary to-secondary rounded-full scale-x-0 group-hover:scale-x-100 transition-transform origin-center duration-200"></span>
                 </a>
               </li>
+              <li>
+                <.link navigate={~p"/blog"} class="relative px-4 py-2 text-sm font-semibold text-base-content/60 hover:text-base-content transition-colors group">
+                  {gettext("Blog")}
+                  <span class="absolute bottom-0.5 inset-x-4 h-0.5 bg-gradient-to-r from-primary to-secondary rounded-full scale-x-0 group-hover:scale-x-100 transition-transform origin-center duration-200"></span>
+                </.link>
+              </li>
             </ul>
 
             <div class="flex items-center gap-2 ml-auto md:ml-0">
@@ -409,6 +416,9 @@ defmodule InnosoWeb.HomeLive do
             <a href="#team" phx-click="close_menu" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-base-content/65 hover:text-base-content hover:bg-black/[0.04] dark:hover:bg-white/[0.06] transition-colors">
               <.icon name="hero-users" class="size-4 text-primary" /> {gettext("Team")}
             </a>
+            <.link navigate={~p"/blog"} phx-click="close_menu" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-base-content/65 hover:text-base-content hover:bg-black/[0.04] dark:hover:bg-white/[0.06] transition-colors">
+              <.icon name="hero-pencil-square" class="size-4 text-primary" /> {gettext("Blog")}
+            </.link>
             <div class="pt-2 border-t border-black/[0.06] dark:border-white/[0.08]">
               <a href="#booking" phx-click="close_menu" class="btn w-full rounded-xl font-bold bg-gradient-to-r from-primary to-secondary text-white border-0 shadow-lg shadow-primary/20 gap-2">
                 {gettext("Book a Free Call")} <.icon name="hero-arrow-right" class="size-4" />
@@ -915,10 +925,11 @@ defmodule InnosoWeb.HomeLive do
 
           <%!-- Team grid — profile cards --%>
           <div :if={@members != []} class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-            <div
+            <.link
               :for={{member, idx} <- Enum.with_index(@members, 1)}
+              navigate={~p"/team/#{member.id}"}
               id={"member-#{member.id}"}
-              class="group flex flex-col rounded-2xl overflow-hidden border border-black/[0.08] dark:border-white/[0.07] bg-white dark:bg-base-200 cursor-default transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/8 hover:border-primary/20 dark:hover:border-primary/30"
+              class="group flex flex-col rounded-2xl overflow-hidden border border-black/[0.08] dark:border-white/[0.07] bg-white dark:bg-base-200 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/8 hover:border-primary/20 dark:hover:border-primary/30"
             >
               <%!-- Photo section --%>
               <div class="relative h-56 overflow-hidden shrink-0">
@@ -983,7 +994,7 @@ defmodule InnosoWeb.HomeLive do
                   </span>
                 </div>
               </div>
-            </div>
+            </.link>
           </div>
 
           <%!-- Stats strip --%>

@@ -29,6 +29,9 @@ defmodule InnosoWeb.Router do
       on_mount: [{InnosoWeb.LiveLocale, :default}] do
       live "/", HomeLive
       live "/projects/:id", ProjectLive.Show, :show
+      live "/team/:id", TeamLive.Show, :show
+      live "/blog", BlogLive.Index, :index
+      live "/blog/:slug", BlogLive.Show, :show
     end
 
     get "/locale/:locale", LocaleController, :set
@@ -71,6 +74,12 @@ defmodule InnosoWeb.Router do
 
       live "/bookings", Admin.BookingLive.Index, :index
       live "/bookings/:id", Admin.BookingLive.Show, :show
+
+      live "/blog", Admin.PostLive.Index, :index
+      live "/blog/new", Admin.PostLive.Index, :new
+      live "/blog/:id/edit", Admin.PostLive.Index, :edit
+
+      live "/scheduling", Admin.SchedulingLive.Index, :index
 
       live "/admins", Admin.AdminUserLive.Index, :index
       live "/admins/new", Admin.AdminUserLive.Index, :new

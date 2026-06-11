@@ -90,12 +90,14 @@ defmodule InnosoWeb.Admin.BookingLive.Show do
   @impl true
   def handle_event("confirm", _params, socket) do
     {:ok, booking} = Bookings.confirm_booking(socket.assigns.booking)
-    {:noreply, socket |> put_flash(:info, "Booking confirmed") |> assign(:booking, booking)}
+    Innoso.Bookings.BookingNotifier.deliver_confirmed(booking)
+    {:noreply, socket |> put_flash(:info, "Booking confirmed — email sent to #{booking.email}") |> assign(:booking, booking)}
   end
 
   def handle_event("cancel", _params, socket) do
     {:ok, booking} = Bookings.cancel_booking(socket.assigns.booking)
-    {:noreply, socket |> put_flash(:info, "Booking cancelled") |> assign(:booking, booking)}
+    Innoso.Bookings.BookingNotifier.deliver_cancelled(booking)
+    {:noreply, socket |> put_flash(:info, "Booking cancelled — #{booking.name} has been notified") |> assign(:booking, booking)}
   end
 
   defp format_time(%Time{hour: h, minute: m}) do

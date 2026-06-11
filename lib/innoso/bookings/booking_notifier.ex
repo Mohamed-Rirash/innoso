@@ -33,6 +33,56 @@ defmodule Innoso.Bookings.BookingNotifier do
     Mailer.deliver(email)
   end
 
+  def deliver_confirmed(booking) do
+    email =
+      new()
+      |> to({booking.name, booking.email})
+      |> from({"Innoso", "noreply@innoso.com"})
+      |> subject("Your meeting is confirmed — Innoso")
+      |> text_body("""
+      Hi #{booking.name},
+
+      Great news! Your meeting with the Innoso team is confirmed.
+
+        Date: #{Calendar.strftime(booking.requested_date, "%B %d, %Y")}
+        Time: #{format_time(booking.requested_time)}
+
+      We're looking forward to speaking with you. See you then!
+
+      If you need to reschedule, reply to this email and we'll sort it out.
+
+      Best regards,
+      The Innoso Team
+      codesavvylabs@gmail.com
+      """)
+
+    Mailer.deliver(email)
+  end
+
+  def deliver_cancelled(booking) do
+    email =
+      new()
+      |> to({booking.name, booking.email})
+      |> from({"Innoso", "noreply@innoso.com"})
+      |> subject("Meeting update — Innoso")
+      |> text_body("""
+      Hi #{booking.name},
+
+      We're sorry, but we've had to cancel your meeting request for:
+
+        Date: #{Calendar.strftime(booking.requested_date, "%B %d, %Y")}
+        Time: #{format_time(booking.requested_time)}
+
+      Please feel free to book a new slot — we'd love to connect at another time.
+
+      Best regards,
+      The Innoso Team
+      codesavvylabs@gmail.com
+      """)
+
+    Mailer.deliver(email)
+  end
+
   defp format_time(%Time{hour: h, minute: m}) do
     period = if h >= 12, do: "PM", else: "AM"
     display_hour = if h > 12, do: h - 12, else: if(h == 0, do: 12, else: h)

@@ -100,6 +100,20 @@ defmodule InnosoWeb.Layouts do
             Bookings
           </.admin_nav_link>
           <.admin_nav_link
+            path={~p"/admin/blog"}
+            current_path={@current_path}
+            icon="hero-pencil-square"
+          >
+            Blog
+          </.admin_nav_link>
+          <.admin_nav_link
+            path={~p"/admin/scheduling"}
+            current_path={@current_path}
+            icon="hero-clock"
+          >
+            Scheduling
+          </.admin_nav_link>
+          <.admin_nav_link
             path={~p"/admin/admins"}
             current_path={@current_path}
             icon="hero-shield-check"
