@@ -9,10 +9,23 @@ defmodule InnosoWeb.HomeLive do
   @impl true
   def mount(_params, _session, socket) do
     slots = if connected?(socket), do: Scheduling.available_slots_for_weeks(3), else: []
+    projects = Portfolio.list_projects()
+
+    all_tags =
+      projects
+      |> Enum.flat_map(fn p ->
+        if p.tags,
+          do: p.tags |> String.split(",") |> Enum.map(&String.trim/1) |> Enum.reject(&(&1 == "")),
+          else: []
+      end)
+      |> Enum.uniq()
+      |> Enum.sort()
 
     {:ok,
      socket
-     |> assign(:projects, Portfolio.list_projects())
+     |> assign(:projects, projects)
+     |> assign(:all_tags, all_tags)
+     |> assign(:filter_tag, nil)
      |> assign(:members, Team.list_members())
      |> assign(:slots, slots)
      |> assign(:services, services())
@@ -759,24 +772,6 @@ defmodule InnosoWeb.HomeLive do
       <section id="projects" class="px-4 sm:px-6 lg:px-8 py-24">
         <div class="max-w-6xl mx-auto">
 
-          <%!-- Header --%>
-          <div class="mb-14">
-            <span class="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 dark:bg-primary/15 border border-primary/20 dark:border-primary/25 px-4 py-1.5 rounded-full mb-5">
-              {gettext("Portfolio")}
-            </span>
-            <div class="flex items-end justify-between gap-6">
-              <h2 class="text-4xl sm:text-5xl font-black tracking-tight">
-                {gettext("Selected")}<br />
-                <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                  {gettext("Projects")}
-                </span>
-              </h2>
-              <p class="hidden sm:block text-base-content/45 text-base leading-relaxed max-w-xs text-right pb-1">
-                {gettext("A few things we've built for clients across industries.")}
-              </p>
-            </div>
-          </div>
-
           <%!-- Empty state --%>
           <div :if={@projects == []} class="text-center py-24">
             <div class="w-20 h-20 rounded-2xl bg-white dark:bg-base-200 border border-black/[0.08] dark:border-white/[0.07] flex items-center justify-center mx-auto mb-5">
@@ -787,121 +782,207 @@ defmodule InnosoWeb.HomeLive do
           </div>
 
           <div :if={@projects != []}>
-            <% [fp | rest_p] = @projects %>
+            <% [fp | _] = @projects %>
 
-            <%!-- Featured project — horizontal card (hadliye style) --%>
-            <.link
-              navigate={~p"/projects/#{fp.id}"}
-              class="group flex flex-col md:flex-row rounded-2xl overflow-hidden border border-black/[0.08] dark:border-white/[0.07] bg-white dark:bg-base-200 mb-4 hover:border-primary/30 dark:hover:border-primary/30 hover:shadow-xl hover:shadow-primary/8 transition-all duration-300"
-            >
-              <%!-- Image — left half --%>
-              <div class="md:w-1/2 relative overflow-hidden aspect-video md:aspect-auto md:min-h-[320px] shrink-0">
-                <img
-                  :if={fp.cover_image}
-                  src={fp.cover_image}
-                  alt={fp.name}
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div
-                  :if={!fp.cover_image}
-                  class="w-full h-full bg-gradient-to-br from-primary/20 via-violet-600/15 to-secondary/20 flex items-center justify-center"
-                >
-                  <.icon name="hero-briefcase" class="size-16 text-primary/20" />
-                </div>
-                <div class="absolute top-4 left-4 flex gap-2">
-                  <span :if={fp.live_url} class="flex items-center gap-1.5 text-[11px] font-bold px-2.5 py-1 rounded-full bg-emerald-500 text-white shadow-lg">
-                    <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
-                    {gettext("Live")}
-                  </span>
-                  <span :if={fp.demo_credentials != []} class="text-[11px] font-bold px-2.5 py-1 rounded-full bg-amber-500 text-white shadow-lg">
-                    {gettext("Demo")}
-                  </span>
-                </div>
+            <%!-- ── FEATURED PROJECT ── --%>
+            <div class="mb-20">
+              <div class="mb-8">
+                <h2 class="text-3xl sm:text-4xl font-black tracking-tight">
+                  {gettext("Featured")}
+                  <span class="text-primary">{" "}{gettext("Project")}</span>
+                </h2>
+                <p class="text-base-content/40 text-sm mt-1">{gettext("Flagship work on the modern tech stack")}</p>
               </div>
 
-              <%!-- Content — right half --%>
-              <div class="md:w-1/2 p-8 sm:p-10 flex flex-col justify-center">
-                <div class="flex items-center gap-3 mb-4">
-                  <span class="text-[10px] font-black text-primary/60 uppercase tracking-[0.18em]">
-                    01 — {gettext("Featured")}
-                  </span>
-                  <span class="h-px flex-1 bg-black/[0.07] dark:bg-white/[0.07]"></span>
-                  <span class="text-xs font-bold text-base-content/35 capitalize">{fp.client_type}</span>
-                </div>
-                <h3 class="text-2xl sm:text-3xl font-black mb-4 leading-snug group-hover:text-primary transition-colors duration-200">
-                  {fp.name}
-                </h3>
-                <p class="text-base-content/55 leading-relaxed mb-6 line-clamp-3">
-                  {InnosoWeb.Markdown.plain_text(fp.description)}
-                </p>
-                <div :if={fp.tags} class="flex flex-wrap gap-2 mb-8">
-                  <span
-                    :for={tag <- fp.tags |> String.split(",") |> Enum.map(&String.trim/1) |> Enum.take(5)}
-                    class="text-xs font-semibold px-3 py-1 rounded-full border border-base-content/[0.10] dark:border-white/[0.10] text-base-content/55"
-                  >
-                    {tag}
-                  </span>
-                </div>
-                <span class="inline-flex items-center gap-2 font-bold text-primary text-sm group-hover:gap-3 transition-all">
-                  {gettext("View Case Study")}
-                  <.icon name="hero-arrow-right" class="size-4" />
-                </span>
-              </div>
-            </.link>
-
-            <%!-- Remaining projects — clean grid --%>
-            <div :if={rest_p != []} class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               <.link
-                :for={{project, idx} <- Enum.with_index(rest_p, 2)}
-                navigate={~p"/projects/#{project.id}"}
-                class="group flex flex-col rounded-2xl overflow-hidden border border-black/[0.08] dark:border-white/[0.07] bg-white dark:bg-base-200 hover:border-primary/25 dark:hover:border-primary/25 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-300"
+                navigate={~p"/projects/#{fp.id}"}
+                class="group flex flex-col md:flex-row rounded-2xl overflow-hidden border border-black/[0.08] dark:border-white/[0.08] bg-gray-950 dark:bg-gray-950 hover:border-primary/40 transition-all duration-300 shadow-xl shadow-black/20"
               >
-                <div class="relative aspect-video overflow-hidden shrink-0">
+                <%!-- Image --%>
+                <div class="md:w-[45%] relative overflow-hidden aspect-video md:aspect-auto md:min-h-[300px] shrink-0">
                   <img
-                    :if={project.cover_image}
-                    src={project.cover_image}
-                    alt={project.name}
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    :if={fp.cover_image}
+                    src={fp.cover_image}
+                    alt={fp.name}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                   <div
-                    :if={!project.cover_image}
-                    class="w-full h-full bg-gradient-to-br from-primary/10 via-primary/4 to-secondary/10 flex items-center justify-center"
+                    :if={!fp.cover_image}
+                    class="w-full h-full bg-gradient-to-br from-primary/30 via-violet-900/50 to-secondary/25 flex items-center justify-center"
                   >
-                    <.icon name="hero-briefcase" class="size-10 text-primary/20" />
+                    <.icon name="hero-briefcase" class="size-16 text-white/15" />
                   </div>
-                  <div class="absolute top-3 right-3 flex gap-1.5">
-                    <span :if={project.live_url} class="flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500 text-white">
+                  <%!-- FEATURED badge --%>
+                  <span class="absolute top-4 left-4 text-[10px] font-black uppercase tracking-[0.15em] px-3 py-1.5 rounded-full bg-primary text-white shadow-lg shadow-primary/30">
+                    {gettext("Featured")}
+                  </span>
+                  <%!-- Live/Demo badges --%>
+                  <div class="absolute top-4 right-4 flex gap-1.5">
+                    <span :if={fp.live_url} class="flex items-center gap-1.5 text-[10px] font-bold px-2 py-1 rounded-full bg-emerald-500 text-white">
                       <span class="w-1 h-1 rounded-full bg-white animate-pulse"></span>
                       {gettext("Live")}
                     </span>
-                    <span :if={project.demo_credentials != []} class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-500 text-white">
+                    <span :if={fp.demo_credentials != []} class="text-[10px] font-bold px-2 py-1 rounded-full bg-amber-500 text-white">
                       {gettext("Demo")}
                     </span>
                   </div>
-                  <span class="absolute bottom-3 left-3 text-[10px] font-black text-white/50 font-mono bg-black/40 backdrop-blur-sm px-2 py-0.5 rounded-lg">
-                    {String.pad_leading(Integer.to_string(idx), 2, "0")}
-                  </span>
                 </div>
 
-                <div class="flex flex-col flex-1 p-5">
-                  <span class="text-[10px] font-black text-base-content/30 uppercase tracking-widest mb-2 capitalize">{project.client_type}</span>
-                  <h3 class="font-black text-base leading-snug mb-2 group-hover:text-primary transition-colors">{project.name}</h3>
-                  <p class="text-sm text-base-content/50 leading-relaxed line-clamp-2 flex-1 mb-4">
-                    {InnosoWeb.Markdown.plain_text(project.description)}
+                <%!-- Content --%>
+                <div class="md:w-[55%] p-8 sm:p-10 flex flex-col justify-center">
+                  <%!-- Tech stack subtitle --%>
+                  <div :if={fp.tags} class="flex flex-wrap items-center gap-1.5 text-xs font-bold text-white/40 mb-5">
+                    <span :for={{tag, i} <- fp.tags |> String.split(",") |> Enum.map(&String.trim/1) |> Enum.take(4) |> Enum.with_index()}>
+                      <span :if={i > 0} class="mx-1 text-white/20">·</span>{tag}
+                    </span>
+                  </div>
+
+                  <h3 class="text-2xl sm:text-3xl font-black text-white mb-4 leading-snug group-hover:text-primary transition-colors duration-200">
+                    {fp.name}
+                  </h3>
+
+                  <p class="text-white/50 leading-relaxed mb-7 line-clamp-4 text-sm">
+                    {InnosoWeb.Markdown.plain_text(fp.description)}
                   </p>
-                  <div class="flex items-center justify-between pt-4 border-t border-black/[0.06] dark:border-white/[0.06]">
-                    <div :if={project.tags} class="flex flex-wrap gap-1.5">
+
+                  <div :if={fp.tags} class="flex flex-wrap gap-2 mb-8">
+                    <span
+                      :for={tag <- fp.tags |> String.split(",") |> Enum.map(&String.trim/1) |> Enum.take(6)}
+                      class="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-white/[0.08] border border-white/[0.10] text-white/55 hover:border-primary/40 hover:text-primary transition-colors"
+                    >
+                      {tag}
+                    </span>
+                  </div>
+
+                  <span class="inline-flex items-center gap-2 font-bold text-primary text-sm group-hover:gap-3 transition-all w-fit px-5 py-2.5 rounded-xl bg-primary/15 border border-primary/25 hover:bg-primary/20">
+                    <.icon name="hero-globe-alt" class="size-4" />
+                    {gettext("View Case Study")}
+                  </span>
+                </div>
+              </.link>
+            </div>
+
+            <%!-- ── ALL PROJECTS ── --%>
+            <div>
+              <div class="mb-8">
+                <h2 class="text-3xl sm:text-4xl font-black tracking-tight">
+                  {gettext("All")}
+                  <span class="text-primary">{" "}{gettext("Projects")}</span>
+                </h2>
+                <p class="text-base-content/40 text-sm mt-1">{gettext("Software solutions across industries and borders")}</p>
+              </div>
+
+              <%!-- Tag filter pills --%>
+              <div :if={@all_tags != []} class="flex flex-wrap gap-2 mb-8">
+                <button
+                  phx-click="filter_tag"
+                  phx-value-tag=""
+                  class={[
+                    "text-xs font-bold px-4 py-1.5 rounded-full border transition-all",
+                    is_nil(@filter_tag) && "bg-primary text-white border-primary shadow-sm shadow-primary/25",
+                    !is_nil(@filter_tag) && "border-black/[0.10] dark:border-white/[0.10] text-base-content/55 hover:border-primary/40 hover:text-primary"
+                  ]}
+                >
+                  {gettext("All")}
+                </button>
+                <button
+                  :for={tag <- @all_tags}
+                  phx-click="filter_tag"
+                  phx-value-tag={tag}
+                  class={[
+                    "text-xs font-bold px-4 py-1.5 rounded-full border transition-all",
+                    @filter_tag == tag && "bg-primary text-white border-primary shadow-sm shadow-primary/25",
+                    @filter_tag != tag && "border-black/[0.10] dark:border-white/[0.10] text-base-content/55 hover:border-primary/40 hover:text-primary"
+                  ]}
+                >
+                  {tag}
+                </button>
+              </div>
+
+              <%!-- Filtered projects grid --%>
+              <%
+                display_projects = if @filter_tag do
+                  Enum.filter(@projects, fn p ->
+                    @filter_tag in (if p.tags,
+                      do: p.tags |> String.split(",") |> Enum.map(&String.trim/1),
+                      else: [])
+                  end)
+                else
+                  @projects
+                end
+              %>
+
+              <div :if={display_projects == []} class="text-center py-16">
+                <p class="text-base-content/40 font-semibold">{gettext("No projects match this filter.")}</p>
+                <button phx-click="filter_tag" phx-value-tag="" class="mt-3 text-sm text-primary font-bold hover:underline">
+                  {gettext("Clear filter")}
+                </button>
+              </div>
+
+              <div :if={display_projects != []} class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                <.link
+                  :for={project <- display_projects}
+                  navigate={~p"/projects/#{project.id}"}
+                  class="group flex flex-col rounded-2xl overflow-hidden border border-black/[0.08] dark:border-white/[0.07] bg-white dark:bg-base-200 hover:border-primary/25 dark:hover:border-primary/25 hover:shadow-lg hover:shadow-primary/6 hover:-translate-y-1 transition-all duration-300"
+                >
+                  <%!-- Cover image --%>
+                  <div class="relative aspect-video overflow-hidden shrink-0 bg-base-200 dark:bg-base-300">
+                    <img
+                      :if={project.cover_image}
+                      src={project.cover_image}
+                      alt={project.name}
+                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div
+                      :if={!project.cover_image}
+                      class="w-full h-full bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center"
+                    >
+                      <.icon name="hero-briefcase" class="size-10 text-primary/20" />
+                    </div>
+                    <div class="absolute top-3 right-3 flex gap-1.5">
+                      <span :if={project.live_url} class="flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500 text-white">
+                        <span class="w-1 h-1 rounded-full bg-white animate-pulse"></span>
+                        {gettext("Live")}
+                      </span>
+                      <span :if={project.demo_credentials != []} class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-500 text-white">
+                        {gettext("Demo")}
+                      </span>
+                    </div>
+                  </div>
+
+                  <%!-- Card body --%>
+                  <div class="flex flex-col flex-1 p-5">
+                    <h3 class="font-black text-base leading-snug mb-2 group-hover:text-primary transition-colors">{project.name}</h3>
+                    <p class="text-sm text-base-content/50 leading-relaxed line-clamp-2 flex-1 mb-4">
+                      {InnosoWeb.Markdown.plain_text(project.description)}
+                    </p>
+                    <div :if={project.tags} class="flex flex-wrap gap-1.5 mb-4">
                       <span
-                        :for={tag <- project.tags |> String.split(",") |> Enum.map(&String.trim/1) |> Enum.take(3)}
-                        class="text-[10px] font-semibold px-2.5 py-0.5 rounded-full border border-base-content/[0.09] dark:border-white/[0.09] text-base-content/45"
+                        :for={tag <- project.tags |> String.split(",") |> Enum.map(&String.trim/1) |> Enum.take(4)}
+                        class={[
+                          "text-[10px] font-semibold px-2.5 py-0.5 rounded-full border transition-colors",
+                          @filter_tag == tag && "bg-primary/12 dark:bg-primary/15 border-primary/25 text-primary",
+                          @filter_tag != tag && "border-black/[0.09] dark:border-white/[0.09] text-base-content/45"
+                        ]}
                       >
                         {tag}
                       </span>
+                      <span
+                        :if={(project.tags |> String.split(",") |> Enum.map(&String.trim/1) |> length()) > 4}
+                        class="text-[10px] font-semibold px-2.5 py-0.5 rounded-full border border-black/[0.09] dark:border-white/[0.09] text-base-content/30"
+                      >
+                        +{(project.tags |> String.split(",") |> Enum.map(&String.trim/1) |> length()) - 4}
+                      </span>
                     </div>
-                    <.icon name="hero-arrow-up-right" class="size-4 text-base-content/20 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0" />
+                    <div class="flex items-center justify-between pt-3 border-t border-black/[0.06] dark:border-white/[0.06]">
+                      <span class="text-xs font-bold text-primary inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
+                        {gettext("View Project")} <.icon name="hero-arrow-right" class="size-3.5" />
+                      </span>
+                      <span class="text-[10px] font-semibold text-base-content/30 capitalize">{project.client_type}</span>
+                    </div>
                   </div>
-                </div>
-              </.link>
+                </.link>
+              </div>
             </div>
           </div>
         </div>
@@ -1430,6 +1511,14 @@ defmodule InnosoWeb.HomeLive do
   end
 
   @impl true
+  def handle_event("filter_tag", %{"tag" => ""}, socket) do
+    {:noreply, assign(socket, :filter_tag, nil)}
+  end
+
+  def handle_event("filter_tag", %{"tag" => tag}, socket) do
+    {:noreply, assign(socket, :filter_tag, tag)}
+  end
+
   def handle_event("toggle_menu", _params, socket) do
     {:noreply, assign(socket, :mobile_menu_open, !socket.assigns.mobile_menu_open)}
   end
