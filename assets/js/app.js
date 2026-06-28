@@ -69,6 +69,30 @@ topbar.config({barColors: {0: "#29d"}, shadowColor: "rgba(0, 0, 0, .3)"})
 window.addEventListener("phx:page-loading-start", _info => topbar.show(300))
 window.addEventListener("phx:page-loading-stop", _info => topbar.hide())
 
+// Smart navbar: hide on scroll down, reveal on scroll up
+;(() => {
+  let lastY = 0
+  let ticking = false
+
+  window.addEventListener("scroll", () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const header = document.querySelector("header[data-smart-nav]")
+        if (!header) { ticking = false; return }
+        const currentY = window.scrollY
+        if (currentY > lastY && currentY > 80) {
+          header.classList.add("nav-hidden")
+        } else {
+          header.classList.remove("nav-hidden")
+        }
+        lastY = currentY <= 0 ? 0 : currentY
+        ticking = false
+      })
+      ticking = true
+    }
+  }, { passive: true })
+})()
+
 // connect if there are any LiveViews on the page
 liveSocket.connect()
 
