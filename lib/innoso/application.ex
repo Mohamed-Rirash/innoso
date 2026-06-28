@@ -7,6 +7,8 @@ defmodule Innoso.Application do
 
   @impl true
   def start(_type, _args) do
+    Innoso.Release.migrate()
+
     children = [
       InnosoWeb.Telemetry,
       Innoso.Repo,
